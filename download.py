@@ -1,10 +1,13 @@
+import os
+from time import sleep
+import re
 import json
 
 from get import get
 
 # ckanapi requires python 2
 import ckanapi # https://twitter.com/CKANproject/status/378182161330753536
-import ckan.logic
+from ckan.logic import  NotAuthorized
 
 try:
     from urllib.parse import urljoin
@@ -46,7 +49,7 @@ def ckan(url, directory):
             print('  Downloading %s from %s' % (dataset, url))
             try:
                 dataset_information = portal.action.package_show(id = dataset)
-            except ckan.logic.NotAuthorized:
+            except NotAuthorized:
                 print('**Not authorized for %s**' % url)
                 return
             fp = open(filename, 'w')

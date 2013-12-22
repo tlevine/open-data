@@ -16,7 +16,3 @@ def kill(processes):
     'Kill all of the processes.'
     for process in processes.values():
         process.terminate()
-
-def signal_handler(signal, frame):
-    kill(processes)
-    sys.exit(0)

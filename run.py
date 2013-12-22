@@ -1,7 +1,6 @@
 #!/usr/bin/env python2
 from time import sleep
 import os, json
-import re
 
 from get import get
 
@@ -26,7 +25,11 @@ def main():
         args = (url, os.path.join('downloads', software))
         processes[(software, url)] = Process(target = getattr(download, software), args = args)
 
-    signal.signal(signal.SIGINT, parallel.signal_handler)
+    def signal_handler(signal, frame):
+        parallel.kill(processes)
+        sys.exit(0)
+
+    signal.signal(signal.SIGINT, signal_handler)
     parallel.start(processes)
     parallel.join(processes)
 
