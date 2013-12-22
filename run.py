@@ -8,12 +8,19 @@ from get import get
 import parallel
 from download import ckan
 
+def catalogs():
+    for i in json.loads(get('http://instances.ckan.org/config/instances.json')):
+        yield 'ckan', i['url']
+
+    for row in json.loads(get('https://opendata.socrata.com/api/views/6wk3-4ija/rows.json?accessType=DOWNLOAD'))['data']:
+        url = list(filter(None, row[11]))[0]
+        yield 'socrata', url
+
 def main():
     import signal
     import sys
     from multiprocessing import Process
 
-    urls = [i['url'] for i in json.loads(get('http://instances.ckan.org/config/instances.json'))]
 
     processes = {}
     for url in urls:

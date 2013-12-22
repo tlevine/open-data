@@ -1,0 +1,917 @@
+{
+  "meta" : {
+    "view" : {
+      "id" : "6wk3-4ija",
+      "name" : "Socrata Customer Spotlights",
+      "averageRating" : 0,
+      "createdAt" : 1333986537,
+      "description" : "Highlighted Socrata Customers from www.socrata.com",
+      "displayType" : "table",
+      "downloadCount" : 51,
+      "indexUpdatedAt" : 1385603460,
+      "newBackend" : false,
+      "numberOfComments" : 0,
+      "oid" : 6613719,
+      "publicationAppendEnabled" : false,
+      "publicationDate" : 1385598545,
+      "publicationGroup" : 314498,
+      "publicationStage" : "published",
+      "rowsUpdatedAt" : 1385598522,
+      "rowsUpdatedBy" : "4qwc-qq8v",
+      "signed" : false,
+      "tableId" : 1378610,
+      "totalTimesRated" : 0,
+      "viewCount" : 413,
+      "viewLastModified" : 1385598546,
+      "viewType" : "tabular",
+      "columns" : [ {
+        "id" : -1,
+        "name" : "sid",
+        "dataTypeName" : "meta_data",
+        "fieldName" : ":sid",
+        "position" : 0,
+        "renderTypeName" : "meta_data",
+        "format" : {
+        }
+      }, {
+        "id" : -1,
+        "name" : "id",
+        "dataTypeName" : "meta_data",
+        "fieldName" : ":id",
+        "position" : 0,
+        "renderTypeName" : "meta_data",
+        "format" : {
+        }
+      }, {
+        "id" : -1,
+        "name" : "position",
+        "dataTypeName" : "meta_data",
+        "fieldName" : ":position",
+        "position" : 0,
+        "renderTypeName" : "meta_data",
+        "format" : {
+        }
+      }, {
+        "id" : -1,
+        "name" : "created_at",
+        "dataTypeName" : "meta_data",
+        "fieldName" : ":created_at",
+        "position" : 0,
+        "renderTypeName" : "meta_data",
+        "format" : {
+        }
+      }, {
+        "id" : -1,
+        "name" : "created_meta",
+        "dataTypeName" : "meta_data",
+        "fieldName" : ":created_meta",
+        "position" : 0,
+        "renderTypeName" : "meta_data",
+        "format" : {
+        }
+      }, {
+        "id" : -1,
+        "name" : "updated_at",
+        "dataTypeName" : "meta_data",
+        "fieldName" : ":updated_at",
+        "position" : 0,
+        "renderTypeName" : "meta_data",
+        "format" : {
+        }
+      }, {
+        "id" : -1,
+        "name" : "updated_meta",
+        "dataTypeName" : "meta_data",
+        "fieldName" : ":updated_meta",
+        "position" : 0,
+        "renderTypeName" : "meta_data",
+        "format" : {
+        }
+      }, {
+        "id" : -1,
+        "name" : "meta",
+        "dataTypeName" : "meta_data",
+        "fieldName" : ":meta",
+        "position" : 0,
+        "renderTypeName" : "meta_data",
+        "format" : {
+        }
+      }, {
+        "id" : 118720734,
+        "name" : "Customer Logo",
+        "dataTypeName" : "photo",
+        "fieldName" : "customer_logo",
+        "position" : 1,
+        "renderTypeName" : "photo",
+        "tableColumnId" : 2502865,
+        "width" : 100,
+        "cachedContents" : {
+          "non_null" : 58,
+          "null" : 9
+        },
+        "format" : {
+        }
+      }, {
+        "id" : 118720735,
+        "name" : "Type",
+        "dataTypeName" : "text",
+        "fieldName" : "type",
+        "position" : 2,
+        "renderTypeName" : "text",
+        "tableColumnId" : 2502756,
+        "width" : 110,
+        "cachedContents" : {
+          "non_null" : 67,
+          "smallest" : "Application",
+          "null" : 0,
+          "largest" : "State/Province",
+          "top" : [ {
+            "count" : 20,
+            "item" : "Federal"
+          }, {
+            "count" : 19,
+            "item" : "City"
+          }, {
+            "count" : 18,
+            "item" : "County"
+          }, {
+            "count" : 17,
+            "item" : "State"
+          }, {
+            "count" : 16,
+            "item" : "State/Province"
+          }, {
+            "count" : 15,
+            "item" : "NGO"
+          }, {
+            "count" : 14,
+            "item" : "Convergence Cloud"
+          }, {
+            "count" : 13,
+            "item" : "Education"
+          }, {
+            "count" : 12,
+            "item" : "Application"
+          } ]
+        },
+        "format" : {
+        }
+      }, {
+        "id" : 118720736,
+        "name" : "Customer Name",
+        "dataTypeName" : "text",
+        "fieldName" : "customer_name",
+        "position" : 3,
+        "renderTypeName" : "text",
+        "tableColumnId" : 2502757,
+        "width" : 177,
+        "cachedContents" : {
+          "non_null" : 67,
+          "smallest" : "ACT Government",
+          "null" : 0,
+          "largest" : "World Bank",
+          "top" : [ {
+            "count" : 20,
+            "item" : "Ethics.Gov"
+          }, {
+            "count" : 19,
+            "item" : "City of Salt Lake"
+          }, {
+            "count" : 18,
+            "item" : "City of Oakland"
+          }, {
+            "count" : 17,
+            "item" : "City of Madison"
+          }, {
+            "count" : 16,
+            "item" : "Center for Disease Control and Prevention"
+          }, {
+            "count" : 15,
+            "item" : "City of Kansas City"
+          }, {
+            "count" : 14,
+            "item" : "City of Raleigh"
+          }, {
+            "count" : 13,
+            "item" : "City of Redmond"
+          }, {
+            "count" : 12,
+            "item" : "City of Weatherford"
+          }, {
+            "count" : 11,
+            "item" : "Snohomish County"
+          }, {
+            "count" : 10,
+            "item" : "Halfax Regional Municipality"
+          }, {
+            "count" : 9,
+            "item" : "New York State Office of ITS"
+          }, {
+            "count" : 8,
+            "item" : "State of New York Department of Health"
+          }, {
+            "count" : 7,
+            "item" : "USAID"
+          }, {
+            "count" : 6,
+            "item" : "Energy Star"
+          }, {
+            "count" : 5,
+            "item" : "City of Belleville"
+          }, {
+            "count" : 4,
+            "item" : "City of Champaign"
+          }, {
+            "count" : 3,
+            "item" : "City of Providence"
+          }, {
+            "count" : 2,
+            "item" : "City of Rockford"
+          }, {
+            "count" : 1,
+            "item" : "City of South Bend"
+          } ]
+        },
+        "format" : {
+        }
+      }, {
+        "id" : 118720737,
+        "name" : "Open Data Site URL",
+        "dataTypeName" : "url",
+        "fieldName" : "open_data_site_url",
+        "position" : 4,
+        "renderTypeName" : "url",
+        "tableColumnId" : 2502758,
+        "width" : 211,
+        "cachedContents" : {
+          "non_null" : 67,
+          "smallest" : {
+            "description" : "http://data.slcgov.com/"
+          },
+          "null" : 0,
+          "largest" : {
+            "url" : "https://www.halifaxopendata.ca"
+          },
+          "top" : [ {
+            "count" : 20,
+            "item" : {
+              "url" : "https://data.cityofboston.gov/"
+            }
+          }, {
+            "count" : 19,
+            "item" : {
+              "url" : "https://data.slcgov.com/"
+            }
+          }, {
+            "count" : 18,
+            "item" : {
+              "url" : "https://data.oaklandnet.com/"
+            }
+          }, {
+            "count" : 17,
+            "item" : {
+              "url" : "https://data.cityofmadison.com/"
+            }
+          }, {
+            "count" : 16,
+            "item" : {
+              "url" : "https://data.cdc.gov"
+            }
+          }, {
+            "count" : 15,
+            "item" : {
+              "url" : "https://data.kcmo.org"
+            }
+          }, {
+            "count" : 14,
+            "item" : {
+              "url" : "https://data.raleighnc.gov"
+            }
+          }, {
+            "count" : 13,
+            "item" : {
+              "url" : "https://data.redmond.gov"
+            }
+          }, {
+            "count" : 12,
+            "item" : {
+              "url" : "https://data.weatherfordtx.gov"
+            }
+          }, {
+            "count" : 11,
+            "item" : {
+              "url" : "https://data.snostat.org"
+            }
+          }, {
+            "count" : 10,
+            "item" : {
+              "url" : "https://www.halifaxopendata.ca"
+            }
+          }, {
+            "count" : 9,
+            "item" : {
+              "url" : "https://data.ny.gov"
+            }
+          }, {
+            "count" : 8,
+            "item" : {
+              "url" : "http://health.data.ny.gov"
+            }
+          }, {
+            "count" : 7,
+            "item" : {
+              "url" : "http://www.usaid.gov/results-and-data/progress-data/data/dca"
+            }
+          }, {
+            "count" : 6,
+            "item" : {
+              "url" : "https://data.energystar.gov/"
+            }
+          }, {
+            "count" : 5,
+            "item" : {
+              "url" : "https://data.illinois.gov/belleville"
+            }
+          }, {
+            "count" : 4,
+            "item" : {
+              "url" : "https://data.illinois.gov/champaign"
+            }
+          }, {
+            "count" : 3,
+            "item" : {
+              "url" : "https://data.providenceri.gov/"
+            }
+          }, {
+            "count" : 2,
+            "item" : {
+              "url" : "https://data.illinois.gov/rockford"
+            }
+          }, {
+            "count" : 1,
+            "item" : {
+              "url" : "https://data.southbendin.gov/"
+            }
+          } ]
+        },
+        "format" : {
+        },
+        "subColumnTypes" : [ "url", "description" ]
+      }, {
+        "id" : 118720738,
+        "name" : "Launch Date",
+        "dataTypeName" : "calendar_date",
+        "fieldName" : "launch_date",
+        "position" : 5,
+        "renderTypeName" : "calendar_date",
+        "tableColumnId" : 2502759,
+        "width" : 136,
+        "cachedContents" : {
+          "non_null" : 64,
+          "smallest" : "2010-01-01T00:00:00",
+          "null" : 3,
+          "largest" : "2013-11-20T00:00:00",
+          "top" : [ {
+            "count" : 20,
+            "item" : "2010-01-01T00:00:00"
+          }, {
+            "count" : 19,
+            "item" : "2011-11-15T00:00:00"
+          }, {
+            "count" : 18,
+            "item" : "2012-03-08T00:00:00"
+          }, {
+            "count" : 17,
+            "item" : "2012-08-30T00:00:00"
+          }, {
+            "count" : 16,
+            "item" : "2012-12-01T00:00:00"
+          }, {
+            "count" : 15,
+            "item" : "2013-03-05T00:00:00"
+          }, {
+            "count" : 14,
+            "item" : "2013-03-01T00:00:00"
+          }, {
+            "count" : 13,
+            "item" : "2013-02-01T00:00:00"
+          }, {
+            "count" : 12,
+            "item" : "2012-03-15T00:00:00"
+          }, {
+            "count" : 11,
+            "item" : "2013-03-11T00:00:00"
+          }, {
+            "count" : 10,
+            "item" : "2013-01-08T00:00:00"
+          }, {
+            "count" : 9,
+            "item" : "2013-07-02T00:00:00"
+          }, {
+            "count" : 8,
+            "item" : "2013-08-22T00:00:00"
+          }, {
+            "count" : 7,
+            "item" : "2013-10-23T00:00:00"
+          }, {
+            "count" : 6,
+            "item" : "2012-11-15T00:00:00"
+          }, {
+            "count" : 5,
+            "item" : "2013-10-15T00:00:00"
+          }, {
+            "count" : 4,
+            "item" : "2013-11-20T00:00:00"
+          }, {
+            "count" : 3,
+            "item" : "2013-11-08T00:00:00"
+          }, {
+            "count" : 2,
+            "item" : "2013-11-11T00:00:00"
+          } ]
+        },
+        "format" : {
+          "view" : "date",
+          "align" : "left"
+        }
+      }, {
+        "id" : 118720739,
+        "name" : "Country",
+        "dataTypeName" : "text",
+        "fieldName" : "country",
+        "position" : 6,
+        "renderTypeName" : "text",
+        "tableColumnId" : 2502760,
+        "width" : 99,
+        "cachedContents" : {
+          "non_null" : 67,
+          "smallest" : "AU",
+          "null" : 0,
+          "largest" : "USA",
+          "top" : [ {
+            "count" : 20,
+            "item" : "USA"
+          }, {
+            "count" : 19,
+            "item" : "CA"
+          }, {
+            "count" : 18,
+            "item" : "KE"
+          }, {
+            "count" : 17,
+            "item" : "IT"
+          }, {
+            "count" : 16,
+            "item" : "AU"
+          } ]
+        },
+        "format" : {
+        }
+      }, {
+        "id" : 118720740,
+        "name" : "Customer Spotlight",
+        "dataTypeName" : "url",
+        "fieldName" : "customer_spotlight",
+        "position" : 7,
+        "renderTypeName" : "url",
+        "tableColumnId" : 2502763,
+        "width" : 222,
+        "cachedContents" : {
+          "non_null" : 58,
+          "smallest" : {
+            "description" : "Customer Spotlight Coming Soon"
+          },
+          "null" : 9,
+          "largest" : {
+            "description" : "View Customer Spotlight",
+            "url" : "http://www.socrata.com/customer-spotlight/world-bank-finances/"
+          },
+          "top" : [ {
+            "count" : 20,
+            "item" : {
+              "description" : "View Customer Spotlight",
+              "url" : "http://www.socrata.com/customer-spotlight/medicare/"
+            }
+          }, {
+            "count" : 19,
+            "item" : {
+              "description" : "View Customer Spotlight",
+              "url" : "http://www.socrata.com/customer-spotlight/city-of-austin/"
+            }
+          }, {
+            "count" : 18,
+            "item" : {
+              "description" : "View Customer Spotlight",
+              "url" : "http://www.socrata.com/customer-spotlight/city-of-baltimore/"
+            }
+          }, {
+            "count" : 17,
+            "item" : {
+              "description" : "View Customer Spotlight",
+              "url" : "http://www.socrata.com/customer-spotlight/city-of-chicago/"
+            }
+          }, {
+            "count" : 16,
+            "item" : {
+              "description" : "View Customer Spotlight",
+              "url" : "http://www.socrata.com/customer-spotlight/city-of-de-leon/"
+            }
+          }, {
+            "count" : 15,
+            "item" : {
+              "description" : "View Customer Spotlight",
+              "url" : "http://www.socrata.com/customer-spotlight/city-of-edmonton/"
+            }
+          }, {
+            "count" : 14,
+            "item" : {
+              "description" : "View Customer Spotlight",
+              "url" : "http://www.socrata.com/customer-spotlight/city-of-new-orleans/"
+            }
+          }, {
+            "count" : 13,
+            "item" : {
+              "description" : "View Customer Spotlight",
+              "url" : "http://www.socrata.com/customer-spotlight/city-of-san-francisco/"
+            }
+          }, {
+            "count" : 12,
+            "item" : {
+              "description" : "View Customer Spotlight",
+              "url" : "http://www.socrata.com/customer-spotlight/city-of-seattle/"
+            }
+          }, {
+            "count" : 11,
+            "item" : {
+              "description" : "View Customer Spotlight",
+              "url" : "http://www.socrata.com/customer-spotlight/cook-county/"
+            }
+          }, {
+            "count" : 10,
+            "item" : {
+              "description" : "View Customer Spotlight",
+              "url" : "http://www.socrata.com/customer-spotlight/data-gov/"
+            }
+          }, {
+            "count" : 9,
+            "item" : {
+              "description" : "View Customer Spotlight",
+              "url" : "http://www.socrata.com/customer-spotlight/ethics-gov/"
+            }
+          }, {
+            "count" : 8,
+            "item" : {
+              "description" : "View Customer Spotlight",
+              "url" : "http://www.socrata.com/customer-spotlight/government-of-kenya/"
+            }
+          }, {
+            "count" : 7,
+            "item" : {
+              "description" : "View Customer Spotlight",
+              "url" : "http://www.socrata.com/customer-spotlight/king-county/"
+            }
+          }, {
+            "count" : 6,
+            "item" : {
+              "description" : "View Customer Spotlight",
+              "url" : "http://www.socrata.com/customer-spotlight/region-of-lombardia/"
+            }
+          }, {
+            "count" : 5,
+            "item" : {
+              "description" : "View Customer Spotlight",
+              "url" : "http://www.socrata.com/customer-spotlight/new-york-city/"
+            }
+          }, {
+            "count" : 4,
+            "item" : {
+              "description" : "View Customer Spotlight",
+              "url" : "http://www.socrata.com/customer-spotlight/new-york-city-comptroller/"
+            }
+          }, {
+            "count" : 3,
+            "item" : {
+              "description" : "Customer Spotlight Coming Soon!",
+              "url" : "http://www.socrata.com/customer-spotlight/"
+            }
+          }, {
+            "count" : 2,
+            "item" : {
+              "description" : "View Customer Spotlight",
+              "url" : "http://www.socrata.com/customer-spotlight/state-of-illinois/"
+            }
+          }, {
+            "count" : 1,
+            "item" : {
+              "description" : "View Customer Spotlight",
+              "url" : "http://www.socrata.com/customer-spotlight/state-of-oklahoma/"
+            }
+          } ]
+        },
+        "format" : {
+        },
+        "subColumnTypes" : [ "url", "description" ]
+      }, {
+        "id" : 118720741,
+        "name" : "Location 1",
+        "dataTypeName" : "location",
+        "fieldName" : "location_1",
+        "position" : 8,
+        "renderTypeName" : "location",
+        "tableColumnId" : 2502765,
+        "width" : 220,
+        "cachedContents" : {
+          "non_null" : 64,
+          "smallest" : {
+            "longitude" : "-122.2447399995512",
+            "latitude" : "37.7665800003669",
+            "human_address" : "{\"address\":\"\",\"city\":\"Alameda\",\"state\":\"CA\",\"zip\":\"\"}"
+          },
+          "null" : 3,
+          "largest" : {
+            "longitude" : "-80.27000999966162",
+            "latitude" : "26.643929999669922",
+            "human_address" : "{\"address\":\"\",\"city\":\"Wellington\",\"state\":\"FL\",\"zip\":\"\"}"
+          },
+          "top" : [ {
+            "count" : 20,
+            "item" : {
+              "longitude" : "-71.05669999960514",
+              "latitude" : "42.35862999957499",
+              "human_address" : "{\"address\":\"\",\"city\":\"Boston\",\"state\":\"MA\",\"zip\":\"\"}"
+            }
+          }, {
+            "count" : 19,
+            "item" : {
+              "longitude" : "-111.88822000015273",
+              "latitude" : "40.760040000345896",
+              "human_address" : "{\"address\":\"\",\"city\":\"Salt Lake City\",\"state\":\"UT\",\"zip\":\"\"}"
+            }
+          }, {
+            "count" : 18,
+            "item" : {
+              "longitude" : "-122.27301999967312",
+              "latitude" : "37.80505999961946",
+              "human_address" : "{\"address\":\"\",\"city\":\"Oakland\",\"state\":\"CA\",\"zip\":\"\"}"
+            }
+          }, {
+            "count" : 17,
+            "item" : {
+              "longitude" : "-89.38668999974357",
+              "latitude" : "43.072950000242486",
+              "human_address" : "{\"address\":\"\",\"city\":\"Madison\",\"state\":\"WI\",\"zip\":\"\"}"
+            }
+          }, {
+            "count" : 16,
+            "item" : {
+              "longitude" : "-84.32502924410709",
+              "latitude" : "33.799462671960534",
+              "human_address" : "{\"address\":\"\",\"city\":\"Atlanta\",\"state\":\"GA\",\"zip\":\"30333\"}"
+            }
+          }, {
+            "count" : 15,
+            "item" : {
+              "longitude" : "-94.57478000039657",
+              "latitude" : "39.10396000025395",
+              "human_address" : "{\"address\":\"\",\"city\":\"Kansas City\",\"state\":\"MI\",\"zip\":\"64106\"}"
+            }
+          }, {
+            "count" : 14,
+            "item" : {
+              "longitude" : "-78.64267000022016",
+              "latitude" : "35.785509999586964",
+              "human_address" : "{\"address\":\"\",\"city\":\"Raleigh\",\"state\":\"NC\",\"zip\":\"\"}"
+            }
+          }, {
+            "count" : 13,
+            "item" : {
+              "longitude" : "-122.13098999968861",
+              "latitude" : "47.67855999974438",
+              "human_address" : "{\"address\":\"\",\"city\":\"Redmond\",\"state\":\"WA\",\"zip\":\"\"}"
+            }
+          }, {
+            "count" : 12,
+            "item" : {
+              "longitude" : "-97.80079999962015",
+              "latitude" : "32.75899000028846",
+              "human_address" : "{\"address\":\"\",\"city\":\"Weatherford\",\"state\":\"TX\",\"zip\":\"\"}"
+            }
+          }, {
+            "count" : 11,
+            "item" : {
+              "longitude" : "-122.20641999958315",
+              "latitude" : "47.976570000005665",
+              "human_address" : "{\"address\":\"\",\"city\":\"Everett\",\"state\":\"WA\",\"zip\":\"\"}"
+            }
+          }, {
+            "count" : 10,
+            "item" : {
+              "longitude" : "-63.573920000207806",
+              "latitude" : "44.64615999998398",
+              "human_address" : "{\"address\":\"\",\"city\":\"Halifax\",\"state\":\"NS\",\"zip\":\"\"}"
+            }
+          }, {
+            "count" : 9,
+            "item" : {
+              "longitude" : "-74.00711999958816",
+              "latitude" : "40.71454999978283",
+              "human_address" : "{\"address\":\"\",\"city\":\"New York\",\"state\":\"NY\",\"zip\":\"\"}"
+            }
+          }, {
+            "count" : 8,
+            "item" : {
+              "longitude" : "-73.75525000018723",
+              "latitude" : "42.65144000015607",
+              "human_address" : "{\"address\":\"\",\"city\":\"Albany\",\"state\":\"NY\",\"zip\":\"\"}"
+            }
+          }, {
+            "count" : 7,
+            "item" : {
+              "longitude" : "-77.03195999965413",
+              "latitude" : "38.89036999987576",
+              "human_address" : "{\"address\":\"\",\"city\":\"Washington\",\"state\":\"D.C.\",\"zip\":\"\"}"
+            }
+          }, {
+            "count" : 6,
+            "item" : {
+              "longitude" : "-77.03195999965413",
+              "latitude" : "38.89036999987576",
+              "human_address" : "{\"address\":\"\",\"city\":\"Washington\",\"state\":\"D.C.\",\"zip\":\"\"}"
+            }
+          }, {
+            "count" : 5,
+            "item" : {
+              "longitude" : "-89.98423085599967",
+              "latitude" : "38.512131259000455",
+              "human_address" : "{\"address\":\"\",\"city\":\"Belleville\",\"state\":\"IL\",\"zip\":\"\"}"
+            }
+          }, {
+            "count" : 4,
+            "item" : {
+              "longitude" : "-88.24350118099966",
+              "latitude" : "40.11420106300045",
+              "human_address" : "{\"address\":\"\",\"city\":\"Champaign\",\"state\":\"IL\",\"zip\":\"\"}"
+            }
+          }, {
+            "count" : 3,
+            "item" : {
+              "longitude" : "-71.41199051099966",
+              "latitude" : "41.823870669000485",
+              "human_address" : "{\"address\":\"\",\"city\":\"Providence\",\"state\":\"RI\",\"zip\":\"\"}"
+            }
+          }, {
+            "count" : 2,
+            "item" : {
+              "longitude" : "-89.07835020499965",
+              "latitude" : "42.26690102100048",
+              "human_address" : "{\"address\":\"\",\"city\":\"Rockford\",\"state\":\"IL\",\"zip\":\"\"}"
+            }
+          }, {
+            "count" : 1,
+            "item" : {
+              "longitude" : "-86.25404046099965",
+              "latitude" : "41.67905056300049",
+              "human_address" : "{\"address\":\"\",\"city\":\"South Bend\",\"state\":\"Indiana\",\"zip\":\"\"}"
+            }
+          } ]
+        },
+        "format" : {
+        },
+        "subColumnTypes" : [ "human_address", "latitude", "longitude", "machine_address", "needs_recoding" ]
+      } ],
+      "grants" : [ {
+        "inherited" : false,
+        "type" : "viewer",
+        "flags" : [ "public" ]
+      } ],
+      "metadata" : {
+        "renderTypeConfig" : {
+          "visible" : {
+            "table" : true
+          }
+        },
+        "availableDisplayTypes" : [ "table", "fatrow", "page" ],
+        "rdfSubject" : "0",
+        "filterCondition" : {
+          "value" : "AND",
+          "children" : [ {
+            "value" : "OR",
+            "type" : "operator",
+            "metadata" : {
+              "includeAuto" : 5,
+              "tableColumnId" : {
+                "314498" : 2502756
+              },
+              "operator" : "EQUALS"
+            }
+          } ],
+          "type" : "operator",
+          "metadata" : {
+            "unifiedVersion" : 2,
+            "advanced" : true
+          }
+        }
+      },
+      "owner" : {
+        "id" : "nux4-azwn",
+        "displayName" : "bryantlau",
+        "roleName" : "administrator",
+        "screenName" : "bryantlau",
+        "rights" : [ "create_datasets", "edit_others_datasets", "edit_sdp", "edit_site_theme", "moderate_comments", "manage_users", "chown_datasets", "edit_nominations", "approve_nominations", "feature_items", "federations", "manage_stories", "manage_approval", "change_configurations", "view_domain", "view_others_datasets", "edit_pages", "create_pages", "view_goals", "view_dashboards", "edit_goals", "edit_dashboards", "create_dashboards" ],
+        "flags" : [ "admin" ]
+      },
+      "query" : {
+        "orderBys" : [ {
+          "ascending" : true,
+          "expression" : {
+            "columnId" : 118720738,
+            "type" : "column"
+          }
+        } ]
+      },
+      "rights" : [ "read" ],
+      "sortBys" : [ {
+        "id" : 0,
+        "viewColumnId" : 118720738,
+        "flags" : [ "asc" ]
+      } ],
+      "tableAuthor" : {
+        "id" : "nux4-azwn",
+        "displayName" : "bryantlau",
+        "roleName" : "administrator",
+        "screenName" : "bryantlau",
+        "rights" : [ "create_datasets", "edit_others_datasets", "edit_sdp", "edit_site_theme", "moderate_comments", "manage_users", "chown_datasets", "edit_nominations", "approve_nominations", "feature_items", "federations", "manage_stories", "manage_approval", "change_configurations", "view_domain", "view_others_datasets", "edit_pages", "create_pages", "view_goals", "view_dashboards", "edit_goals", "edit_dashboards", "create_dashboards" ],
+        "flags" : [ "admin" ]
+      },
+      "flags" : [ "default" ]
+    }
+  },
+  "data" : [ [ 3, "DA7F26AA-F3FA-495B-9973-FD064D5A3125", 3, 1333986538, "396408", 1333987342, "396408", "{\n}", "Y5M1ib7xgdnsNK_4GXOzjO8UgA_okBQSweUKPX0SNYM", "Federal", "Centers for Medicare and Medicaid Services", [ "http://data.cms.hhs.gov/", null ], "2010-01-01T00:00:00", "USA", [ "http://www.socrata.com/customer-spotlight/medicare/", "View Customer Spotlight" ], [ "{\"address\":\"\",\"city\":\"Baltimore\",\"state\":\"MD\",\"zip\":\"\"}", "39.29057999976732", "-76.6092600004485", null, false ] ]
+, [ 21, "4E08C733-C4E9-4092-976A-60CFE17FF378", 21, 1333986538, "396408", 1337213520, "396408", "{\n}", "JxKvx7S3beYGI1ml4mxmZLjXES66Gn5zWLf0TVYM8vI", "Federal", "Medicare", [ "http://data.medicare.gov", null ], "2010-01-01T00:00:00", "USA", [ "http://www.socrata.com/customer-spotlight/medicare/", "View Customer Spotlight" ], [ "{\"address\":\"\",\"city\":\"Baltimore\",\"state\":\"MD\",\"zip\":\"\"}", "39.29057999976732", "-76.6092600004485", null, false ] ]
+, [ 6, "5C8696B7-80FD-4D37-8609-3849875DA4F3", 6, 1333986538, "396408", 1333987412, "396408", "{\n}", "RW8L1YSzzNT8OUz3irBviXs_vquD2gymD7ChNcHFc58", "City", "City of Chicago", [ "http://data.cityofchicago.org", null ], "2010-02-01T00:00:00", "USA", [ "http://www.socrata.com/customer-spotlight/city-of-chicago/", "View Customer Spotlight" ], [ "{\"address\":\"\",\"city\":\"Chicago\",\"state\":\"IL\",\"zip\":\"\"}", "41.88415000022252", "-87.63241000012124", null, false ] ]
+, [ 11, "86F8D000-BB12-4240-BF6A-6730D22B6951", 11, 1333986538, "396408", 1333987484, "396408", "{\n}", "cFbqdhBSWB3E0DBuMH4KTe6FMErpRm5ikSpeoyczeXI", "City", "City of Seattle", [ "http://data.seattle.gov", null ], "2010-02-25T00:00:00", "USA", [ "http://www.socrata.com/customer-spotlight/city-of-seattle/", "View Customer Spotlight" ], [ "{\"address\":\"\",\"city\":\"Seattle\",\"state\":\"WA\",\"zip\":\"\"}", "47.60355999989423", "-122.32943999975606", null, false ] ]
+, [ 18, "888CCD7A-36B2-4BD5-85C2-56B5311F254D", 18, 1333986538, "396408", 1333987583, "396408", "{\n}", "iBzS9-D3f_Ao3jOsCZtQb3yOO1GwiWoOSJ_iahvVQxc", "County", "King County, WA", [ "http://datakc.org", null ], "2010-06-23T00:00:00", "USA", [ "http://www.socrata.com/customer-spotlight/king-county/", "View Customer Spotlight" ], [ "{\"address\":\"\",\"city\":\"Seattle\",\"state\":\"WA\",\"zip\":\"\"}", "47.60355999989423", "-122.32943999975606", null, false ] ]
+, [ 32, "BF14204A-424E-4A22-B0F0-2E5817A2287E", 32, 1333986538, "396408", 1333987782, "396408", "{\n}", "KhfLRXxbWNr02vEMafdJqobzx6RoobDGoe0RnhKFXDk", "State/Province", "State of Oregon", [ "http://data.oregon.gov", null ], "2010-08-01T00:00:00", "USA", [ "http://www.socrata.com/customer-spotlight/state-of-oregon/", "View Customer Spotlight" ], [ "{\"address\":\"\",\"city\":\"Salem\",\"state\":\"OR\",\"zip\":\"\"}", "44.93325999984927", "-123.04381000003133", null, false ] ]
+, [ 33, "F4CE6EB9-6A90-46BA-A277-B2CB3DBB408B", 33, 1333986538, "396408", 1346816072, "396408", "{}", "9wC9SJ2hc0qFiToVDiR0wK5GnIJvcALItC2HKCpgnJU", "State/Province", "State of Washington", [ "http://data.wa.gov", null ], "2010-08-15T00:00:00", "USA", [ "http://www.socrata.com/customer-spotlight/state-of-washington/", "View Customer Spotlight" ], [ "{\"address\":\"\",\"city\":\"Olympia\",\"state\":\"WA\",\"zip\":\"\"}", "47.03923000026447", "-122.891359999764", null, false ] ]
+, [ 7, "FDF486DD-5BDD-4890-81FE-0281D6EF5E47", 7, 1333986538, "396408", 1346222511, "396408", "{}", "9PU0UXpu9M02Wgq9qT_qVhr-fZ-SFoF_9nA7sPbBTk0", "City", "City of De Leon", [ "http://data.cityofdeleon.org", null ], "2010-09-20T00:00:00", "USA", [ "http://www.socrata.com/customer-spotlight/city-of-de-leon/", "View Customer Spotlight" ], [ "{\"address\":\"\",\"city\":\"De Leon\",\"state\":\"TX\",\"zip\":\"\"}", "32.116640000036114", "-98.535059999819", null, false ] ]
+, [ 24, "62DB2F01-FEB6-4F64-92BF-33FEDDC83481", 24, 1333986538, "396408", 1346816141, "396408", "{}", "fH-eEPFiKMkLrFbBDhGeuqLccDAh823YpaV0LQAom6Q", "City", "New York City Comptroller", [ "http://www.opendatanyc.com/", null ], "2010-10-15T00:00:00", "USA", [ "http://www.socrata.com/customer-spotlight/new-york-city-comptroller/", "View Customer Spotlight" ], [ "{\"address\":\"\",\"city\":\"New York\",\"state\":\"NY\",\"zip\":\"\"}", "40.71454999978283", "-74.00711999958816", null, false ] ]
+, [ 5, "186BBACC-AC7B-4415-901D-34C166B6C6B7", 5, 1333986538, "396408", 1337213435, "396408", "{\n}", "hwyAQcmbMZrZ3DRYBQvlDZAnfsyyNIwz8xyMwncRqmg", "City", "City of Baltimore", [ "https://data.baltimorecity.gov/", null ], "2011-01-26T00:00:00", "USA", [ "http://www.socrata.com/customer-spotlight/city-of-baltimore/", "View Customer Spotlight" ], [ "{\"address\":\"\",\"city\":\"Baltimore\",\"state\":\"MD\",\"zip\":\"\"}", "39.29057999976732", "-76.6092600004485", null, false ] ]
+, [ 31, "DAAB8483-E3FB-40F7-A0BD-909D2D32DAAC", 31, 1333986538, "396408", 1333987769, "396408", "{\n}", "FBoNZl7xWP2pU6xkc9rJ9vwpgv7nJTSxfRr5sVhubcU", "State/Province", "State of Oklahoma", [ "http://data.ok.gov", null ], "2011-02-09T00:00:00", "USA", [ "http://www.socrata.com/customer-spotlight/state-of-oklahoma/", "View Customer Spotlight" ], [ "{\"address\":\"\",\"city\":\"Oklahoma City\",\"state\":\"OK\",\"zip\":\"\"}", "35.4720099999617", "-97.52034999975251", null, false ] ]
+, [ 34, "19DE1DCF-BC9F-4F33-AFEE-4721D5FBCEB5", 34, 1333986538, "396408", 1337213561, "396408", "{\n}", "8IjELTkjKLI43OzAdADeId3Z5CjA_Nqb9OI4FcG2Nnw", "Federal", "Substance Abuse and Mental Health Services Administration (SAMHSA)", [ "http://info.samhsa.gov", null ], "2011-04-21T00:00:00", "USA", [ "http://www.socrata.com/customer-spotlight/samhsa/", "View Customer Spotlight" ], [ "{\"address\":\"\",\"city\":\"Rockville\",\"state\":\"MD\",\"zip\":\"\"}", "39.08165999980929", "-77.15124000002584", null, false ] ]
+, [ 14, "5B589893-C1A4-4695-A39C-2DC9F9F14C0D", 14, 1333986538, "396408", 1333987522, "396408", "{\n}", "jfMjjIBRI7PCLpiKGNq7FjuC2Md-y7BHmFK2VTcBFPU", "Federal", "Data.gov", [ "http://www.data.gov", null ], "2011-05-27T00:00:00", "USA", [ "http://www.socrata.com/customer-spotlight/data-gov/", "View Customer Spotlight" ], [ "{\"address\":\"\",\"city\":\"Washington\",\"state\":\"DC\",\"zip\":\"\"}", "38.89036999987576", "-77.03195999965413", null, false ] ]
+, [ 28, "A16577D0-16F7-4C95-99C5-3DE104BA4B24", 28, 1333986538, "396408", 1333987727, "396408", "{\n}", "T3hf3Av8s_vxz_NIrto0wEqCbHXgZeubJvW6raSOE7U", "State/Province", "State of Illinois", [ "http://data.illinois.gov", null ], "2011-06-21T00:00:00", "USA", [ "http://www.socrata.com/customer-spotlight/state-of-illinois/", "View Customer Spotlight" ], [ "{\"address\":\"\",\"city\":\"Springfield\",\"state\":\"IL\",\"zip\":\"\"}", "39.80104999955802", "-89.6436000004395", null, false ] ]
+, [ 16, "AC922083-4BCA-48A2-9229-AD623E42E8EA", 16, 1333986538, "396408", 1383231041, "396408", "{\n}", "RHFrcyvKs7kokcO0AZYg5kuUKV2dClQGZKbpQfDQo78", "Federal", "Government of Kenya", [ "http://opendata.go.ke", null ], "2011-07-08T00:00:00", "KE", [ "http://www.socrata.com/customer-spotlight/government-of-kenya/", "View Customer Spotlight" ], [ "{\"address\":\"\",\"city\":\"Nairobi\",\"state\":\"Nairobi Province\",\"zip\":\"\"}", "-1.2833333", "36.8166667", null, false ] ]
+, [ 8, "2E0DC91B-410A-423B-8C7B-F8205B1F90E5", 8, 1333986538, "396408", 1333989572, "396408", "{\n}", "OpWdRX99jC-pp6QV63SYIco10zzkJZpYUrGd1R-tDFk", "City", "City of Edmonton", [ "http://data.edmonton.ca", null ], "2011-08-23T00:00:00", "CA", [ "http://www.socrata.com/customer-spotlight/city-of-edmonton/", "View Customer Spotlight" ], [ "{\"address\":\"\",\"city\":\"Edmonton\",\"state\":\"AB\",\"zip\":\"\"}", "53.540938000388394", "-113.49373500036995", null, false ] ]
+, [ 9, "BE9323F7-0459-4EC5-9367-D97CDADC6664", 9, 1333986538, "396408", 1337213473, "396408", "{\n}", "PqTnEUmNVdXIhyrK-b6fBIsUtO9d4yWnVkQuY5Avwo0", "City", "City of New Orleans", [ "http://data.nola.gov/", null ], "2011-09-14T00:00:00", "USA", [ "http://www.socrata.com/customer-spotlight/city-of-new-orleans/", "View Customer Spotlight" ], [ "{\"address\":\"\",\"city\":\"New Orleans\",\"state\":\"LA\",\"zip\":\"\"}", "29.95370000025497", "-90.07774999976255", null, false ] ]
+, [ 13, "5ABC5720-0BB9-4FDB-B50A-E889F2E87238", 13, 1333986538, "396408", 1333989581, "396408", "{\n}", "Wb1C2lEZEgYOsCUpM-ZNUx7jPXnQx6hKHmWbG6x7fgI", "County", "Cook County", [ "http://datacatalog.cookcountyil.gov/", null ], "2011-09-21T00:00:00", "USA", [ "http://www.socrata.com/customer-spotlight/cook-county/", "View Customer Spotlight" ], [ "{\"address\":\"\",\"city\":\"Chicago\",\"state\":\"IL\",\"zip\":\"\"}", "41.88415000022252", "-87.63241000012124", null, false ] ]
+, [ 25, "70807259-6C81-46AB-88B5-59C727AECA4C", 25, 1333986538, "396408", 1333990054, "396408", "{\n}", "s-3YsbH7unYlPnovdpLNvbQVX-H0eKffuzOkFP5E7SU", "Federal", "NOAA", [ "http://nmfs.socrata.com/", null ], "2011-10-10T00:00:00", "USA", [ "http://www.socrata.com/customer-spotlight/", "Customer Spotlight Coming Soon!" ], [ "{\"address\":\"\",\"city\":\"Washington\",\"state\":\"DC\",\"zip\":\"\"}", "38.89036999987576", "-77.03195999965413", null, false ] ]
+, [ 23, "A18F72D3-84FB-432D-B383-ED996F18D1B5", 23, 1333986538, "396408", 1333987660, "396408", "{\n}", "ecvd_GGVegbsMSbLGZ0gEHWIkXHZlx4XuAEsUdfdqHg", "City", "New York City", [ "http://nycopendata.socrata.com/", null ], "2011-10-12T00:00:00", "USA", [ "http://www.socrata.com/customer-spotlight/new-york-city/", "View Customer Spotlight" ], [ "{\"address\":\"\",\"city\":\"New York City\",\"state\":\"NY\",\"zip\":\"\"}", "40.71454999978283", "-74.00711999958816", null, false ] ]
+, [ 36, "DA1BCA4C-5F09-4DF7-B8ED-0C69863C0577", 36, 1333986538, "396408", 1333988776, "396408", "{\n}", "7Aa_y2c-xf7NZ6UJNdQbm6JTwynUt6eKJ5M5gtbpD4k", "NGO", "United Nations Development Programme", [ "http://data.undp.org", null ], "2011-11-15T00:00:00", "USA", [ "http://www.socrata.com/customer-spotlight/united-nations-development-programme/", "View Customer Spotlight" ], [ "{\"address\":\"\",\"city\":\"New York\",\"state\":\"NY\",\"zip\":\"\"}", "40.71454999978283", "-74.00711999958816", null, false ] ]
+, [ 95, "0C72F18E-E9E3-4EF5-AF5C-8C2AEFA41912", 95, 1370361228, "396408", 1384131333, "698325", null, "Rkkl-vVYFn1yH8zY4Bi16_JI6GqX6CX_g_xFZzLHaO0", "Federal", "Energy Star", [ "https://data.energystar.gov/", null ], "2011-11-15T00:00:00", "USA", [ null, "Customer Spotlight Coming Soon!" ], [ "{\"address\":\"\",\"city\":\"Washington\",\"state\":\"D.C.\",\"zip\":\"\"}", "38.89036999987576", "-77.03195999965413", null, false ] ]
+, [ 10, "9ECB475C-A015-4CBF-9F8B-722B607D844F", 10, 1333986538, "396408", 1337213496, "396408", "{\n}", "JlgwwEJimW11pHZT76NGvUU3lIJR7uBzxbdP9qYytW0", "City", "City of San Francisco", [ "https://data.sfgov.org/", null ], "2011-11-15T00:00:00", "USA", [ "http://www.socrata.com/customer-spotlight/city-of-san-francisco/", "View Customer Spotlight" ], [ "{\"address\":\"\",\"city\":\"San Francisco\",\"state\":\"CA\",\"zip\":\"\"}", "37.62", "-122.38", null, false ] ]
+, [ 58, "36E3AF1C-2DDC-4003-AC79-AB7282F9EAEA", 58, 1360718457, "699254", 1384131266, "698325", null, "7vkUX3OLO7ui-89wsld0XQg7CfSE9JHklXdSYJ2IQGk", "City", "City of Salt Lake", [ "https://data.slcgov.com/", null ], "2011-11-15T00:00:00", "USA", [ null, "Customer Spotlight Coming Soon!" ], [ "{\"address\":\"\",\"city\":\"Salt Lake City\",\"state\":\"UT\",\"zip\":\"\"}", "40.760040000345896", "-111.88822000015273", null, false ] ]
+, [ 4, "5389D51E-7CB2-4EC5-89B6-37C57ECC213D", 4, 1333986538, "396408", 1337213413, "396408", "{\n}", "WwQ9VAoe7cb8Qy0FEO42S7lIwGRfYE5CG96DLRy_fjQ", "City", "City of Austin", [ "http://data.austintexas.gov", null ], "2011-12-15T00:00:00", "USA", [ "http://www.socrata.com/customer-spotlight/city-of-austin/", "View Customer Spotlight" ], [ "{\"address\":\"\",\"city\":\"Austin\",\"state\":\"TX\",\"zip\":\"\"}", "30.267600000339883", "-97.74297999972708", null, false ] ]
+, [ 39, "C4B44031-FCA2-4BBB-AA29-D05A2059EB56", 39, 1338505698, "402253", 1346816108, "396408", null, "exHdQ0nC9XyN8ELXAQFqYtlvw0fgOvrypZe8xFFFBT4", "County", "Montgomery County", [ "https://data.montgomerycountymd.gov/", null ], "2012-01-20T00:00:00", "USA", [ "http://www.socrata.com/customer-spotlight/montgomery-county/", "View Customer Spotlight" ], [ "{\"address\":\"\",\"city\":\"Baltimore\",\"state\":\"MD\",\"zip\":\"\"}", "39.294880000000035", "-76.62253999999996", null, false ] ]
+, [ 50, "078C230B-6520-44AB-AEA1-197DB4380130", 50, 1355165807, "396408", 1369955076, "716446", null, "gbSqPN_yCJsJ-W964JdGvfV6tiSfLl6e_PlO8FkGOUc", "Federal", "Ethics.Gov", [ "http://ethics.data.gov", null ], "2012-03-08T00:00:00", "USA", [ "http://www.socrata.com/customer-spotlight/ethics-gov/", "View Customer Spotlight" ], [ "{\"address\":\"\",\"city\":\"Washington\",\"state\":\"D.C.\",\"zip\":\"\"}", "38.89036999987576", "-77.03195999965413", null, false ] ]
+, [ 15, "112B7172-E1B0-40DF-9AB6-7597942771B0", 15, 1333986538, "396408", 1333988426, "396408", "{\n}", "h1lMmDzMYmJVHn69JS1vK4FT_ZUCAbaiLOoVFPVSq9Y", "Federal", "Ethics.Gov", [ "http://explore.data.gov/ethics", null ], "2012-03-08T00:00:00", "USA", [ "http://www.socrata.com/customer-spotlight/ethics-gov/", "View Customer Spotlight" ], [ "{\"address\":\"\",\"city\":\"Washington\",\"state\":\"DC\",\"zip\":\"\"}", "38.89036999987576", "-77.03195999965413", null, false ] ]
+, [ 85, "021CFAD6-F2D3-462F-8FAF-0AD0004D66CD", 85, 1369850985, "716446", 1370322994, "396408", null, "p9CwMG1et1MBZIWv7O1oxDC8YWCs6l658UZPi_KYypk", "State/Province", "New York State Office of ITS", [ "https://data.ny.gov", null ], "2012-03-15T00:00:00", "USA", [ null, "Customer Spotlight Coming Soon!" ], [ "{\"address\":\"\",\"city\":\"New York\",\"state\":\"NY\",\"zip\":\"\"}", "40.71454999978283", "-74.00711999958816", null, false ] ]
+, [ 38, "5133A736-DF1F-471B-BE94-E9833A5224EC", 38, 1337213573, "396408", 1338505446, "396408", null, "BgfCic_JgdhJP1LkkKEFkEs9KDG5JKYUHndHUfuxVQQ", "Convergence Cloud", "MetroChicagoData.com", [ "http://www.metrochicagodata.com", null ], "2012-03-21T00:00:00", "USA", [ "http://www.socrata.com/customer-spotlight/metrochicagodata-com/", "View Customer Spotlight" ], [ "{\"address\":\"\",\"city\":\"Chicago\",\"state\":\"IL\",\"zip\":\"\"}", "41.88415000022252", "-87.63241000012124", null, false ] ]
+, [ 20, "5A842BB7-7EE1-45A8-8D4C-CAE26FAF9A0B", 20, 1333986538, "396408", 1383231029, "396408", "{}", "J-Eg6RvatZ_ZK6E2aSQWhwgANMzTawmUP7LLja8eF34", "State", "Lombardia Informatica", [ "https://dati.lombardia.it/", null ], "2012-03-23T00:00:00", "IT", [ "http://www.socrata.com/customer-spotlight/region-of-lombardia/", "View Customer Spotlight" ], [ "{\"address\":\"\",\"city\":\"Milan\",\"state\":\"Lombardia\",\"zip\":\"\"}", "45.4667", "9.2", null, false ] ]
+, [ 53, "3A085D11-6073-4121-8FF2-6E6C587AF2EF", 53, 1355165883, "396408", 1355173407, "396408", null, null, "Federal", "HSMP", [ "http://healthmeasures.aspe.hhs.gov/", null ], "2012-05-15T00:00:00", "USA", [ "http://www.socrata.com/customer-spotlight/health-system-measurement-project/", "View Customer Spotlight" ], [ "{\"address\":\"\",\"city\":\"Washington\",\"state\":\"D.C.\",\"zip\":\"\"}", "38.89036999987576", "-77.03195999965413", null, false ] ]
+, [ 40, "2B65139B-E94D-4921-B325-EDC94B29A5BD", 40, 1338505931, "402253", 1346222474, "396408", null, "Ni4LKcFt1u4681X9R4rAZDZA9qVMFfyGwnHc1ngejro", "State/Province", "Colorado", [ "https://data.colorado.gov/", null ], "2012-05-31T00:00:00", "USA", [ "http://www.socrata.com/customer-spotlight/state-of-colorado/", "View Customer Spotlight" ], [ "{\"address\":\"\",\"city\":\"Denver\",\"state\":\"CO\",\"zip\":\"\"}", "39.75056000000001", "-104.98950000000002", null, false ] ]
+, [ 48, "A3CFDAAA-713C-4B84-B52A-656F0D699A84", 48, 1355165526, "396408", 1383242424, "396408", null, "mzmsYXBso6kJ5ZIWlurdYhxUkqBqIxfAv0gi-3mOlx0", "City", "City of Wellington, FL", [ "http://data.wellingtonfl.gov/", null ], "2012-06-01T00:00:00", "USA", [ "http://www.socrata.com/customer-spotlight/city-of-wellington-florida/", "View Customer Spotlight" ], [ "{\"address\":\"\",\"city\":\"Wellington\",\"state\":\"FL\",\"zip\":\"\"}", "26.643929999669922", "-80.27000999966162", null, false ] ]
+, [ 52, "7E39CBA3-DFC2-490C-A413-9E708820D161", 52, 1355165870, "396408", 1369955156, "716446", null, "WLR_mMZdgluJ9_JuaN-m3pIpFa60vBuuxIXfVxja6JE", "Federal", "CFPB", [ "http://www.consumerfinance.gov/complaintdatabase/", null ], "2012-06-19T00:00:00", "USA", [ "http://www.socrata.com/customer-spotlight/consumer-financial-protection-bureau/", "View Customer Spotlight" ], [ "{\"address\":\"\",\"city\":\"Washington\",\"state\":\"D.C.\",\"zip\":\"\"}", "38.89036999987576", "-77.03195999965413", null, false ] ]
+, [ 49, "236CCAAE-65F5-4CCC-8464-92405008E899", 49, 1355165680, "396408", 1383231033, "396408", null, "J4e4AhqBSewYC_ipEdAwUL58bdSTbGvU6gZk07knsMg", "NGO", "World Bank", [ "https://finances.worldbank.org/", null ], "2012-07-04T00:00:00", "USA", [ "http://www.socrata.com/customer-spotlight/world-bank-finances/", "View Customer Spotlight" ], [ "{\"address\":\"\",\"city\":\"Washington\",\"state\":\"D.C.\",\"zip\":\"\"}", "38.89036999987576", "-77.03195999965413", null, false ] ]
+, [ 42, "37973A63-3DEB-40BD-AAF4-550A5900750E", 42, 1346222534, "396408", 1346222728, "396408", null, "xA0dX3JgVakmUQC-JAERgnkip43of1qYjz_ZwX6De24", "City", "City of Honolulu", [ "https://data.honolulu.gov/", null ], "2012-07-25T00:00:00", "USA", [ "http://www.socrata.com/customer-spotlight", "Customer Spotlight Coming Soon!" ], [ "{\"address\":\"\",\"city\":\"Honolulu\",\"state\":\"HI\",\"zip\":\"\"}", "21.304850000427336", "-157.85774999956269", null, false ] ]
+, [ 44, "22BC178D-1895-4F0B-8D0C-26865FABE202", 44, 1346365095, "396408", 1383231038, "396408", null, "iWe9yEafri44Il8HN1091wdhoKMdUzC1rbQxvv2V860", "State", "ACT Government", [ "https://data.act.gov.au/", null ], "2012-08-30T00:00:00", "AU", [ "http://www.socrata.com/customer-spotlight/australian-capital-territory-act-government/", "Customer Spotlight Coming Soon!" ], [ "{\"address\":\"\",\"city\":\"Canberra\",\"state\":\"AU\",\"zip\":\"\"}", "-35.281255", "149.128755", null, false ] ]
+, [ 43, "27D7E5F7-01CB-4229-AD8E-2058CA49335E", 43, 1346365080, "396408", 1355165595, "396408", "{\"invalidCells\":{\"2502763\":\"/customer-spotlight/alameda-county-data-sharing-initiative/\"}}", "kuQv_BvBvXmXDzYK5h2klO_Ydojj_MByZuf0Qb91O10", "City", "City of Somerville", [ "http://data.somervillema.gov", null ], "2012-08-30T00:00:00", "USA", [ "http://www.socrata.com/customer-spotlight/city-of-somerville-ma/", "View Customer Spotlight" ], [ "{\"address\":\"\",\"city\":\"Somerville\",\"state\":\"MA\",\"zip\":\"\"}", "42.38667999988223", "-71.09825999969905", null, false ] ]
+, [ 51, "2C86B2AB-BD72-485A-981C-742DECA9341A", 51, 1355165835, "396408", 1369955101, "716446", null, "aB_455W4KL48GoXgdfmYOkH2513DVqKJxhFdomUwMzA", "State/Province", "State of Hawaii", [ "http://data.hawaii.gov", null ], "2012-09-27T00:00:00", "USA", [ null, "Customer Spotlight Coming Soon!" ], [ "{\"address\":\"\",\"city\":\"Honolulu\",\"state\":\"HI\",\"zip\":\"\"}", "21.304850000427336", "-157.85774999956269", null, false ] ]
+, [ 41, "5C79C686-D468-4843-9BA3-E31D8FFD4781", 41, 1338505993, "402253", 1360867946, "396408", null, "gKlnG4zQARRJzxdNuXzxm4qHBKd6j2ZZ_2aJ7iNB0KQ", "State/Province", "Missouri", [ "https://data.mo.gov/", null ], "2012-10-05T00:00:00", "USA", [ "http://www.socrata.com/customer-spotlight/state-of-missouri/", "View Customer Spotlight" ], [ "{\"address\":\"\",\"city\":\"Jefferson City\",\"state\":\"MO\",\"zip\":\"\"}", "38.57302999999996", "-92.27971000000002", null, false ] ]
+, [ 55, "EDFAE3F1-247A-460F-9AC9-8D3AEB9CBDA2", 55, 1355165910, "396408", 1369955202, "716446", null, "wtqLvzruDDln3UF2kX_gpr2q7aYoBFL9GZjeJXZjRoA", "State/Province", "State of Maryland", [ "https://data.maryland.gov/", null ], "2012-10-09T00:00:00", "USA", [ "http://www.socrata.com/customer-spotlight/state-of-maryland/", "View Customer Spotlight" ], [ "{\"address\":\"\",\"city\":\"Baltimore\",\"state\":\"MD\",\"zip\":\"\"}", "39.29057999976732", "-76.6092600004485", null, false ] ]
+, [ 45, "9C3712EC-5C11-442F-8BA9-FD8032A6ADC5", 45, 1351532727, "396408", 1355165654, "396408", null, "rWd7Jxd6GY6chD2IU_ROHt0xvEeOUoMPF_IKYlInwVM", "County", "Alameda County", [ "https://data.acgov.org/", null ], "2012-10-24T00:00:00", "USA", [ "http://www.socrata.com/customer-spotlight/alameda-county-data-sharing-initiative/", "View Customer Spotlight" ], [ "{\"address\":\"\",\"city\":\"Alameda\",\"state\":\"CA\",\"zip\":\"\"}", "37.7665800003669", "-122.2447399995512", null, false ] ]
+, [ 46, "DF079F72-B06F-4337-9D6D-172B1EF90D00", 46, 1351533118, "396408", 1351533255, "396408", null, "aIA0kz_Rkd_mfTnHn1BouWcpWdkdLIUrvdi6yfNZFo8", "Education", "Lehman College", [ "https://bronx.lehman.cuny.edu/", null ], "2012-10-26T00:00:00", "USA", [ null, "Customer Spotlight Coming Soon!" ], [ "{\"address\":\"\",\"city\":\"New York City\",\"state\":\"NY\",\"zip\":\"\"}", "40.71454999978283", "-74.00711999958816", null, false ] ]
+, [ 105, "C85D6A3D-E9DF-4A38-8E17-CEE456DE9B1E", 105, 1382560164, "853207", 1384132387, "698325", null, null, "City", "City of Salt Lake City", [ null, "http://data.slcgov.com/" ], "2012-11-15T00:00:00", "USA", [ null, "Customer Spotlight Coming Soon!" ], [ "{\"address\":\"\",\"city\":\"Salt Lake City\",\"state\":\"UT\",\"zip\":\"\"}", "40.760060169000496", "-111.88822088099971", null, false ] ]
+, [ 57, "BAA75936-B0C0-41C3-9E0F-669632F8B7F1", 57, 1360718342, "699254", 1384131213, "698325", null, "NbjI354zbuiw9ibkfwiHLNUFNMMi9_SoxCseSkHEqlE", "City", "City of Boston", [ "https://data.cityofboston.gov/", null ], "2012-12-01T00:00:00", "USA", [ null, "Customer Spotlight Coming Soon!" ], [ "{\"address\":\"\",\"city\":\"Boston\",\"state\":\"MA\",\"zip\":\"\"}", "42.35862999957499", "-71.05669999960514", null, false ] ]
+, [ 70, "D8227DBE-E767-4B8A-9643-07F10C0987ED", 70, 1369849496, "716446", 1369955648, "716446", null, "0R3DK-BHA3LOiMpvwvYrs_mKrrK8hWhVR4NiN7I4MSo", "City", "City of Weatherford", [ "https://data.weatherfordtx.gov", null ], "2012-12-01T00:00:00", "USA", [ null, "Customer Spotlight Coming Soon!" ], [ "{\"address\":\"\",\"city\":\"Weatherford\",\"state\":\"TX\",\"zip\":\"\"}", "32.75899000028846", "-97.80079999962015", null, false ] ]
+, [ 65, "7E2817DF-5A70-4148-9739-5A615994F496", 65, 1369848941, "716446", 1369956423, "716446", null, "fvIXwuaTcU_hnyJKGTmGB9zmHJq7bp0cuRmGdVOtgPk", "City", "City of Kansas City", [ "https://data.kcmo.org", null ], "2012-12-01T00:00:00", "USA", [ null, "Customer Spotlight Coming Soon!" ], [ "{\"address\":\"\",\"city\":\"Kansas City\",\"state\":\"MI\",\"zip\":\"64106\"}", "39.10396000025395", "-94.57478000039657", null, false ] ]
+, [ 94, "960417DC-79BF-4F28-8392-300EA66C357B", 94, 1370361223, "396408", 1370375560, "396408", null, "jTLRTTvYW3uCCrtK3MlNavuYJfk41rPW2xAi_8sPklA", "NGO", "USAID", [ "http://www.usaid.gov/results-and-data/progress-data/data/dca", null ], "2013-01-08T00:00:00", "USA", [ null, "Customer Spotlight Coming Soon!" ], [ "{\"address\":\"\",\"city\":\"Washington\",\"state\":\"D.C.\",\"zip\":\"\"}", "38.89036999987576", "-77.03195999965413", null, false ] ]
+, [ 61, "8717327F-9796-4621-9EB3-F373BCE90D46", 61, 1360718858, "699254", 1384131305, "698325", null, "9nOekzh0lq4HWtIpR-8h4YR5DFk3Z5ciJUrXxDZRdeE", "City", "City of Madison", [ "https://data.cityofmadison.com/", null ], "2013-01-15T00:00:00", "USA", [ null, "Customer Spotlight Coming Soon!" ], [ "{\"address\":\"\",\"city\":\"Madison\",\"state\":\"WI\",\"zip\":\"\"}", "43.072950000242486", "-89.38668999974357", null, false ] ]
+, [ 60, "1AD43505-D32C-49F1-A667-E9F7A17584EB", 60, 1360718694, "699254", 1384131281, "698325", null, "dEslfdyB0J_X8jQrbUqhUKySCELVC4TSPUKSSdJgueA", "City", "City of Oakland", [ "https://data.oaklandnet.com/", null ], "2013-02-01T00:00:00", "USA", [ null, "Customer Spotlight Coming Soon!" ], [ "{\"address\":\"\",\"city\":\"Oakland\",\"state\":\"CA\",\"zip\":\"\"}", "37.80505999961946", "-122.27301999967312", null, false ] ]
+, [ 74, "83408B94-D116-4C85-B23F-1604B7E6911A", 74, 1369849784, "716446", 1370322933, "396408", null, "djDb9X49pxfDw_Hay6THT2jObD34m3PV66GG3rPceeE", "County", "Snohomish County", [ "https://data.snostat.org", null ], "2013-02-01T00:00:00", "USA", [ null, "Customer Spotlight Coming Soon!" ], [ "{\"address\":\"\",\"city\":\"Everett\",\"state\":\"WA\",\"zip\":\"\"}", "47.976570000005665", "-122.20641999958315", null, false ] ]
+, [ 68, "8697A861-8127-4A9A-965A-565AD938A61D", 68, 1369849330, "716446", 1369881416, "396408", null, "q2Mns3ZGhMW4QQKgF9MsMpt10B9Ep3smUfKZoNS6y7k", "City", "City of Redmond", [ "https://data.redmond.gov", null ], "2013-03-01T00:00:00", "USA", [ null, "Customer Spotlight Coming Soon!" ], [ "{\"address\":\"\",\"city\":\"Redmond\",\"state\":\"WA\",\"zip\":\"\"}", "47.67855999974438", "-122.13098999968861", null, false ] ]
+, [ 80, "3734B9E0-1C9C-4E7B-B329-59CFC99F96DA", 80, 1369850266, "716446", 1383231029, "396408", null, "GytRgZaIh9lCNOh58IzCVaIo62BsjWANCTd-9ocIUSY", "City", "Halfax Regional Municipality", [ "https://www.halifaxopendata.ca", null ], "2013-03-01T00:00:00", "CA", [ null, "Customer Spotlight Coming Soon!" ], [ "{\"address\":\"\",\"city\":\"Halifax\",\"state\":\"NS\",\"zip\":\"\"}", "44.64615999998398", "-63.573920000207806", null, false ] ]
+, [ 67, "C10E5B46-E9B6-4CE6-8680-574526DA77E6", 67, 1369849224, "716446", 1369881417, "396408", null, "AK1MDaDf77AkwN1afHsPMtl3LSzTilmy7oTo-tvBH1s", "City", "City of Raleigh", [ "https://data.raleighnc.gov", null ], "2013-03-05T00:00:00", "USA", [ null, "Customer Spotlight Coming Soon!" ], [ "{\"address\":\"\",\"city\":\"Raleigh\",\"state\":\"NC\",\"zip\":\"\"}", "35.785509999586964", "-78.64267000022016", null, false ] ]
+, [ 89, "430DB454-348D-4BDA-97B8-7DBBA3457901", 89, 1369851398, "716446", 1370323003, "396408", null, "mAnugIKAL5esY4skF58C-4fmkLF3dXXz_AlCKrH6v1c", "State/Province", "State of New York Department of Health", [ "http://health.data.ny.gov", null ], "2013-03-11T00:00:00", "USA", [ null, "Customer Spotlight Coming Soon" ], [ "{\"address\":\"\",\"city\":\"Albany\",\"state\":\"NY\",\"zip\":\"\"}", "42.65144000015607", "-73.75525000018723", null, false ] ]
+, [ 64, "5AE5B219-8A18-405C-BCC5-BAB2CE75D0D2", 64, 1369848712, "716446", 1369956420, "716446", null, "px15uI0iJKYE5MM64KjiqeSnWlzjaO5Axx_jsyVco9E", "Federal", "Center for Disease Control and Prevention", [ "https://data.cdc.gov", null ], "2013-05-15T00:00:00", "USA", [ null, "Customer Spotlight Coming Soon!" ], [ "{\"address\":\"\",\"city\":\"Atlanta\",\"state\":\"GA\",\"zip\":\"30333\"}", "33.799462671960534", "-84.32502924410709", null, false ] ]
+, [ 100, "90CBB357-B28F-42C0-8146-3F46033AC46E", 100, 1382558782, "853207", 1384134345, "698325", null, "oHbDGhLDTSky2MVKqz0YI-1f_lpjBPrJhhKcgWwAnaY", "City", "City of Providence", [ "https://data.providenceri.gov/", null ], "2013-07-02T00:00:00", "USA", [ null, null ], [ "{\"address\":\"\",\"city\":\"Providence\",\"state\":\"RI\",\"zip\":\"\"}", "41.823870669000485", "-71.41199051099966", null, false ] ]
+, [ 102, "E9F094B4-56C8-45D9-9EF8-530C65DD0072", 102, 1382559656, "853207", 1384134359, "698325", null, "EIs3Wj5QcT-oDf2PTliZ_FSqD-ludjQdLEAUsI4xSLY", "City", "City of South Bend", [ "https://data.southbendin.gov/", null ], "2013-08-22T00:00:00", "USA", [ null, null ], [ "{\"address\":\"\",\"city\":\"South Bend\",\"state\":\"Indiana\",\"zip\":\"\"}", "41.67905056300049", "-86.25404046099965", null, false ] ]
+, [ 109, "2D066460-0021-413B-9646-7594EED59875", 109, 1384135441, "698325", 1384135782, "698325", null, null, "City", "City of Newark", [ "https://data.ci.newark.nj.us", null ], "2013-10-15T00:00:00", "USA", [ null, null ], [ "{\"address\":\"\",\"city\":\"Newark\",\"state\":\"NJ\",\"zip\":\"\"}", "40.7242", "74.1726", null, false ] ]
+, [ 104, "29B02011-963A-4ED3-9088-2D78CE22B62D", 104, 1382559970, "853207", 1384134374, "698325", null, "RxLwPQMP7tyEkeRTD68NUpyMGYVn5jNsk0jnpHc1AJY", "City", "City of Los Angeles", [ "https://controllerdata.lacity.org/", null ], "2013-10-23T00:00:00", "USA", [ null, "Customer Spotlight Coming Soon!" ], [ "{\"address\":\"\",\"city\":\"Los Angeles\",\"state\":\"CA\",\"zip\":\"\"}", "34.05349094300044", "-118.24532060399969", null, false ] ]
+, [ 111, "5743B8A9-D2AC-4D26-AA8C-B7A164CBDD41", 111, 1385598218, "698325", 1385598263, "698325", null, null, "Education", "DC Public Charter School Board", [ "http://data.dcpcsb.org", null ], "2013-11-08T00:00:00", "USA", [ null, null ], [ null, null, null, null, null ] ]
+, [ 112, "084AFBAE-A18B-4C7D-BB2D-BDD2C9CE82B3", 112, 1385598449, "698325", 1385598522, "698325", null, null, "Application", "Criminaytics", [ "https://www.criminalytics.org", null ], "2013-11-11T00:00:00", "USA", [ null, null ], [ null, null, null, null, null ] ]
+, [ 110, "1F1B01D9-FEB5-4228-8DA4-10F2B1B1F72F", 110, 1385598145, "698325", 1385598191, "698325", null, null, "City", "City of Dallas", [ "https://www.dallasopendata.com/", null ], "2013-11-20T00:00:00", "USA", [ null, null ], [ null, null, null, null, null ] ]
+, [ 98, "E9276050-304D-4D78-BFE6-4D1CDE57A79C", 98, 1382557020, "853207", 1384131819, "698325", null, null, "City", "City of Champaign", [ "https://data.illinois.gov/champaign", null ], null, "USA", [ null, null ], [ "{\"address\":\"\",\"city\":\"Champaign\",\"state\":\"IL\",\"zip\":\"\"}", "40.11420106300045", "-88.24350118099966", null, false ] ]
+, [ 101, "D9D8055B-908C-4738-8AE7-2B2E53C6DEF3", 101, 1382559562, "853207", 1382562392, "396408", null, null, "City", "City of Rockford", [ "https://data.illinois.gov/rockford", null ], null, "USA", [ null, null ], [ "{\"address\":\"\",\"city\":\"Rockford\",\"state\":\"IL\",\"zip\":\"\"}", "42.26690102100048", "-89.07835020499965", null, false ] ]
+, [ 97, "A51DB5D6-8F6B-4A01-BA6F-FBF86D3DDB32", 97, 1382554094, "396408", 1382562050, "396408", null, null, "City", "City of Belleville", [ "https://data.illinois.gov/belleville", null ], null, "USA", [ null, null ], [ "{\"address\":\"\",\"city\":\"Belleville\",\"state\":\"IL\",\"zip\":\"\"}", "38.512131259000455", "-89.98423085599967", null, false ] ]
+ ]
+}
