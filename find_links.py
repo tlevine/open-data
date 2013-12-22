@@ -3,6 +3,11 @@ def socrata(view):
     links = view.get('metadata', {}).get('accessPoints', {}).values()
     return is_href, links
 
+def ckan(dataset):
+    # current_link = dataset['resources'][-1]['url']
+    all_links = [resource['url'] for resource in dataset['resources']]
+    return is_href, all_links
+
 if __name__ == '__main__':
     import json
     for view in json.load(open('downloads/socrata/data.cityofchicago.org/api/views?page=1')):
