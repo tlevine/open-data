@@ -7,13 +7,24 @@ from get import get
 import parallel
 import download
 
+SOCRATA_FIX = {
+    'http://datakc.org':'https://opendata.go.ke',
+    'www.data.gov': 'https://explore.data.gov',
+    'www.consumerfinance.gov': None,
+    'www.usaid.gov': None,
+    'ethics.data.gov': None,
+}
+
 def catalogs():
     for i in json.loads(get('http://instances.ckan.org/config/instances.json')):
         yield 'ckan', i['url']
 
     for row in json.loads(get('https://opendata.socrata.com/api/views/6wk3-4ija/rows.json?accessType=DOWNLOAD'))['data']:
         url = list(filter(None, row[11]))[0]
-        yield 'socrata', url
+        if url in SOCRATA_FIX:
+            url = SOCRATA_FIX[url]
+        if url != None:
+            yield 'socrata', url
 
 def main():
     import signal

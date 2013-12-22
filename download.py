@@ -7,7 +7,7 @@ from get import get
 
 # ckanapi requires python 2
 import ckanapi # https://twitter.com/CKANproject/status/378182161330753536
-from ckan.logic import  NotAuthorized
+from ckan.logic import  NotAuthorized, ValidationError
 
 try:
     from urllib.parse import urljoin
@@ -52,6 +52,10 @@ def ckan(url, directory):
             except NotAuthorized:
                 print('**Not authorized for %s**' % url)
                 return
+            except ValidationError:
+                print('**Validation error for %s**' % url)
+                return
+
             fp = open(filename, 'w')
             json.dump(dataset_information, fp)
             fp.close()
@@ -61,7 +65,20 @@ def ckan(url, directory):
 def socrata(url, directory):
     page = 1
     while True:
-        search_results = json.loads(get(urljoin(url, '/api/views?page=%d' % page)))
-        if len(search_results) == 0:
-            break
+        full_url = urljoin(url, '/api/views?page=%d' % page)
+        filename = re.sub('^https?://', '', full_url)
+        raw = get(full_url)
+        try:
+            search_results = json.loads(raw)
+        except ValueError:
+            os.remove(filename)
+            raw = get(full_url)
+            try:
+                search_results = json.loads(raw)
+            except ValueError:
+                print('**Something is wrong with %s**' % filename)
+                break
+        else:
+            if len(search_results) == 0:
+                break
         page += 1
