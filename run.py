@@ -8,6 +8,8 @@ from get import get
 import ckanapi # https://twitter.com/CKANproject/status/378182161330753536
 import ckan.logic
 
+import parallel
+
 def download(url, directory):
     '''
     Args:
@@ -53,9 +55,20 @@ def download(url, directory):
     print('**Finished downloading %s**' % url)
 
 def main():
+    import signal
+    import sys
+    from multiprocessing import Process
+
     urls = [i['url'] for i in json.loads(get('http://instances.ckan.org/config/instances.json'))]
+
+    processes = {}
     for url in urls:
-        download(url, os.path.join('downloads','ckan'))
+        args = (url, os.path.join('downloads','ckan'))
+        processes[url] = Process(target = download, args = args)
+
+    signal.signal(signal.SIGINT, parallel.signal_handler)
+    parallel.start(processes)
+    parallel.join(processes)
 
 if __name__ == '__main__':
     main()
