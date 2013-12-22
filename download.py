@@ -67,12 +67,12 @@ def socrata(url, directory):
     while True:
         full_url = urljoin(url, '/api/views?page=%d' % page)
         filename = re.sub('^https?://', '', full_url)
-        raw = get(full_url)
+        raw = get(full_url, cachedir = directory)
         try:
             search_results = json.loads(raw)
         except ValueError:
             os.remove(filename)
-            raw = get(full_url)
+            raw = get(full_url, cachedir = directory)
             try:
                 search_results = json.loads(raw)
             except ValueError:
