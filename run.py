@@ -6,7 +6,7 @@ import re
 from get import get
 
 import parallel
-from download import ckan
+import download
 
 def catalogs():
     for i in json.loads(get('http://instances.ckan.org/config/instances.json')):
@@ -21,11 +21,10 @@ def main():
     import sys
     from multiprocessing import Process
 
-
     processes = {}
-    for url in urls:
-        args = (url, os.path.join('downloads','ckan'))
-        processes[url] = Process(target = ckan, args = args)
+    for software, url in catalogs():
+        args = (url, os.path.join('downloads', software))
+        processes[(software, url)] = Process(target = getattr(download, software), args = args)
 
     signal.signal(signal.SIGINT, parallel.signal_handler)
     parallel.start(processes)
