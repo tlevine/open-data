@@ -5,8 +5,6 @@ import os, json
 from get import get
 import ckanapi # https://twitter.com/CKANproject/status/378182161330753536
 
-instances = [i['url'] for i in json.loads(get('http://instances.ckan.org/config/instances.json'))]
-
 def download(portal_url, directory):
     '''
     Args:
@@ -42,3 +40,11 @@ def download(portal_url, directory):
             fp.close()
             sleep(3)
     print('**Finished downloading %s**' % portal_url)
+
+def main():
+    urls = [i['url'] for i in json.loads(get('http://instances.ckan.org/config/instances.json'))]
+    for url in urls:
+        download(url, os.path.join('downloads','ckan'))
+
+if __name__ == '__main__':
+    main()
