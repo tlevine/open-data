@@ -1,10 +1,11 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 from time import sleep
 import os, json
 import re
 
 from get import get
 
+# ckanapi requires python 2
 import ckanapi # https://twitter.com/CKANproject/status/378182161330753536
 import ckan.logic
 
