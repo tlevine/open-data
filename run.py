@@ -34,7 +34,7 @@ def catalogs():
         if url != None:
             yield 'socrata', url
 
-def download():
+def download_metadata():
     import signal
     import sys
     from multiprocessing import Process
@@ -72,5 +72,5 @@ def check_links():
             print(json.dumps((row)))
 
 if __name__ == '__main__':
-#   download()
+    download_metadata()
     check_links()
