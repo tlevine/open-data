@@ -72,5 +72,5 @@ def check_links():
             print(json.dumps((row)))
 
 if __name__ == '__main__':
-    download_metadata()
+#   download_metadata()
     check_links()
