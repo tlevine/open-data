@@ -13,10 +13,17 @@ def socrata(view):
     }
 
 def ckan(dataset):
+    try:
     # print(dataset['name'])
     # dataset['url']
     # all_links = [resource['url'] for resource in dataset['resources']]
-    current_link = None if dataset['resources'] == [] else dataset['resources'][-1]['url']
+        if dataset.get('resources', []) == []:
+            current_link = None
+        else:
+            current_link = dataset['resources'][-1]['url']
+    except:
+        print dataset['name']
+        raise
     return {
         'is_link': True,
         'url': current_link,
