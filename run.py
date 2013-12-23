@@ -73,4 +73,5 @@ def check_links():
 
 if __name__ == '__main__':
 #   download_metadata()
+    os.removedirs(os.path.join('downloads', 'ckan', 'datameti.go.jp', 'data'))
     check_links()
