@@ -7,7 +7,7 @@ from get import get
 import parallel
 import download
 import read
-import find_links
+import links
 
 SOCRATA_FIX = {
     'http://datakc.org':'https://opendata.go.ke',
@@ -16,10 +16,16 @@ SOCRATA_FIX = {
     'www.usaid.gov': None,
     'ethics.data.gov': None,
 }
+CKAN_FIX = {
+}
 
 def catalogs():
     for i in json.loads(get('http://instances.ckan.org/config/instances.json')):
-        yield 'ckan', i['url']
+        url = i['url']
+        if url in CKAN_FIX:
+            url = CKAN_FIX[url]
+        if url != None:
+            yield 'ckan', url
 
     for row in json.loads(get('https://opendata.socrata.com/api/views/6wk3-4ija/rows.json?accessType=DOWNLOAD'))['data']:
         url = list(filter(None, row[11]))[0]
@@ -46,10 +52,10 @@ def download():
     parallel.start(processes)
     parallel.join(processes)
 
-def read():
+def check_links():
     for catalog in read.catalogs('ckan'):
         for dataset in read.ckan(catalog):
-            row = find_links.ckan(dataset)
+            row = links.ckan(dataset)
             row.update({
                 'catalog': catalog,
                 'software': 'ckan',
@@ -58,7 +64,7 @@ def read():
 
     for catalog in read.catalogs('socrata'):
         for dataset in read.socrata(catalog):
-            row = find_links.socrata(dataset)
+            row = links.socrata(dataset)
             row.update({
                 'catalog': catalog,
                 'software': 'socrata',
@@ -67,4 +73,4 @@ def read():
 
 if __name__ == '__main__':
 #   download()
-    read()
+    check_links()

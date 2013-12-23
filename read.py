@@ -1,3 +1,5 @@
+import os, json
+
 def catalogs(software):
     return os.listdir(os.path.join('downloads', software))
 
@@ -8,7 +10,7 @@ def socrata(catalog):
             yield view
 
 def ckan(catalog):
-    directory = os.path.join('downloads','socrata',catalog)
+    directory = os.path.join('downloads','ckan',catalog)
     for filename in os.listdir(directory):
         yield json.load(open(os.path.join(directory, filename)))
 
