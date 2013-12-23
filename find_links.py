@@ -1,16 +1,27 @@
+#!/usr/bin/env python3
+import json
+
 def socrata(view):
     is_href = view["viewType"] == "href"
     links = view.get('metadata', {}).get('accessPoints', {}).values()
-    return is_href, links
+    return {
+        'is_link': is_href,
+        'url': links[0],
+        'software': 'socrata',
+        'identifier': view['tableId'],
+        'is_alive': is_alive(links[0]),
+    }
 
 def ckan(dataset):
-    # current_link = dataset['resources'][-1]['url']
-    all_links = [resource['url'] for resource in dataset['resources']]
-    return is_href, all_links
+    current_link = dataset['resources'][-1]['url']
+    # all_links = [resource['url'] for resource in dataset['resources']]
+    return {
+        'is_link': True,
+        'url': current_link,
+        'software': 'ckan',
+        'identifier': dataset['name'],
+        'is_alive': is_alive(current_link),
+    }
 
-if __name__ == '__main__':
-    import json
-    for view in json.load(open('downloads/socrata/data.cityofchicago.org/api/views?page=1')):
-        is_href, links = socrata(view)
-        if is_href:
-            print(links)
+def is_alive(url):
+    return True

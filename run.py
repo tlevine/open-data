@@ -6,6 +6,8 @@ from get import get
 
 import parallel
 import download
+import read
+import find_links
 
 SOCRATA_FIX = {
     'http://datakc.org':'https://opendata.go.ke',
@@ -26,7 +28,7 @@ def catalogs():
         if url != None:
             yield 'socrata', url
 
-def main():
+def download():
     import signal
     import sys
     from multiprocessing import Process
@@ -44,5 +46,25 @@ def main():
     parallel.start(processes)
     parallel.join(processes)
 
+def read():
+    for catalog in read.catalogs('ckan'):
+        for dataset in read.ckan(catalog):
+            row = find_links.ckan(dataset)
+            row.update({
+                'catalog': catalog,
+                'software': 'ckan',
+            })
+            print(json.dumps((row)))
+
+    for catalog in read.catalogs('socrata'):
+        for dataset in read.socrata(catalog):
+            row = find_links.socrata(dataset)
+            row.update({
+                'catalog': catalog,
+                'software': 'socrata',
+            })
+            print(json.dumps((row)))
+
 if __name__ == '__main__':
-    main()
+#   download()
+    read()

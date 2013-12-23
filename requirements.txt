@@ -1,2 +1,2 @@
-ckanapi
-get-cached
+ckanapi==2.2
+get-cached==0.0.1
