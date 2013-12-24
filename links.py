@@ -6,7 +6,7 @@ def socrata(view):
     links = view.get('metadata', {}).get('accessPoints', {}).values()
     return {
         'is_link': is_href,
-        'url': links[0],
+        'url': None if links == [] else links[0],
         'software': 'socrata',
         'identifier': view['tableId'],
     }

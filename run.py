@@ -73,7 +73,8 @@ if __name__ == '__main__':
     except OSError:
         pass
 
-    for row in check_catalog('ckan','data.glasgow.gov.uk'):
+#   for row in check_catalog('ckan', 'data.glasgow.gov.uk'):
+    for row in check_catalog('socrata', 'data.mo.gov'):
 #   for row in check_links():
         print(row)
 
