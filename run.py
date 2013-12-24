@@ -53,22 +53,17 @@ def download_metadata():
     parallel.start(processes)
     parallel.join(processes)
 
-def check_links():
-    for catalog in read.catalogs('ckan'):
-        for dataset in read.ckan(catalog):
-            row = links.ckan(dataset)
-            row.update({
-                'catalog': catalog,
-            })
-            yield row
+def check_catalog(software, catalog):
+    for dataset in getattr(read, software)(catalog):
+        row = getattr(links, software)(dataset)
+        row['catalog'] = catalog
+        yield row
 
-    for catalog in read.catalogs('socrata'):
-        for dataset in read.socrata(catalog):
-            row = links.socrata(dataset)
-            row.update({
-                'catalog': catalog,
-            })
-            yield row
+def check_links():
+    for software in ['ckan','socrata']:
+        for catalog in read.catalogs(software):
+            for row in check_catalog(software, catalog):
+                yield row
 
 if __name__ == '__main__':
 #   download_metadata()
@@ -77,7 +72,9 @@ if __name__ == '__main__':
         os.removedirs(os.path.join('downloads', 'ckan', 'datameti.go.jp', 'data'))
     except OSError:
         pass
+    check_catalog('ckan','iatiregistry.org')
 
+def blah():
     f = open('/tmp/links.csv')
     w = csv.DictWriter(f, fieldnames = [
         'software',
