@@ -59,11 +59,15 @@ def check_catalog(software, catalog):
         row['catalog'] = catalog
         yield row
 
-def check_links():
-    for software in ['ckan','socrata']:
+def check_links(softwares = ['ckan','socrata']):
+    for software in softwares:
         for catalog in read.catalogs(software):
-            for row in check_catalog(software, catalog):
-                yield row
+            try:
+                for row in check_catalog(software, catalog):
+                    yield row
+            except:
+                print(os.path.join('downloads',software,catalog))
+                raise
 
 if __name__ == '__main__':
 #   download_metadata()
@@ -74,7 +78,8 @@ if __name__ == '__main__':
         pass
 
 #   for row in check_catalog('ckan', 'data.glasgow.gov.uk'):
-    for row in check_catalog('socrata', 'data.mo.gov'):
+#   for row in check_catalog('socrata', 'data.mo.gov'):
+    for row in check_links(['socrata']):
 #   for row in check_links():
         print(row)
 
