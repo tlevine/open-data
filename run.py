@@ -62,6 +62,8 @@ def check_catalog(software, catalog):
 def check_links(softwares = ['ckan','socrata']):
     for software in softwares:
         for catalog in read.catalogs(software):
+            if SOCRATA_FIX.get(catalog, 'this is a string, not None') == None:
+                continue
             try:
                 for row in check_catalog(software, catalog):
                     yield row
