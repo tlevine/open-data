@@ -72,7 +72,10 @@ if __name__ == '__main__':
         os.removedirs(os.path.join('downloads', 'ckan', 'datameti.go.jp', 'data'))
     except OSError:
         pass
-    check_catalog('ckan','iatiregistry.org')
+
+    for row in check_catalog('ckan','data.glasgow.gov.uk'):
+#   for row in check_links():
+        print(row)
 
 def blah():
     f = open('/tmp/links.csv')
