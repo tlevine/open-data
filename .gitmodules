@@ -1,0 +1,3 @@
+[submodule "downloads/socrata"]
+	path = downloads/socrata
+	url = git@github.com:tlevine/socrata-views.git
