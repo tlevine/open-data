@@ -16,6 +16,7 @@ SOCRATA_FIX = {
     'www.consumerfinance.gov': None,
     'www.usaid.gov': None,
     'ethics.data.gov': None,
+    'www.data.gov': None,
 }
 CKAN_FIX = {
 }
