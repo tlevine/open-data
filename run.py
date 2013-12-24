@@ -1,6 +1,7 @@
 #!/usr/bin/env python2
 from time import sleep
 import os, json
+import csv
 
 from get import get
 
@@ -58,23 +59,32 @@ def check_links():
             row = links.ckan(dataset)
             row.update({
                 'catalog': catalog,
-                'software': 'ckan',
             })
-            print(json.dumps((row)))
+            yield row
 
     for catalog in read.catalogs('socrata'):
         for dataset in read.socrata(catalog):
             row = links.socrata(dataset)
             row.update({
                 'catalog': catalog,
-                'software': 'socrata',
             })
-            print(json.dumps((row)))
+            yield row
 
 if __name__ == '__main__':
 #   download_metadata()
+#   exit()
     try:
         os.removedirs(os.path.join('downloads', 'ckan', 'datameti.go.jp', 'data'))
     except OSError:
         pass
-    check_links()
+
+    f = open('/tmp/links.csv')
+    w = csv.DictWriter(f, fieldnames = [
+        'software',
+        'catalog',
+        'identifier',
+        'url',
+        'is_link',
+    ])
+    for row in check_links():
+        w.writerow(row)

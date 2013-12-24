@@ -9,7 +9,6 @@ def socrata(view):
         'url': links[0],
         'software': 'socrata',
         'identifier': view['tableId'],
-        'is_alive': is_alive(links[0]),
     }
 
 def ckan(dataset):
@@ -29,7 +28,6 @@ def ckan(dataset):
         'url': current_link,
         'software': 'ckan',
         'identifier': dataset['name'],
-        'is_alive': is_alive(current_link),
     }
 
 def is_alive(url):
