@@ -4,6 +4,7 @@ import os, json
 import csv
 
 from get import get
+from dumptruck import DumpTruck
 
 import parallel
 import download
@@ -54,13 +55,17 @@ def download_metadata():
     parallel.join(processes)
 
 def check_links():
+    dt = DumpTruck(dbname = '/tmp/links.sqlite', adapt_and_convert = False)
+    dt.create_table({'identifier':'abcdef'}, if_not_exists = True)
+    dt.create_index(['identifier'], if_not_exists = True)
+
     for catalog in read.catalogs('ckan'):
         for dataset in read.ckan(catalog):
             row = links.ckan(dataset)
             row.update({
                 'catalog': catalog,
             })
-            yield row
+            dt.insert(row)
 
     for catalog in read.catalogs('socrata'):
         for dataset in read.socrata(catalog):
