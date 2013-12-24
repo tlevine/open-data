@@ -73,17 +73,14 @@ def check_links(softwares = ['ckan','socrata']):
                 raise
 
 if __name__ == '__main__':
-#   download_metadata()
-#   exit()
+    download_metadata()
+    exit()
     try:
         os.removedirs(os.path.join('downloads', 'ckan', 'datameti.go.jp', 'data'))
     except OSError:
         pass
 
-#   for row in check_catalog('ckan', 'data.glasgow.gov.uk'):
-#   for row in check_catalog('socrata', 'data.mo.gov'):
-    for row in check_links(['socrata']):
-#   for row in check_links():
+    for row in check_links():
         print(row)
 
 def blah():
