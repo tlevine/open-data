@@ -82,15 +82,3 @@ if __name__ == '__main__':
 
     for row in check_links():
         print(row)
-
-def blah():
-    f = open('/tmp/links.csv')
-    w = csv.DictWriter(f, fieldnames = [
-        'software',
-        'catalog',
-        'identifier',
-        'url',
-        'is_link',
-    ])
-    for row in check_links():
-        w.writerow(row)
