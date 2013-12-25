@@ -109,14 +109,14 @@ def plans():
         sql = 'SELECT * FROM datasets WHERE software = ? AND catalog = ? AND identifier = ?'
         if dt.execute(sql, [row['software'],row['catalog'],row['identifier']]) != []:
             continue
-        dt.insert(row, 'datasets')
+        dt.upsert(row, 'datasets')
         if dataset['software'] == 'socrata':
             socrata_table = {
                 'view_id': row['identifier'],
                 'table_id': dataset['tableId'],
             }
-            dt.insert(socrata_table, 'socrata_tables')
-        dt.insert(dataset,dataset['software'])
+            dt.upsert(socrata_table, 'socrata_tables')
+        dt.upsert(dataset,dataset['software'])
         dt.commit()
 
 def fix_things():
