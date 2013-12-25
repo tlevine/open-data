@@ -59,7 +59,7 @@ def download_metadata():
     except OSError:
         pass
 
-def check_catalog(software, catalog):
+def _check_catalog(software, catalog):
     for dataset in getattr(read, software)(catalog):
         row = getattr(links, software)(dataset)
         row['catalog'] = catalog
@@ -71,15 +71,8 @@ def check_links(softwares = ['ckan','socrata']):
             if SOCRATA_FIX.get(catalog, 'this is a string, not None') == None:
                 continue
             try:
-                for row in check_catalog(software, catalog):
-                    yield row
+                for row in _check_catalog(software, catalog):
+                    print(row)
             except:
                 print(os.path.join('downloads',software,catalog))
                 raise
-
-if __name__ == '__main__':
-    download_metadata()
-    exit()
-
-    for row in check_links():
-        print(row)
