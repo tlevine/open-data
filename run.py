@@ -55,11 +55,6 @@ def download_metadata():
     parallel.start(processes)
     parallel.join(processes)
 
-    try:
-        os.removedirs(os.path.join('downloads', 'ckan', 'datameti.go.jp', 'data'))
-    except OSError:
-        pass
-
 def _check_catalog(software, catalog):
     for dataset in getattr(read, software)(catalog):
         row = getattr(links, software)(dataset)
@@ -120,3 +115,12 @@ def plans():
             dt.upsert(socrata_table, 'socrata_tables')
         dt.upsert(dataset,dataset['software'])
         dt.commit()
+
+def fix_things():
+    'Always run these.'
+    try:
+        os.removedirs(os.path.join('downloads', 'ckan', 'datameti.go.jp', 'data'))
+    except OSError:
+        pass
+
+fix_things()
