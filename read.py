@@ -5,9 +5,10 @@ def catalogs(software):
 
 def socrata(catalog):
     directory = os.path.join('downloads','socrata',catalog,'api')
-    for filename in os.listdir(directory):
-        for view in json.load(open(os.path.join(directory, filename))):
-            yield view
+    if cataleg != '.git':
+        for filename in os.listdir(directory):
+            for view in json.load(open(os.path.join(directory, filename))):
+                yield view
 
 def ckan(catalog):
     directory = os.path.join('downloads','ckan',catalog)
