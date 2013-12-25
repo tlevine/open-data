@@ -91,11 +91,15 @@ SOFTWARE_MAP = {
     'identifier': {'ckan':'name','socrata':'id'}
 }
 def plans():
-    dt = DumpTruck('/tmp/plans.sqlite', adapt_and_convert = False, auto_commit = False)
+    dt = DumpTruck('/tmp/plans.sqlite', auto_commit = False)
 
     dummyrow = dict(zip(['software','catalog','identifier'], ['blah']*3))
     dt.create_table(dummyrow, 'datasets', if_not_exists = True)
     dt.create_index(['software','catalog','identifier'], 'datasets', if_not_exists = True, unique = True)
+
+    for table in ['ckan','socrata']:
+        dt.create_table({'catalog':'blah','identifier':'blah'}, table, if_not_exists = True)
+        dt.create_index(['catalog','identifier'], table, if_not_exists = True, unique = True)
 
     dt.create_table({'view_id':'abc','table_id':123}, 'socrata_tables')
     dt.create_index(['view_id'], 'socrata_tables', if_not_exists = True, unique = True)
@@ -114,6 +118,5 @@ def plans():
                 'table_id': dataset['tableId'],
             }
             dt.upsert(socrata_table, 'socrata_tables')
+        dt.upsert(dataset,dataset['software'])
         dt.commit()
-        print(row)
-        break
