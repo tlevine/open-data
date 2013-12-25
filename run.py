@@ -4,6 +4,7 @@ import os, json
 import csv
 
 from get import get
+from dumptruck import DumpTruck
 
 import parallel
 import download
@@ -65,6 +66,15 @@ def _check_catalog(software, catalog):
         row['catalog'] = catalog
         yield row
 
+def datasets(softwares = ['ckan','socrata']):
+    for software in softwares:
+        for catalog in read.catalogs(software):
+            if not SOCRATA_FIX.get(catalog, 'this is a string, not None') == None:
+                for dataset in getattr(read, software)(catalog):
+                    dataset['catalog'] = catalog
+                    dataset['software'] = software
+                    yield dataset
+
 def check_links(softwares = ['ckan','socrata']):
     for software in softwares:
         for catalog in read.catalogs(software):
@@ -76,3 +86,34 @@ def check_links(softwares = ['ckan','socrata']):
             except:
                 print(os.path.join('downloads',software,catalog))
                 raise
+
+SOFTWARE_MAP = {
+    'identifier': {'ckan':'name','socrata':'id'}
+}
+def plans():
+    dt = DumpTruck('/tmp/plans.sqlite', adapt_and_convert = False, auto_commit = False)
+
+    dummyrow = dict(zip(['software','catalog','identifier'], ['blah']*3))
+    dt.create_table(dummyrow, 'datasets', if_not_exists = True)
+    dt.create_index(['software','catalog','identifier'], 'datasets', if_not_exists = True, unique = True)
+
+    dt.create_table({'view_id':'abc','table_id':123}, 'socrata_tables')
+    dt.create_index(['view_id'], 'socrata_tables', if_not_exists = True, unique = True)
+    dt.create_index(['table_id'], 'socrata_tables', if_not_exists = True)
+
+    for dataset in datasets():
+        row = {
+            'software': dataset['software'],
+            'catalog': dataset['catalog'],
+            'identifier': dataset[SOFTWARE_MAP['identifier'][dataset['software']]],
+        }
+        dt.upsert(row, 'datasets')
+        if dataset['software'] == 'socrata':
+            socrata_table = {
+                'view_id': row['identifier'],
+                'table_id': dataset['tableId'],
+            }
+            dt.upsert(socrata_table, 'socrata_tables')
+        dt.commit()
+        print(row)
+        break
