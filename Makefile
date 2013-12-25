@@ -1,7 +1,7 @@
 download:
 	python2 -c 'import run; run.download_metadata()'
 
-/tmp/plans.sqlite:
+plans.sqlite:
 	python2 -c 'import run; run.plans()'
 	
 /tmp/deadlinks.sqlite:
