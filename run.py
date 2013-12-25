@@ -54,6 +54,11 @@ def download_metadata():
     parallel.start(processes)
     parallel.join(processes)
 
+    try:
+        os.removedirs(os.path.join('downloads', 'ckan', 'datameti.go.jp', 'data'))
+    except OSError:
+        pass
+
 def check_catalog(software, catalog):
     for dataset in getattr(read, software)(catalog):
         row = getattr(links, software)(dataset)
@@ -75,10 +80,6 @@ def check_links(softwares = ['ckan','socrata']):
 if __name__ == '__main__':
     download_metadata()
     exit()
-    try:
-        os.removedirs(os.path.join('downloads', 'ckan', 'datameti.go.jp', 'data'))
-    except OSError:
-        pass
 
     for row in check_links():
         print(row)
