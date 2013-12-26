@@ -12,7 +12,7 @@ def main():
     dt.create_index(['id'], 'socrata_deduplicated', if_not_exists = True, unique = True)
 
     for dataset in dedupe(datasets_in, edges):
-        dt.upsert(datasets, 'socrata_deduplicated')
+        dt.upsert(dataset, 'socrata_deduplicated')
 
 if __name__== '__main__':
     main()

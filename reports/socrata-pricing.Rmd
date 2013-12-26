@@ -1,0 +1,24 @@
+I recently came across some documents about the pricing structure
+of the Socrata Open Data portal (XXX link).
+I thought it would be interesting to figure out which plans different
+Socrata clients were on and to see which features were most in demand.
+
+## Pricing structure
+
+
+
+## Data for the present analysis
+
+* Number of datasets
+* Proxies for the number of geocoding requests
+  * Number of geospatial datasets
+  * Total number of records across geospatial datasets
+* Number of premium APIs
+* Has a dataset with "311" in the title (a proxy for the 311 explorer service)
+
+## Acquiring the data
+
+
+## Results
+
+
