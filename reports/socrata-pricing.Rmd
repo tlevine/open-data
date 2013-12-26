@@ -8,8 +8,10 @@ I thought it would be interesting to figure out which plans different
 Socrata clients were on and to see which features were most in demand.
 
 ## Pricing structure
-It looks like you're getting one packaged website from Socrata, but
-it's sold as a bunch of different products.
+It looks like you're getting one packaged open data portal website from
+Socrata, but it's sold as a bunch of different products. Also, the
+Socrata Open Data Portal, even with all of its add-ons, is just the
+beginning of Socrata's offerings.
 
 ### Socrata Open Data Portal
 The main product that you hear about is the Socrata Open Data Portal.
@@ -68,11 +70,35 @@ Enterprise (`Soc-DC-Ent`)
 * Costs just under $20,000 per month
 
 ### GovStat
-GovStat is a big product (in terms of cost) that I didn't look at.
-Given its cost, I felt like it deserved its own section even though
-I'm not saying much about it.
+[GovStat]()
+is a big product (in terms of cost) that I didn't look at.
+I felt like it deserved its own section even though I'm not saying
+much about it. It too has three levels of service
+
+Basic (`Soc-GS-B`)
+
+* 2 dashboards
+* 20 goals
+* 150 datasets
+* Costs just under $7,500 per month
+
+Extended (`Soc-GS-Ex`)
+
+* 5 dashboards
+* 100 goals
+* 500 datasets
+* Costs just under $15,000 per month
+
+Enterprise (`Soc-GS-Ent`)
+
+* 20 dashboards
+* 400 goals
+* 1,500 datasets
+* Costs just under $30,000 per month
 
 ### And many others
+There are a bunch of small things that I won't explain in much
+detail, but you can read about them in the various price lists.
 
 * ArcGIS Connect
 * API Foundry
@@ -80,14 +106,17 @@ I'm not saying much about it.
 * Training
 
 ## Data for the present analysis
+Today, I want to figure out which tier of Open Data Portal
+service each client has purchased. With that in mind,
+I collected four numbers ([variables]()) for each data portal.
 
-These are related to the level (base, extended or enterprise)
+These two are related to the level (base, extended or enterprise)
 of the Open Data Portal product.
 
 * Number of datasets 
 * Number of premium APIs
 
-These are related to add-ons.
+These two are related to other products.
 
 * Number of datasets with "311" in the title: This is a proxy for whether the 311 Explorer product is being used.
 * Number of forms: I think this tells us whether DataCollect is being used and which at which level (basic, extended or enterprise)
