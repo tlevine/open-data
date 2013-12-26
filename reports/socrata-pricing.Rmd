@@ -60,6 +60,9 @@ There are special "explorer" tools for these specific datasets.
 * Elections
 * Health indicators
 
+I don't really know what these are, but Somerville seems to have a
+[311 explorer](https://data.somervillema.gov/apps/three-one-one).
+
 ### DataCollect
 DataCollect is "a cloud-based platform that simplifies the design, deployment, and management of intelligent data capture apps from authorized users".
 
@@ -183,17 +186,26 @@ of special APIs, and the color tells us whether the portal contains any
 Most catalogs have no APIs, and these tend to also have few datasets; that's the cluster
 at the bottom-left.
 
-The three nested rectangles correspond to the three levels of service (basic, extended
-and enterprise) in terms of the number of available datasets and APIs. This gets us to
-my guess as to what plans people are on.
+The three nested rectangles correspond to the three levels of service for the
+Socrata Open Data Portal software (basic, extended and enterprise) based on
+number of datasets and number of APIs.
+For example, portals inside the "Basic" rectangle are within the basic tier of usage.
+This gets us to my guess as to what plans people are on.
 
 ### Which plan?
 Based only on the number of datasets and APIs, here are some rough guesses as to which
-plans people are on. As I explain [below](#validation), these guesses are based only
+plans people are on. I'm guessing about the following products
+
+* Which tier of the Socrata Open Data Portal product has been purchased
+* Whether Socrata DataCollect product has been purchased
+* Whether there are any 311 datasets, as proxy for whether the 311 Explorer has
+    been purchased (This is the only guess that doesn't relate to the previous plot.)
+
+As I explain [below](#validation), these guesses are based only
 on public data, so I think that they are low.
 
 ```{r plans, echo = FALSE, asis = TRUE}
-kable(catalogs[c('data.portal.plan','has.311','data.collect.plan')])
+kable(catalogs[c('data.portal.plan','data.collect.plan','has.311')])
 ```
 
 ### Number of forms
