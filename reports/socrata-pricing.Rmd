@@ -9,10 +9,10 @@ twitter_image: hawaii.png
 facebook_image: hawaii.png
 ---
 <% root = 'https://github.com/tlevine/open-data/blob/master/' %>
+<% pricing = 'https://github.com/tlevine/socrata-pricing/blob/master/d/' %>
 
-Some governments were awesome enough to open data about the pricing
-of [Socrata](http://socrata.com) products.
-[Here](https://github.com/tlevine/socrata-pricing) they are.
+Some governments were awesome enough to open data about the
+[pricing of Socrata](<%= pricing %>) they are.
 
 I thought it would be interesting to figure out which plans different
 Socrata clients were on and to see which features were most in demand.
@@ -23,24 +23,30 @@ Socrata, but it's sold as a bunch of different products. Also, the
 Socrata Open Data Portal, even with all of its add-ons, is just the
 beginning of Socrata's offerings.
 
+I'm going to summarize it here, but
+you can read more in any of the
+[price lists](<%= pricing %>), such as the
+[Washington price list](<%= pricing %>washington.xlsx)
+
 ### Socrata Open Data Portal
 The main product that you hear about is the Socrata Open Data Portal.
-There are three standard levels of service for this, and here are some
-of their characteristics.
+There are three standard levels of service for this, called "Basic",
+"Extended" and "Enterprise". Here are what I see as the main differences
+among these plans.
 
-Basic (`Soc-OD-B`)
+The basic plan (Soc-OD-B) is basically this.
 
 * 150 datasets
 * 10 premium APIs
 * Costs just under $5,000 per month
 
-Extended (`Soc-OD-Ex`)
+The extended plan (Soc-OD-Ex) is basically this.
 
 * 500 datasets
 * 25 premium APIs
 * Costs just under $10,000 per month
 
-Enterprise (`Soc-OD-Ent`)
+And the enterprise plan (Soc-OD-Ent) is basically this.
 
 * 1,500 datasets
 * 50 premium APIs
@@ -61,19 +67,19 @@ I presume it has something to do with the
 [form type](/!/open-by-default#popularity-of-forms)
 on the open data portal.
 
-Basic (`Soc-DC-B`)
+Here's the basic plan (Soc-DC-B).
 
 * 5 data collection apps
 * 50 active forms
 * Costs just under $5,000 per month
 
-Extended (`Soc-DC-Ex`)
+Here's the extended plan (SOC-DC-Ex).
 
 * 10 data collection apps
 * 100 active forms
 * Costs just under $10,000 per month
 
-Enterprise (`Soc-DC-Ent`)
+And here's the enterprise plan (Soc-DC-Ent).
 
 * 20 data collection apps
 * 500 active forms
@@ -85,28 +91,28 @@ is a big product (in terms of cost) that I didn't look at.
 I felt like it deserved its own section even though I'm not saying
 much about it. It too has three levels of service
 
-Basic (`Soc-GS-B`)
+Basic (Soc-GS-B) looks like this.
 
 * 2 dashboards
 * 20 goals
 * 150 datasets
 * Costs just under $7,500 per month
 
-Extended (`Soc-GS-Ex`)
+Extended (Soc-GS-Ex) is this.
 
 * 5 dashboards
 * 100 goals
 * 500 datasets
 * Costs just under $15,000 per month
 
-Enterprise (`Soc-GS-Ent`)
+And enterprise (Soc-GS-Ent) is this.
 
 * 20 dashboards
 * 400 goals
 * 1,500 datasets
 * Costs just under $30,000 per month
 
-### And many others
+### Many others
 There are a bunch of small things that I won't explain in much
 detail, but you can read about them in the various price lists.
 
