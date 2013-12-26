@@ -28,6 +28,12 @@ These are related to add-ons.
 
 ## Results
 
+### Trends
 
 
-I've heard that four-fifths of Socrata's data are private.
+### Guessing plans
+
+
+### Validation
+I've heard that four-fifths of Socrata's data are private,
+so this is a very low estimate.
