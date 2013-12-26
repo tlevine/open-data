@@ -1,8 +1,14 @@
 ---
-title: Open data about pricing of open data
+title: Semi-open data about pricing of open data
+description: Socrata has a bunch of products. Who's buying which ones?
+tweet_text: I try to figure out what people are paying Socrata
 ---
+<% root = 'https://github.com/tlevine/open-data/blob/master/' %>
+
 Some governments were awesome enough to open data about the pricing
-of the Socrata Open Data portal (XXX link).
+of [Socrata](http://socrata.com) products.
+[Here](https://github.com/tlevine/socrata-pricing) they are.
+
 I thought it would be interesting to figure out which plans different
 Socrata clients were on and to see which features were most in demand.
 
@@ -47,7 +53,7 @@ There are special "explorer" tools for these specific datasets.
 DataCollect is "a cloud-based platform that simplifies the design, deployment, and management of intelligent data capture apps from authorized users".
 It sounds like there's a lot more to DataCollect than I can see publically, but
 I presume it has something to do with the
-[form type]()
+[form type](/!/open-by-default#popularity-of-forms)
 on the open data portal.
 
 Basic (`Soc-DC-B`)
@@ -69,7 +75,7 @@ Enterprise (`Soc-DC-Ent`)
 * Costs just under $20,000 per month
 
 ### GovStat
-[GovStat]()
+[GovStat](http://socrata.com/govstat)
 is a big product (in terms of cost) that I didn't look at.
 I felt like it deserved its own section even though I'm not saying
 much about it. It too has three levels of service
@@ -107,7 +113,7 @@ detail, but you can read about them in the various price lists.
 ## Data for the present analysis
 Today, I want to figure out which tier of Open Data Portal
 service each client has purchased. With that in mind,
-I collected four numbers ([variables]()) for each data portal.
+I collected four numbers ([variables](/!/variables)) for each data portal.
 
 These two are related to the level (base, extended or enterprise)
 of the Open Data Portal product.
@@ -122,18 +128,19 @@ These two are related to other products.
 
 ## Acquiring the data
 I collected all of the data over the past week.
-I [called the search API](),
-downloaded lots of files, and
-[put them into an SQLite3 database]().
-Then I ran the following
-[queries]().
+I downloaded lots of files,
+put them into an SQLite3 database, and
+then I ran the following
+[queries](<%= root %>reports/socrata-pricing.sql).
 
 To count **datasets**, I
-[removed federation and derived views]()
-in order to arrive at the number of [tables]() per data portal.
+[called the search API](<%= root %>download.py) and
+[removed federation and derived views](/!/socrata-deduplicate).
+I arrived at the number of [tables](/!/socrata-genealogies#term-table)
+per data portal.
 
 To count **APIs**, I
-[went]()
+[went](<%= root %>apis.py)
 to the following URL for each data portal.
 
     https://${catalog}/browse?limitTo=apis&utf8=%E2%9C%93
@@ -152,6 +159,8 @@ This graph is pretty cool.
 ```{r fancy}
 p.fancy
 ```
+
+It tells us XXX.
 
 ### Which plan?
 Based only on the number of datasets and APIs, here are some rough guesses as to which
