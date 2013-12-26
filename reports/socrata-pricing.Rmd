@@ -122,7 +122,28 @@ These two are related to other products.
 * Number of forms: I think this tells us whether DataCollect is being used and which at which level (basic, extended or enterprise)
 
 ## Acquiring the data
+I collected all of the data over the past week.
+I [called the search API](),
+downloaded lots of files, and
+[put them into an SQLite3 database]().
+Then I ran the following
+[queries]().
 
+To count **datasets**, I
+[removed federation and derived views]()
+in order to arrive at the number of [tables]() per data portal.
+
+To count **APIs**, I
+[went]()
+to the following URL for each data portal.
+
+    https://${catalog}/browse?limitTo=apis&utf8=%E2%9C%93
+
+[Here](https://data.hawaii.gov/browse?limitTo=apis&utf8=%E2%9C%93)'s an example.
+
+To count **311 datasets**, I just searched for datasets with "311" in their titles.
+
+And to count **forms**, I just looked for datasets with a `displayType` of "form".
 
 ## Results
 
