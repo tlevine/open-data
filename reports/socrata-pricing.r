@@ -85,7 +85,7 @@ p5.base <- ggplot(catalogs) + aes(x = n_datasets, y = n_apis, label = catalog) +
 p5.text <- p5.base + geom_text()
 p5.point <- p5.base + geom_point()
 
-p6 <- ggplot(catalogs) +
+p.fancy <- ggplot(catalogs) +
   geom_rect(xmin = -Inf, ymin = -Inf, xmax = 1500, ymax = 50, fill = '#A0A0A0', color = NA) +
   geom_rect(xmin = -Inf, ymin = -Inf, xmax = 500, ymax = 25, fill = '#D0D0D0', color = NA) +
   geom_rect(xmin = -Inf, ymin = -Inf, xmax = 150, ymax = 10, fill = '#F0F0F0', color = NA) +
@@ -98,6 +98,9 @@ p6 <- ggplot(catalogs) +
   scale_color_discrete('Has forms') +
   theme(legend.position = 'bottom') +
   ggtitle("Tom guesses which Socrata Open Data Portal plans different people are on.")
+
+p.forms <- ggplot(catalogs) +
+  aes(x = n_forms) + geom_bar()
 
 t1 <- table(catalogs$has.forms, catalogs$has.apis, catalogs$has.311)
 

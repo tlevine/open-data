@@ -147,6 +147,10 @@ And to count **forms**, I just looked for datasets with a `displayType` of "form
 
 ## Results
 
+```{r}
+p6
+```
+
 ### Trends
 
 
