@@ -6,6 +6,7 @@ import lxml.html
 from get import get
 
 def count_apis(catalog):
+    'This includes federated APIs.'
     raw = get(
         urljoin(catalog, '/browse?limitTo=apis&utf8=%E2%9C%93'),
         cachedir = os.path.join('downloads', 'socrata-apis'))
