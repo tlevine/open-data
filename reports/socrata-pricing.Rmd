@@ -18,7 +18,7 @@ of the Open Data Portal product.
   * Total number of records across geospatial datasets
 * Number of premium APIs
 
-This one is related to add-ons
+These are related to add-ons.
 
 * Has a dataset with "311" in the title: This is a proxy for whether the 311 Explorer product is being used.
 * Number of forms: This tells us whether DataCollect is being used and which at which level (basic, extended or enterprise)
