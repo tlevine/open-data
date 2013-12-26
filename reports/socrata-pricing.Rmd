@@ -40,4 +40,33 @@ These are related to add-ons.
 
 ### Validation
 I've heard that four-fifths of Socrata's data are private,
-so this is a very low estimate.
+so this is a very low estimate. It would nice to get some
+idea as to how wrong this is.
+
+Most of the documents I found about pricing are just price
+lists, but two of them indicate specific proposed purchases.
+One of them is a super-basic plan (more basic than `Soc-OD-B`)
+for Sacramento, and Sacramento doesn't appear in the present data.
+The other is for Hawaii, and that one does.
+
+![XXX Add the image]()
+
+The plan for the Socrata Open Data Portal is called "Premium",
+which is not one of the standard names; the price list just has
+"Basic", "Extended", and "Enterprise". However, it seems to be
+pretty close to the Basic plan.
+
+* The price is about right. (The basic plan is usually a bit
+    under $5,000.)
+* The "delivery", which I presume means "bandwidth", is about
+    right. (It's 1.25 TB, and the basic plan is 1 TB.)
+
+My analysis above suggests that Hawaii is on the extended plan,
+but this document suggests that Hawaii is on something like the
+basic plan. There are a few decent explanations for this.
+
+* Hawaii did not end up making this particular purchase.
+* Hawaii made this particular purchase, and it later increased its
+    plan as it added more data.
+* The "Premium" plan has all of these special features.
+* I messed up somewhere.
