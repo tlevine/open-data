@@ -34,6 +34,14 @@ p2 <- ggplot(molten) + aes(x = n_datasets, fill = yes) +
 p3 <- ggplot(catalogs) + aes(x = n_forms, y = n_datasets, label = catalog) +
   facet_grid(has.apis ~ has.311) +
   scale_y_log10('Number of datasets') + scale_x_log10('Number of formss') +
+
+  # Socrata Open Data Portal plans
+  geom_hline(yintercept = c(150, 500, 1500), color = 'grey') + 
+
+  # Socrata Data Collect plans
+  geom_vline(xintercept = c(50, 100, 200), color = 'grey') + 
+
   geom_text()
+
 
 t1 <- table(catalogs$has.forms, catalogs$has.apis, catalogs$has.311)
