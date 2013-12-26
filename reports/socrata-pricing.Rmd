@@ -222,7 +222,7 @@ One of them is a super-basic plan (more basic than `Soc-OD-B`)
 for Sacramento, and Sacramento doesn't appear in the present data.
 The other is for Hawaii, and that one does.
 
-![Picture of proposed purchases from Socrata by Hawaii](hawaii.png)
+![Picture of proposed purchases from Socrata by Hawaii](hawaii.png){:.wide}
 
 The plan for the Socrata Open Data Portal is called "Premium",
 which is not one of the standard names; the price list just has
