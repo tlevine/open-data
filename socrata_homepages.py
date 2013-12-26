@@ -48,3 +48,6 @@ def dedupe(datasets, edges):
     for dataset in datasets:
         if not(dataset['catalog'] in losing_catalogs and dataset['id'] in duplicates):
             yield dataset
+
+if __name__ == '__main__':
+    print(build_network())
