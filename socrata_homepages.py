@@ -35,16 +35,16 @@ def identifiers(datasets):
 def dedupe(datasets, edges):
     '''
     Args:
-        An iterable of Socrata dataset metadata, each list augmented with a "portal" key
+        An iterable of Socrata dataset metadata, each list augmented with a "catalog" key
     Returns:
-        An iterable of dataset metadata, still augmented with the "portal" key
+        An iterable of dataset metadata, still augmented with the "catalog" key
 
     This deduplicates and combines of dataset metadata based on the edges of the federation graph.
     '''
 
-    losing_portals = set([edge[0] for edge in edges])
+    losing_catalogs = set([edge[0] for edge in edges])
     duplicates = set((k for k,v in identifiers(datasets).iteritems() if v > 1))
 
     for dataset in datasets:
-        if not(dataset['portal'] in losing_portals and dataset['id'] in duplicates):
+        if not(dataset['catalog'] in losing_catalogs and dataset['id'] in duplicates):
             yield dataset
