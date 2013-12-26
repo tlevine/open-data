@@ -7,3 +7,6 @@
 [submodule "downloads/socrata-homepages"]
 	path = downloads/socrata-homepages
 	url = git@github.com:tlevine/socrata-homepages
+[submodule "downloads/socrata-apis"]
+	path = downloads/socrata-apis
+	url = git@github.com:tlevine/socrata-apis.git
