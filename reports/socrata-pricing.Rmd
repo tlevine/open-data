@@ -156,18 +156,26 @@ And to count **forms**, I just looked for datasets with a `displayType` of "form
 ### Summary
 This graph is pretty cool.
 
-```{r fancy}
+```{r fancy, echo = FALSE}
 p.fancy
 ```
 
-It tells us XXX.
+The x-axis tells us the number of datasets on a portal, the y-axis tells us the number
+of special APIs, and the color tells us whether the portal contains any
+[form views](/!/open-by-default#popularity-of-forms).
+Most catalogs have no APIs, and these tend to also have few datasets; that's the cluster
+at the bottom-left.
+
+The three nested rectangles correspond to the three levels of service (basic, extended
+and enterprise) in terms of the number of available datasets and APIs. This gets us to
+my guess as to what plans people are on.
 
 ### Which plan?
 Based only on the number of datasets and APIs, here are some rough guesses as to which
 plans people are on. As I explain [below](#validation), these guesses are based only
 on public data, so I think that they are low.
 
-```{r plans}
+```{r plans, echo = FALSE, asis = TRUE}
 kable(catalogs[c('data.portal.plan','has.311','data.collect.plan')])
 ```
 
@@ -177,7 +185,7 @@ Note my choice to show the binary variable of whether any forms were on the port
 had more than 50 publically visible forms, which is the threshold for jumping to
 the extended plan (if I'm interpreting things correctly).
 
-```{r forms}
+```{r forms, echo = FALSE}
 p.forms
 ```
 

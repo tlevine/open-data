@@ -110,4 +110,4 @@ p.forms <- ggplot(catalogs) +
 t1 <- table(catalogs$has.forms, catalogs$has.apis, catalogs$has.311)
 
 knit('socrata-pricing.Rmd')
-file.rename('figure', 'socrata-pricing-figure')
+# file.rename('figure', 'socrata-pricing-figure')
