@@ -123,12 +123,20 @@ def apis():
     from urlparse import urljoin
     socrata_catalogs = filter(lambda x: x[0] == 'socrata', catalogs())
     for _, catalog in socrata_catalogs:
-        _count_apis(get(urljoin(catalog, '/browse?limitTo=apis&utf8=%E2%9C%93'), cachedir = 'downloads'))
+        _count_apis(get(urljoin(catalog, '/browse?limitTo=apis&utf8=%E2%9C%93'),
+            cachedir = os.path.join('downloads', 'socrata-apis')))
 
 def _count_apis(raw):
+    import re
     import lxml.html
     html = lxml.html.fromstring(raw)
-    html.
+    resultCounts = html.xpath('//div[@class="resultCount"]/text()')
+    if resultCounts == []:
+        return 0
+    else:
+        m = re.match(r'^Showing ([0-9]+) of ([0-9]+)', resultCounts[0].strip())
+        print(m.group(1))
+        print(m.group(2))
 
 def fix_things():
     'Always run these.'
