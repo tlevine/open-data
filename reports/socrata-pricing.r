@@ -1,6 +1,7 @@
 library(sqldf)
 library(ggplot2)
 library(reshape2)
+library(knitr)
 
 q <- function(sql) {
   sqldf(sql, dbname = '/tmp/open-data.sqlite')
@@ -108,4 +109,5 @@ p.forms <- ggplot(catalogs) +
 
 t1 <- table(catalogs$has.forms, catalogs$has.apis, catalogs$has.311)
 
-cat('To do: Guess the plans.\n')
+knit('socrata-pricing.Rmd')
+file.rename('figure', 'socrata-pricing-figure')

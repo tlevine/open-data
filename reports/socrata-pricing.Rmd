@@ -1,7 +1,6 @@
 ---
 title: Open data about pricing of open data
 ---
-
 Some governments were awesome enough to open data about the pricing
 of the Socrata Open Data portal (XXX link).
 I thought it would be interesting to figure out which plans different
@@ -159,7 +158,9 @@ Based only on the number of datasets and APIs, here are some rough guesses as to
 plans people are on. As I explain [below](#validation), these guesses are based only
 on public data, so I think that they are low.
 
-oeu
+```{r plans}
+kable(catalogs[c('data.portal.plan','has.311','data.collect.plan')])
+```
 
 ### Number of forms
 Note my choice to show the binary variable of whether any forms were on the portal
