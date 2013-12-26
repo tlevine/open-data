@@ -22,21 +22,21 @@ levels(catalogs$has.forms) <-
 
 # Guess the plans
 catalogs$data.portal.plan <- factor('SOC-OD-B',
-  levels = c(paste0('SOC-OD-', c('B','Ext','Ent')), 'Other'))
+  levels = c(paste0('SOC-OD-', c('B','Ex','Ent')), 'Other'))
 
-catalogs$data.portal.plan[catalogs$n_datasets > 150] <- 'SOC-OD-Ext' 
+catalogs$data.portal.plan[catalogs$n_datasets > 150] <- 'SOC-OD-Ex' 
 catalogs$data.portal.plan[catalogs$n_datasets > 500] <- 'SOC-OD-Ent'
 catalogs$data.portal.plan[catalogs$n_datasets >1500] <- 'Other'
 
-catalogs$data.portal.plan[catalogs$n_apis > 10] <- 'SOC-OD-Ext' 
+catalogs$data.portal.plan[catalogs$n_apis > 10] <- 'SOC-OD-Ex' 
 catalogs$data.portal.plan[catalogs$n_apis > 25] <- 'SOC-OD-Ent'
 catalogs$data.portal.plan[catalogs$n_apis > 50] <- 'Other'
 
 catalogs$data.collect.plan <- factor('None',
-  levels = c('None', paste0('SOC-DC-', c('B','Ext','Ent')), 'Other'))
+  levels = c('None', paste0('SOC-DC-', c('B','Ex','Ent')), 'Other'))
 
 catalogs$data.collect.plan[catalogs$n_forms >  0] <- 'SOC-DC-B' 
-catalogs$data.collect.plan[catalogs$n_forms > 50] <- 'SOC-DC-Ext' 
+catalogs$data.collect.plan[catalogs$n_forms > 50] <- 'SOC-DC-Ex' 
 catalogs$data.collect.plan[catalogs$n_forms >100] <- 'SOC-DC-Ent'
 catalogs$data.collect.plan[catalogs$n_forms >200] <- 'Other'
 

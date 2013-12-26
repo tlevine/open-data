@@ -17,15 +17,12 @@ These are related to the level (base, extended or enterprise)
 of the Open Data Portal product.
 
 * Number of datasets 
-* Proxies for the number of geocoding requests
-  * Number of geospatial datasets
-  * Total number of records across geospatial datasets
 * Number of premium APIs
 
 These are related to add-ons.
 
 * Number of datasets with "311" in the title: This is a proxy for whether the 311 Explorer product is being used.
-* Number of forms: This tells us whether DataCollect is being used and which at which level (basic, extended or enterprise)
+* Number of forms: I think this tells us whether DataCollect is being used and which at which level (basic, extended or enterprise)
 
 ## Acquiring the data
 
@@ -61,7 +58,7 @@ pretty close to the Basic plan.
 * The "delivery", which I presume means "bandwidth", is about
     right. (It's 1.25 TB, and the basic plan is 1 TB.)
 
-My analysis above suggests that Hawaii is on the extended plan,
+My guesswork above suggests that Hawaii is on the extended plan,
 but this document suggests that Hawaii is on something like the
 basic plan. There are a few decent explanations for this.
 
@@ -70,3 +67,18 @@ basic plan. There are a few decent explanations for this.
     plan as it added more data.
 * The "Premium" plan has all of these special features.
 * I messed up somewhere.
+
+My above guesswork also suggests that Hawaii has purchased
+DataCollect, but I don't see DataCollect in the Hawaii document.
+
+## Future research
+I don't feel like I've done much here beyond pointing out that one
+could look at the pricing of software. I really wanted to see what
+features people have in their plans and which ones people wind up
+using (like I did when looking at the use of [charting tools](/!/socrata-users)).
+
+I also wanted to get some idea of what people wind up doing when
+they're reaching the limits of their plans. At some point they'll
+buy a new one, but do they wind up combining datasets in the meantime?
+I'd need rather reliable knowledge about each client's plan in order
+to do this.
