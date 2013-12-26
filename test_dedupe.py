@@ -10,7 +10,7 @@ def test_dedupe():
         {'id': 'g', 'catalog': 'portal2'},
         {'id': 'h', 'catalog': 'portal2'},
         {'id': 'c', 'catalog': 'portal2'}]
-    edges = [('portal', 'portal2')]
+    edges = [('portal1', 'portal2')]
     observed = dedupe(datasets1 + datasets2, edges)
 
     # Sort by id
