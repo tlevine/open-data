@@ -1,4 +1,8 @@
-I recently came across some documents about the pricing structure
+---
+title: Open data about pricing of open data
+---
+
+Some governments were awesome enough to open data about the pricing
 of the Socrata Open Data portal (XXX link).
 I thought it would be interesting to figure out which plans different
 Socrata clients were on and to see which features were most in demand.
