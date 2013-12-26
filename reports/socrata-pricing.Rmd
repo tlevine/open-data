@@ -2,6 +2,11 @@
 title: Semi-open data about pricing of open data
 description: Socrata has a bunch of products. Who's buying which ones?
 tweet_text: I try to figure out what people are paying Socrata
+kind: article
+created_at: 2013-12-26
+tags: ['open-data']
+twitter_image: hawaii.png
+facebook_image: hawaii.png
 ---
 <% root = 'https://github.com/tlevine/open-data/blob/master/' %>
 
@@ -204,7 +209,7 @@ One of them is a super-basic plan (more basic than `Soc-OD-B`)
 for Sacramento, and Sacramento doesn't appear in the present data.
 The other is for Hawaii, and that one does.
 
-![XXX Add the image]()
+![Picture of proposed purchases from Socrata by Hawaii](hawaii.png)
 
 The plan for the Socrata Open Data Portal is called "Premium",
 which is not one of the standard names; the price list just has
