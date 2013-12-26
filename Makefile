@@ -22,4 +22,5 @@ apis:
 	python2 -c 'import run; run.apis()'
 
 reports/socrata-pricing.md:
+	sqlite3 /tmp/open-data.sqlite < reports/socrata-pricing.sql
 	Rscript reports/socrata-pricing.r
