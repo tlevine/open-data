@@ -86,6 +86,9 @@ p5.text <- p5.base + geom_text()
 p5.point <- p5.base + geom_point()
 
 p6 <- ggplot(catalogs) +
+  geom_rect(xmin = -Inf, ymin = -Inf, xmax = 1500, ymax = 50, fill = '#A0A0A0', color = NA) +
+  geom_rect(xmin = -Inf, ymin = -Inf, xmax = 500, ymax = 25, fill = '#D0D0D0', color = NA) +
+  geom_rect(xmin = -Inf, ymin = -Inf, xmax = 150, ymax = 10, fill = '#F0F0F0', color = NA) +
   aes(x = n_datasets, y = n_apis, label = catalog, color = has.forms) +
   geom_text() +
   scale_x_continuous('Number of datasets', breaks = c(0, 150, 500, 1500)) +
