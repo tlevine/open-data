@@ -20,6 +20,28 @@ levels(catalogs$has.forms) <-
   levels(catalogs$has.311) <-
   c('Yes','No')
 
+# Guess the plans
+catalogs$data.portal.plan <- factor('SOC-OD-B',
+  levels = c(paste0('SOC-OD-', c('B','Ext','Ent')), 'Other'))
+
+catalogs$data.portal.plan[catalogs$n_datasets > 150] <- 'SOC-OD-Ext' 
+catalogs$data.portal.plan[catalogs$n_datasets > 500] <- 'SOC-OD-Ent'
+catalogs$data.portal.plan[catalogs$n_datasets >1500] <- 'Other'
+
+catalogs$data.portal.plan[catalogs$n_apis > 10] <- 'SOC-OD-Ext' 
+catalogs$data.portal.plan[catalogs$n_apis > 25] <- 'SOC-OD-Ent'
+catalogs$data.portal.plan[catalogs$n_apis > 50] <- 'Other'
+
+catalogs$data.collect.plan <- factor('None',
+  levels = c('None', paste0('SOC-DC-', c('B','Ext','Ent')), 'Other'))
+
+catalogs$data.collect.plan[catalogs$n_forms >  0] <- 'SOC-DC-B' 
+catalogs$data.collect.plan[catalogs$n_forms > 50] <- 'SOC-DC-Ext' 
+catalogs$data.collect.plan[catalogs$n_forms >100] <- 'SOC-DC-Ent'
+catalogs$data.collect.plan[catalogs$n_forms >200] <- 'Other'
+
+# Plots
+
 molten <- melt(catalogs, variable.name = 'has', value.name = 'yes',
   measure.vars = grep('has.', names(catalogs), value = TRUE))
 
@@ -57,7 +79,7 @@ p5.base <- ggplot(catalogs) + aes(x = n_datasets, y = n_apis, label = catalog) +
   # Dataset count thresholds for Socrata Open Data Portal plans
   geom_vline(xintercept = c(150, 500, 1500), color = 'grey') + 
 
-  # Dataset count thresholds for Socrata Open Data Portal plans
+  # API count thresholds for Socrata Open Data Portal plans
   geom_hline(yintercept = c(10, 25, 50), color = 'grey')
 
 p5.text <- p5.base + geom_text()
