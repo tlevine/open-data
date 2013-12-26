@@ -85,8 +85,8 @@ def check_links(softwares = ['ckan','socrata']):
 SOFTWARE_MAP = {
     'identifier': {'ckan':'name','socrata':'id'}
 }
-def plans():
-    dt = DumpTruck('/tmp/plans.sqlite', auto_commit = False)
+def to_sqlite3():
+    dt = DumpTruck('/tmp/open-data.sqlite', auto_commit = False)
 
     dummyrow = dict(zip(['software','catalog','identifier'], ['blah']*3))
     dt.create_table(dummyrow, 'datasets', if_not_exists = True)

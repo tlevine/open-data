@@ -51,7 +51,7 @@ def dedupe(datasets, edges):
 def main():
     edges = build_network()['edges']
 
-    dt = DumpTruck(dbname = '/tmp/plans.sqlite', adapt_and_convert = True)
+    dt = DumpTruck(dbname = '/tmp/open-data.sqlite', adapt_and_convert = True)
     datasets_in = dt.execute('SELECT * FROM datasets WHERE software = \'socrata\'')
     datasets_out = list(dedupe(datasets_in, edges))
 
