@@ -44,9 +44,12 @@ def dedupe(datasets, edges):
 
     losing_catalogs = set([edge[0] for edge in edges])
     duplicates = set((k for k,v in identifiers(datasets).iteritems() if v > 1))
+    print(losing_catalogs)
+    print(duplicates)
 
     for dataset in datasets:
         if not(dataset['catalog'] in losing_catalogs and dataset['id'] in duplicates):
+            print(dataset)
             yield dataset
 
 if __name__ == '__main__':
