@@ -12,7 +12,7 @@ facebook_image: hawaii.png
 <% pricing = 'https://github.com/tlevine/socrata-pricing/blob/master/d/' %>
 
 Some governments were awesome enough to open data about the
-[pricing of Socrata](<%= pricing %>) they are.
+[pricing of Socrata products](<%= pricing %>).
 
 I thought it would be interesting to figure out which plans different
 Socrata clients were on and to see which features were most in demand.
@@ -29,28 +29,34 @@ you can read more in any of the
 [Washington price list](<%= pricing %>washington.xlsx)
 
 ### Socrata Open Data Portal
-The main product that you hear about is the Socrata Open Data Portal.
+The main product that you hear about is the
+[Socrata Open Data Portal](http://www.socrata.com/open-data-portal/).
 There are three standard levels of service for this, called "Basic",
 "Extended" and "Enterprise". Here are what I see as the main differences
 among these plans.
 
-The basic plan (Soc-OD-B) is basically this.
+The basic plan (Soc-OD-B) is basically this:
 
 * 150 datasets
 * 10 premium APIs
 * Costs just under $5,000 per month
 
-The extended plan (Soc-OD-Ex) is basically this.
+Here's the extended plan (Soc-OD-Ex).
 
 * 500 datasets
 * 25 premium APIs
 * Costs just under $10,000 per month
 
-And the enterprise plan (Soc-OD-Ent) is basically this.
+And here's the enterprise plan (Soc-OD-Ent).
 
 * 1,500 datasets
 * 50 premium APIs
 * Costs just under $15,000 per month
+
+The plans and their differences are a bit more complex,
+so I remind you to read the
+[Washington price list](<%= pricing %>washington.xlsx)
+if you care for the details.
 
 ### Explorers
 There are special "explorer" tools for these specific datasets.
@@ -205,6 +211,8 @@ As I explain [below](#validation), these guesses are based only
 on public data, so I think that they are low.
 
 ```{r plans, echo = FALSE, asis = TRUE}
+levels(catalogs$data.portal.plan)[1:3] <- c('Basic','Extended','Enterprise')
+levels(catalogs$data.collect.plan)[2:4] <- c('Basic','Extended','Enterprise')
 kable(catalogs[c('data.portal.plan','data.collect.plan','has.311')])
 ```
 
@@ -263,6 +271,20 @@ Hawaii has been hailed as a good example of government open data,
 my hunch is that they wound up needing a bigger plan in order to
 support their growing initiative.
 
+## Thoughts on metrics
+I've recently been thinking about new metrics for progress in our
+data portal efforts, because number of datasets
+[doesn't say much](/!/socrata-deduplicate).
+For example, I've looked at [licensing](/!/open-data-licensing)
+and [updating](/!/data-updatedness).
+
+This look into pricing might shed some light on why we have been
+using the metric of number of datasets: The pricing is structured
+based on number of datasets. There are a bunch of other metrics
+in the [site metrics API](/!/socrata-metrics-api), and most (all?)
+of these metrics are also part of the definitions of the tiers of
+service for the Socrata Open Data Portal product.
+
 ## Future research
 I don't feel like I've done much here beyond pointing out that one
 could look at the pricing of software. I really wanted to see what
@@ -271,6 +293,7 @@ using (like I did when looking at the use of [charting tools](/!/socrata-users))
 
 I also wanted to get some idea of what people wind up doing when
 they're reaching the limits of their plans. At some point they'll
-buy a new one, but do they wind up combining datasets in the meantime?
+probably buy a new one, maybe they also come up with interesting
+ways of reducing the number of datasets that they have.
 I'd need rather reliable knowledge about each client's plan in order
 to do this.
