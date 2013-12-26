@@ -4,3 +4,6 @@
 [submodule "downloads/ckan"]
 	path = downloads/ckan
 	url = git@github.com:tlevine/ckan-datasets.git
+[submodule "downloads/socrata-homepages"]
+	path = downloads/socrata-homepages
+	url = git@github.com:tlevine/socrata-homepages
