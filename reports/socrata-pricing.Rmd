@@ -181,7 +181,7 @@ And to count **forms**, I just looked for datasets with a `displayType` of "form
 ### Summary
 This graph is pretty cool.
 
-```{r fancy, echo = FALSE, fig.height = 8, fig.width = 12}
+```{r fancy, echo = FALSE, fig.height = 7, fig.width = 10}
 p.fancy
 ```
 {:.wide}
