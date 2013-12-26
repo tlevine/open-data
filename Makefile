@@ -14,3 +14,6 @@ open-data.sqlite:
 	
 dead-links.sqlite:
 	touch /tmp/dead-links.sqlite
+
+apis:
+	python2 -c 'import run; run.apis()'

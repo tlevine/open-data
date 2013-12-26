@@ -119,6 +119,17 @@ def to_sqlite3():
         dt.upsert(dataset,dataset['software'])
         dt.commit()
 
+def apis():
+    from urlparse import urljoin
+    socrata_catalogs = filter(lambda x: x[0] == 'socrata', catalogs())
+    for _, catalog in socrata_catalogs:
+        _count_apis(get(urljoin(catalog, '/browse?limitTo=apis&utf8=%E2%9C%93'), cachedir = 'downloads'))
+
+def _count_apis(raw):
+    import lxml.html
+    html = lxml.html.fromstring(raw)
+    html.
+
 def fix_things():
     'Always run these.'
     try:

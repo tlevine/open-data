@@ -1,7 +1,7 @@
 library(sqldf)
 
 q <- function(sql) {
-  sqldf(sql, dbname = '/tmp/plans.sqlite')
+  sqldf(sql, dbname = '/tmp/open-data.sqlite')
 }
 
 q('SELECT 
