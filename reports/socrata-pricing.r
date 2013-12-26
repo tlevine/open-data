@@ -22,3 +22,6 @@ SELECT catalog, count(*) \'n_geo\' FROM
 )
 GROUP BY catalog;
 ')
+
+n.apis <- q('SELECT * FROM socrata_apis WHERE catalog NOT LIKE \'%/%\';')
+n.apis$catalog <- sub('/$', '', n.apis$catalog)
