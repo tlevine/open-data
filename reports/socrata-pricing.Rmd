@@ -8,8 +8,76 @@ I thought it would be interesting to figure out which plans different
 Socrata clients were on and to see which features were most in demand.
 
 ## Pricing structure
+It looks like you're getting one packaged website from Socrata, but
+it's sold as a bunch of different products.
 
+### Socrata Open Data Portal
+The main product that you hear about is the Socrata Open Data Portal.
+There are three standard levels of service for this, and here are some
+of their characteristics.
 
+Basic (`Soc-OD-B`)
+
+* 150 datasets
+* 10 premium APIs
+* Costs just under $5,000 per month
+
+Extended (`Soc-OD-Ex`)
+
+* 500 datasets
+* 25 premium APIs
+* Costs just under $10,000 per month
+
+Enterprise (`Soc-OD-Ent`)
+
+* 1,500 datasets
+* 50 premium APIs
+* Costs just under $15,000 per month
+
+### Explorers
+There are special "explorer" tools for these specific datasets.
+
+* 311
+* Checkbook
+* Elections
+* Health indicators
+
+### DataCollect
+DataCollect is "a cloud-based platform that simplifies the design, deployment, and management of intelligent data capture apps from authorized users".
+It sounds like there's a lot more to DataCollect than I can see publically, but
+I presume it has something to do with the
+[form type]()
+on the open data portal.
+
+Basic (`Soc-DC-B`)
+
+* 5 data collection apps
+* 50 active forms
+* Costs just under $5,000 per month
+
+Extended (`Soc-DC-Ex`)
+
+* 10 data collection apps
+* 100 active forms
+* Costs just under $10,000 per month
+
+Enterprise (`Soc-DC-Ent`)
+
+* 20 data collection apps
+* 500 active forms
+* Costs just under $20,000 per month
+
+### GovStat
+GovStat is a big product (in terms of cost) that I didn't look at.
+Given its cost, I felt like it deserved its own section even though
+I'm not saying much about it.
+
+### And many others
+
+* ArcGIS Connect
+* API Foundry
+* Custom work
+* Training
 
 ## Data for the present analysis
 
