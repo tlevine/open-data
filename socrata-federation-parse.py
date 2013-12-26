@@ -12,3 +12,6 @@ def main():
     dt.create_table(datasets_out, 'socrata_deduplicated')
     dt.create_index(['id'], 'socrata_deduplicated', if_not_exists = True, unique = True)
     dt.upsert(datasets_out)
+
+if __name__== '__main__':
+    main()

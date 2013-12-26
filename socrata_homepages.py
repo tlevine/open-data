@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import os, re
 import json
+from collections import Counter
 from lxml.html import parse
 
 def parse_page(html):
@@ -17,7 +18,7 @@ def parse_source(html):
     return unicode(re.match(r'https://([^/]+)/browse/embed', url).group(1))
 
 def homepages():
-    directory = os.path.join('downloads', 'socrata-homepages', 'current', homepage)
+    directory = os.path.join('downloads', 'socrata-homepages', 'current')
     return (os.path.join(directory, filename) for filename in os.listdir(directory))
 
 def build_network():
