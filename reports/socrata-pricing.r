@@ -85,6 +85,14 @@ p5.base <- ggplot(catalogs) + aes(x = n_datasets, y = n_apis, label = catalog) +
 p5.text <- p5.base + geom_text()
 p5.point <- p5.base + geom_point()
 
+p6 <- ggplot(catalogs) +
+  aes(x = n_datasets, y = n_apis, label = catalog, color = has.forms) +
+  geom_text() +
+  scale_x_continuous('Number of datasets', breaks = c(0, 150, 500, 1500)) +
+  scale_y_continuous('Number of APIs', breaks = c(0, 10, 25, 50)) +
+  scale_color_discrete('Has forms') +
+  theme(legend.position = 'bottom') +
+  ggtitle("Tom guesses which Socrata Open Data Portal plans different people are on.")
 
 t1 <- table(catalogs$has.forms, catalogs$has.apis, catalogs$has.311)
 
