@@ -172,9 +172,10 @@ And to count **forms**, I just looked for datasets with a `displayType` of "form
 ### Summary
 This graph is pretty cool.
 
-```{r fancy, echo = FALSE}
+```{r fancy, echo = FALSE, fig.height = 8, fig.width = 8}
 p.fancy
 ```
+{:.wide}
 
 The x-axis tells us the number of datasets on a portal, the y-axis tells us the number
 of special APIs, and the color tells us whether the portal contains any
@@ -201,9 +202,10 @@ Note my choice to show the binary variable of whether any forms were on the port
 had more than 50 publically visible forms, which is the threshold for jumping to
 the extended plan (if I'm interpreting things correctly).
 
-```{r forms, echo = FALSE}
+```{r forms, echo = FALSE, fig.height = 4, fig.width = 8}
 p.forms
 ```
+{:.wide}
 
 I think that the "Has form" variable tells us whether the client has purchased
 at least the basic plan of DataCollect, and the number of forms doesn't tell us
