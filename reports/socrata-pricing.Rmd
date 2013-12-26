@@ -9,12 +9,19 @@ Socrata clients were on and to see which features were most in demand.
 
 ## Data for the present analysis
 
-* Number of datasets
+These are related to the level (base, extended or enterprise)
+of the Open Data Portal product.
+
+* Number of datasets 
 * Proxies for the number of geocoding requests
   * Number of geospatial datasets
   * Total number of records across geospatial datasets
 * Number of premium APIs
-* Has a dataset with "311" in the title (a proxy for the 311 explorer service)
+
+This one is related to add-ons
+
+* Has a dataset with "311" in the title: This is a proxy for whether the 311 Explorer product is being used.
+* Number of forms: This tells us whether DataCollect is being used and which at which level (basic, extended or enterprise)
 
 ## Acquiring the data
 
