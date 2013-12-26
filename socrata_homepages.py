@@ -54,5 +54,3 @@ def dedupe(datasets, edges):
 
 if __name__ == '__main__':
     print(build_network())
-    import doctest
-    doctest.testmod()

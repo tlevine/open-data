@@ -7,11 +7,12 @@ def main():
 
     dt = DumpTruck(dbname = '/tmp/open-data.sqlite', adapt_and_convert = True)
     datasets_in = dt.execute('SELECT * FROM socrata')
-    datasets_out = list(dedupe(datasets_in, edges))
 
-    dt.create_table(datasets_out, 'socrata_deduplicated')
+    dt.create_table({'id': 'blah-blah'}, 'socrata_deduplicated')
     dt.create_index(['id'], 'socrata_deduplicated', if_not_exists = True, unique = True)
-    dt.upsert(datasets_out)
+
+    for dataset in dedupe(datasets_in, edges):
+        dt.upsert(datasets_out, 'socrata_deduplicated')
 
 if __name__== '__main__':
     main()
