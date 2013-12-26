@@ -10,6 +10,7 @@ import parallel
 import download
 import read
 import links
+from apis import count_apis
 
 SOCRATA_FIX = {
     'http://datakc.org':'https://opendata.go.ke',
@@ -120,23 +121,16 @@ def to_sqlite3():
         dt.commit()
 
 def apis():
-    from urlparse import urljoin
+    dt = DumpTruck('/tmp/open-data.sqlite', auto_commit = False)
+    dt.create_table({'catalog':'abc.def'}, 'socrata_apis')
+    dt.create_index(['catalog'], 'socrata_apis', unique = True, if_not_exists = True)
+
     socrata_catalogs = filter(lambda x: x[0] == 'socrata', catalogs())
     for _, catalog in socrata_catalogs:
-        _count_apis(get(urljoin(catalog, '/browse?limitTo=apis&utf8=%E2%9C%93'),
-            cachedir = os.path.join('downloads', 'socrata-apis')))
-
-def _count_apis(raw):
-    import re
-    import lxml.html
-    html = lxml.html.fromstring(raw)
-    resultCounts = html.xpath('//div[@class="resultCount"]/text()')
-    if resultCounts == []:
-        return 0
-    else:
-        m = re.match(r'^Showing ([0-9]+) of ([0-9]+)', resultCounts[0].strip())
-        print(m.group(1))
-        print(m.group(2))
+        dt.upsert({
+            'catalog': catalog.split('://')[-1],
+            'apis': count_apis(catalog),
+        }, 'socrata_apis')
 
 def fix_things():
     'Always run these.'
