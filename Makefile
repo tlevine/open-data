@@ -2,7 +2,7 @@ download:
 	python2 -c 'import run; run.download_metadata()'
 
 defederate:
-	./download-federation.sh
+	./socrata-federation-download.sh
 
 plans.sqlite:
 	python2 -c 'import run; run.plans()'

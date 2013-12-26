@@ -12,7 +12,9 @@ mkdir -p $dir
 
 for portal in $(ls downloads/socrata); do
     file="${dir}/${portal}.html"
-    test -e $file || wget --no-check-certificate -O "$file" "https://${portal}/browse/embed"
+    test -e $file ||
+      wget --no-check-certificate -O "$file" "https://${portal}/browse/embed" ||
+      echo "Problem with $portal"
 done
 
 # Skip opendata.socrata.com
