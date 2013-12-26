@@ -45,3 +45,5 @@ p3 <- ggplot(catalogs) + aes(x = n_forms, y = n_datasets, label = catalog) +
 
 
 t1 <- table(catalogs$has.forms, catalogs$has.apis, catalogs$has.311)
+
+cat('To do: Guess the plans.\n')
