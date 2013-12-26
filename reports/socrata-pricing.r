@@ -23,5 +23,22 @@ SELECT catalog, count(*) \'n_geo\' FROM
 GROUP BY catalog;
 ')
 
+n.forms <- q('
+SELECT catalog, count(*) \'n_forms\'
+FROM socrata_deduplicated
+WHERE displayType = \'form\'
+GROUP BY catalog;
+')
+
+n.form.tables <- q('
+SELECT catalog, count(*) \'n_form_tables\' FROM
+(
+  SELECT catalog FROM socrata_deduplicated
+  WHERE displayType = \'form\'
+  GROUP BY tableId
+)
+GROUP BY catalog;
+')
+
 n.apis <- q('SELECT * FROM socrata_apis WHERE catalog NOT LIKE \'%/%\';')
 n.apis$catalog <- sub('/$', '', n.apis$catalog)
