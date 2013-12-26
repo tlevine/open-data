@@ -62,10 +62,6 @@ There are special "explorer" tools for these specific datasets.
 
 ### DataCollect
 DataCollect is "a cloud-based platform that simplifies the design, deployment, and management of intelligent data capture apps from authorized users".
-It sounds like there's a lot more to DataCollect than I can see publically, but
-I presume it has something to do with the
-[form type](/!/open-by-default#popularity-of-forms)
-on the open data portal.
 
 Here's the basic plan (Soc-DC-B).
 
@@ -84,6 +80,15 @@ And here's the enterprise plan (Soc-DC-Ent).
 * 20 data collection apps
 * 500 active forms
 * Costs just under $20,000 per month
+
+Based on the full description in the
+[Washington price list](<%= pricing %>washington.xlsx),
+I think there's a lot more to DataCollect than I can see publically.
+
+On the other hand, I do think we can see some of it publically;
+I'm guessing that the "active forms" are related to the
+[form type](/!/open-by-default#popularity-of-forms)
+on the open data portal.
 
 ### GovStat
 [GovStat](http://socrata.com/govstat)
