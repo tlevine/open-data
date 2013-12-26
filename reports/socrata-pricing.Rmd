@@ -155,6 +155,11 @@ p.fancy
 ```
 
 ### Which plan?
+Based only on the number of datasets and APIs, here are some rough guesses as to which
+plans people are on. As I explain [below](#validation), these guesses are based only
+on public data, so I think that they are low.
+
+oeu
 
 ### Number of forms
 Note my choice to show the binary variable of whether any forms were on the portal
@@ -171,7 +176,7 @@ at least the basic plan of DataCollect, and the number of forms doesn't tell us
 much more about the product that the client has purchased.
 
 ### Validation
-I've heard that four-fifths of Socrata's data are private,
+I've heard from Socrata employees that four-fifths of Socrata's data are private,
 so this is a very low estimate. It would nice to get some
 idea as to how wrong this is.
 
@@ -205,6 +210,10 @@ basic plan. There are a few decent explanations for this.
 
 My above guesswork also suggests that Hawaii has purchased
 DataCollect, but I don't see DataCollect in the Hawaii document.
+
+Hawaii has been hailed as a good example of government open data,
+my hunch is that they wound up needing a bigger plan in order to
+support their growing initiative.
 
 ## Future research
 I don't feel like I've done much here beyond pointing out that one
