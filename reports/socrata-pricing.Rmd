@@ -147,15 +147,28 @@ And to count **forms**, I just looked for datasets with a `displayType` of "form
 
 ## Results
 
-```{r}
-p6
+### Summary
+This graph is pretty cool.
+
+```{r fancy}
+p.fancy
 ```
 
-### Trends
+### Which plan?
 
+### Number of forms
+Note my choice to show the binary variable of whether any forms were on the portal
+(more that zero) rather than showing the count of forms. I did this because no portals
+had more than 50 publically visible forms, which is the threshold for jumping to
+the extended plan (if I'm interpreting things correctly).
 
-### Guessing plans
+```{r forms}
+p.forms
+```
 
+I think that the "Has form" variable tells us whether the client has purchased
+at least the basic plan of DataCollect, and the number of forms doesn't tell us
+much more about the product that the client has purchased.
 
 ### Validation
 I've heard that four-fifths of Socrata's data are private,

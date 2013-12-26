@@ -99,8 +99,12 @@ p.fancy <- ggplot(catalogs) +
   theme(legend.position = 'bottom') +
   ggtitle("Tom guesses which Socrata Open Data Portal plans different people are on.")
 
+# All within basic plan (50 forms)
 p.forms <- ggplot(catalogs) +
-  aes(x = n_forms) + geom_bar()
+  aes(x = n_forms) + geom_bar() +
+  ggtitle('How many forms do people have?') +
+  xlab('Number of forms') +
+  ylab('Number of portals')
 
 t1 <- table(catalogs$has.forms, catalogs$has.apis, catalogs$has.311)
 
