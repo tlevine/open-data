@@ -43,6 +43,26 @@ p3 <- ggplot(catalogs) + aes(x = n_forms, y = n_datasets, label = catalog) +
 
   geom_text()
 
+p4 <- ggplot(catalogs) + aes(x = n_geo, y = n_datasets, label = catalog, color = has.apis) +
+  scale_y_log10('Number of datasets') + scale_x_log10('Number of geospatial datasets') +
+
+  # Dataset count thresholds for Socrata Open Data Portal plans
+  geom_hline(yintercept = c(150, 500, 1500), color = 'grey') + 
+
+  geom_text()
+
+p5.base <- ggplot(catalogs) + aes(x = n_datasets, y = n_apis, label = catalog) +
+# scale_x_log10('Number of datasets') + scale_y_log10('Number of APIs') +
+
+  # Dataset count thresholds for Socrata Open Data Portal plans
+  geom_vline(xintercept = c(150, 500, 1500), color = 'grey') + 
+
+  # Dataset count thresholds for Socrata Open Data Portal plans
+  geom_hline(yintercept = c(10, 25, 50), color = 'grey')
+
+p5.text <- p5.base + geom_text()
+p5.point <- p5.base + geom_point()
+
 
 t1 <- table(catalogs$has.forms, catalogs$has.apis, catalogs$has.311)
 
