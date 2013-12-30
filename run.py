@@ -75,7 +75,7 @@ def datasets(softwares = ['ckan','socrata']):
 def get_links(softwares = ['ckan','socrata']):
     dt = DumpTruck('/tmp/open-data.sqlite')
 
-    dummyrow = dict(zip(['software','catalog','identifier', 'status_code'], (['blah'] * 3) + ([234] * 1)))
+    dummyrow = dict(zip(['software','catalog','identifier', 'status_code', 'headers'], (['blah'] * 3) + ([234] * 1) + [{'a':'b'}]))
     dt.create_table(dummyrow, 'links', if_not_exists = True)
     dt.create_index(['software','catalog','identifier'], 'links', if_not_exists = True, unique = True)
 
@@ -98,7 +98,9 @@ def check_links():
     urls = [row['url'] for row in dt.execute('SELECT DISTINCT url FROM links WHERE status_code IS NULL')]
     random.shuffle(urls) # so that we randomly bounce around catalogs
     for url in urls:
-        dt.execute('UPDATE links SET status_code = ? WHERE is_link = 1 AND url = ?', (links.is_alive(url), url))
+        status_code, headers = links.is_alive(url)
+        sql = 'UPDATE links SET status_code = ? SET headers = ? WHERE is_link = 1 AND url = ?'
+        dt.execute(sql, (status_code, json.dumps(headers), url))
 
 SOFTWARE_MAP = {
     'identifier': {'ckan':'name','socrata':'id'}

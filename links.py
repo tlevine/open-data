@@ -38,4 +38,4 @@ def is_alive(url):
     except:
         print(url)
         raise
-    return r.status_code
+    return r.status_code, r.headers
