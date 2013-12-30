@@ -99,8 +99,8 @@ def check_links():
     random.shuffle(urls) # so that we randomly bounce around catalogs
     for url in urls:
         status_code, headers = links.is_alive(url)
-        sql = 'UPDATE links SET status_code = ? SET headers = ? WHERE is_link = 1 AND url = ?'
-        dt.execute(sql, (status_code, json.dumps(headers), url))
+        sql = 'UPDATE links SET status_code = ?, headers = ? WHERE is_link = 1 AND url = ?'
+        dt.execute(sql, (status_code, json.dumps(dict(headers)), url))
 
 SOFTWARE_MAP = {
     'identifier': {'ckan':'name','socrata':'id'}
