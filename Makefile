@@ -30,10 +30,10 @@ reports/socrata-pricing.md: state/apis state/datasets state/dataset-count
 	Rscript reports/socrata-pricing.r
 
 to-disk:
-	cp /tmp/open-data.sqlite cache
+	cp /tmp/open-data.sqlite state/cache
 
 from-disk:
-	cp cache/open-data.sqlite /tmp
+	cp state/cache/open-data.sqlite /tmp
 
 state:
 	mkdir -p state
