@@ -75,7 +75,7 @@ def datasets(softwares = ['ckan','socrata']):
 def get_links(softwares = ['ckan','socrata']):
     dt = DumpTruck('/tmp/open-data.sqlite')
 
-    dummyrow = dict(zip(['software','catalog','identifier', 'status_code', 'headers'], (['blah'] * 3) + ([234] * 1) + [{'a':'b'}]))
+    dummyrow = dict(zip(['software','catalog','identifier', 'error', 'status_code', 'headers'], (['blah'] * 4) + ([234] * 1) + [{'a':'b'}]))
     dt.create_table(dummyrow, 'links', if_not_exists = True)
     dt.create_index(['software','catalog','identifier'], 'links', if_not_exists = True, unique = True)
 
@@ -85,7 +85,6 @@ def get_links(softwares = ['ckan','socrata']):
                 continue
             try:
                 for row in _check_catalog(software, catalog):
-                    row['status_code'] = None
                     dt.upsert(row, 'links')
             except:
                 print(os.path.join('downloads',software,catalog))
