@@ -9,7 +9,6 @@ dataset_count: defederate
 
 downloads/socrata-homepages:
 	./socrata-federation-download.sh
-	ln -s /tmp/socrata-defederate.sqlite socrata-defederate.sqlite
 
 open-data.sqlite:
 	python2 -c 'import run; run.to_sqlite3()'
