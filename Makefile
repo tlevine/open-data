@@ -27,7 +27,7 @@ state/apis: state
 
 reports/socrata-pricing.md: state/apis state/datasets state/dataset-count
 	sqlite3 /tmp/open-data.sqlite < reports/socrata-pricing.sql
-	Rscript reports/socrata-pricing.r
+	cd reports && Rscript socrata-pricing.r
 
 to-disk:
 	cp /tmp/open-data.sqlite state/cache
