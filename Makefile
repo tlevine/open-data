@@ -13,7 +13,6 @@ downloads/socrata-homepages:
 
 open-data.sqlite:
 	python2 -c 'import run; run.to_sqlite3()'
-	ln -s /tmp/open-data.sqlite open-data.sqlite
 	
 dead-links.sqlite:
 	touch /tmp/dead-links.sqlite
@@ -24,3 +23,9 @@ apis:
 reports/socrata-pricing.md:
 	sqlite3 /tmp/open-data.sqlite < reports/socrata-pricing.sql
 	Rscript reports/socrata-pricing.r
+
+to-disk:
+	cp /tmp/open-data.sqlite cache
+
+from-disk:
+	cp cache/open-data.sqlite /tmp
