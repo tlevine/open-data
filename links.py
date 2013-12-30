@@ -39,9 +39,9 @@ def is_alive(url):
         r = requests.head(url, allow_redirects=True)
     except:
         error = traceback.extract_stack()
-        print('Failed:    ', url)
+        print('Failed:    ' + url)
     else:
         error = None
-        print('Succeeded: ', url)
+        print('Succeeded: ' + url)
 
     return r.status_code, json.dumps(dict(r.headers)), json.dumps(error)

@@ -96,10 +96,23 @@ def check_links():
     dt.create_index(['status_code'], 'links', if_not_exists = True, unique = False)
     urls = [row['url'] for row in dt.execute('SELECT DISTINCT url FROM links WHERE status_code IS NULL')]
     random.shuffle(urls) # so that we randomly bounce around catalogs
-    for url in urls:
+
+    def _check_link(url):
         status_code, headers, error = links.is_alive(url)
         sql = 'UPDATE links SET status_code = ?, headers = ?, error = ? WHERE is_link = 1 AND url = ?'
         dt.execute(sql, (status_code, headers, error, url))
+
+    processes = {}
+    for url in urls:
+        processes[url] = Process(target = _check_link, args = (url,))
+
+    def signal_handler(signal, frame):
+        parallel.kill(processes)
+        sys.exit(0)
+
+    signal.signal(signal.SIGINT, signal_handler)
+    parallel.start(processes)
+    parallel.join(processes)
 
 SOFTWARE_MAP = {
     'identifier': {'ckan':'name','socrata':'id'}
