@@ -1,7 +1,7 @@
 download:
 	python2 -c 'import run; run.download_metadata()'
 
-defederate: downloads/socrata-homepages open-data.sqlite
+defederate: downloads/socrata-homepages /tmp/open-data.sqlite
 	./socrata-federation-parse.py
 
 dataset_count: defederate
@@ -10,11 +10,11 @@ dataset_count: defederate
 downloads/socrata-homepages:
 	./socrata-federation-download.sh
 
-open-data.sqlite:
+/tmp/open-data.sqlite:
 	python2 -c 'import run; run.to_sqlite3()'
 	
-dead-links.sqlite:
-	touch /tmp/dead-links.sqlite
+check-links: /tmp/open-data.sqlite
+	python2 -c 'import run; run.check_links()'
 
 apis:
 	python2 -c 'import run; run.apis()'
