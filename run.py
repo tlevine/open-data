@@ -2,6 +2,7 @@
 from time import sleep
 import os, json
 import csv
+import random
 
 from get import get
 from dumptruck import DumpTruck
@@ -74,7 +75,7 @@ def datasets(softwares = ['ckan','socrata']):
 def get_links(softwares = ['ckan','socrata']):
     dt = DumpTruck('/tmp/open-data.sqlite')
 
-    dummyrow = dict(zip(['software','catalog','identifier', 'is_alive', 'status_code'], (['blah'] * 3) + ([234] * 2)))
+    dummyrow = dict(zip(['software','catalog','identifier', 'status_code'], (['blah'] * 3) + ([234] * 1)))
     dt.create_table(dummyrow, 'links', if_not_exists = True)
     dt.create_index(['software','catalog','identifier'], 'links', if_not_exists = True, unique = True)
 
@@ -94,10 +95,10 @@ def check_links():
     dt = DumpTruck('/tmp/open-data.sqlite')
     dt.create_index(['url'], 'links', if_not_exists = True, unique = False)
     dt.create_index(['status_code'], 'links', if_not_exists = True, unique = False)
-    for row in dt.execute('SELECT DISTINCT url FROM links WHERE status_code IS NULL'):
-        url = row['url']
-        dt.execute('UPDATE links SET status_code = ? WHERE url = ?', (links.is_alive(url), url))
-        break
+    urls = [row['url'] for row in dt.execute('SELECT DISTINCT url FROM links WHERE status_code IS NULL')]
+    random.shuffle(urls) # so that we randomly bounce around catalogs
+    for url in urls:
+        dt.execute('UPDATE links SET status_code = ? WHERE is_link = 1 AND url = ?', (links.is_alive(url), url))
 
 SOFTWARE_MAP = {
     'identifier': {'ckan':'name','socrata':'id'}

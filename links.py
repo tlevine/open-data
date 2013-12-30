@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import json
+import requests
 
 def socrata(view):
     is_href = view["viewType"] == "href"
