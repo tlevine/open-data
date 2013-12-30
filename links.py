@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 import json
+import traceback
+
 import requests
 
 def socrata(view):
@@ -37,5 +39,9 @@ def is_alive(url):
         r = requests.head(url, allow_redirects=True)
     except:
         print(url)
+        error = trackback.extract_stack()
         raise
-    return r.status_code, r.headers
+    else:
+        error = None
+
+    return r.status_code, json.dumps(dict(r.headers)), json.dumps(error)
