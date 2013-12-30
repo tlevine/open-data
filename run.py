@@ -13,6 +13,13 @@ import read
 import links
 from apis import count_apis
 
+# For parallel
+from sqlite3 import DatabaseError
+from itertools import islice
+import signal
+import sys
+from multiprocessing import Process
+
 SOCRATA_FIX = {
     'http://datakc.org':'https://opendata.go.ke',
     'www.data.gov': 'https://explore.data.gov',
@@ -40,9 +47,6 @@ def catalogs():
             yield 'socrata', url
 
 def download_metadata():
-    import signal
-    import sys
-    from multiprocessing import Process
 
     processes = {}
     for software, url in catalogs():
@@ -97,22 +101,38 @@ def check_links():
     urls = [row['url'] for row in dt.execute('SELECT DISTINCT url FROM links WHERE status_code IS NULL')]
     random.shuffle(urls) # so that we randomly bounce around catalogs
 
-    def _check_link(url):
-        status_code, headers, error = links.is_alive(url)
-        sql = 'UPDATE links SET status_code = ?, headers = ?, error = ? WHERE is_link = 1 AND url = ?'
-        dt.execute(sql, (status_code, headers, error, url))
+    def windows(seq, n=20):
+        "Returns a sliding window (of width n) over data from the iterable"
+        "   s -> (s0,s1,...s[n-1]), (s1,s2,...,sn), ...                   "
+        it = iter(seq)
+        result = tuple(islice(it, n))
+        if len(result) == n:
+            yield result
+        for elem in it:
+            result = result[1:] + (elem,)
+            yield result
 
-    processes = {}
-    for url in urls:
-        processes[url] = Process(target = _check_link, args = (url,))
+    for window in windows(urls):
+        def _check_link(url):
+            status_code, headers, error = links.is_alive(url)
+            sql = 'UPDATE links SET status_code = ?, headers = ?, error = ? WHERE is_link = 1 AND url = ?'
+            try:
+                dt.execute(sql, (status_code, headers, error, url))
+            except DatabaseError:
+                sleep(random.uniform(0,4))
+                dt.execute(sql, (status_code, headers, error, url))
 
-    def signal_handler(signal, frame):
-        parallel.kill(processes)
-        sys.exit(0)
+        processes = {}
+        for url in window:
+            processes[url] = Process(target = _check_link, args = (url,))
 
-    signal.signal(signal.SIGINT, signal_handler)
-    parallel.start(processes)
-    parallel.join(processes)
+        def signal_handler(signal, frame):
+            parallel.kill(processes)
+            sys.exit(0)
+
+        signal.signal(signal.SIGINT, signal_handler)
+        parallel.start(processes)
+        parallel.join(processes)
 
 SOFTWARE_MAP = {
     'identifier': {'ckan':'name','socrata':'id'}
