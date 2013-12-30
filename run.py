@@ -74,7 +74,7 @@ def datasets(softwares = ['ckan','socrata']):
 def get_links(softwares = ['ckan','socrata']):
     dt = DumpTruck('/tmp/open-data.sqlite')
 
-    dummyrow = dict(zip(['software','catalog','identifier', 'is_alive'], (['blah']*3) + [234]))
+    dummyrow = dict(zip(['software','catalog','identifier', 'is_alive', 'status_code'], (['blah'] * 3) + ([234] * 2)))
     dt.create_table(dummyrow, 'links', if_not_exists = True)
     dt.create_index(['software','catalog','identifier'], 'links', if_not_exists = True, unique = True)
 
@@ -84,7 +84,7 @@ def get_links(softwares = ['ckan','socrata']):
                 continue
             try:
                 for row in _check_catalog(software, catalog):
-                    row['is_alive'] = None
+                    row['status_code'] = None
                     dt.upsert(row, 'links')
             except:
                 print(os.path.join('downloads',software,catalog))
@@ -93,9 +93,10 @@ def get_links(softwares = ['ckan','socrata']):
 def check_links():
     dt = DumpTruck('/tmp/open-data.sqlite')
     dt.create_index(['url'], 'links', if_not_exists = True, unique = False)
-    dt.create_index(['is_alive'], 'links', if_not_exists = True, unique = False)
-    for row in dt.execute('SELECT DISTINCT url FROM links WHERE is_alive IS NULL'):
-        print row
+    dt.create_index(['status_code'], 'links', if_not_exists = True, unique = False)
+    for row in dt.execute('SELECT DISTINCT url FROM links WHERE status_code IS NULL'):
+        url = row['url']
+        dt.execute('UPDATE links SET status_code = ? WHERE url = ?', (links.is_alive(url), url))
         break
 
 SOFTWARE_MAP = {

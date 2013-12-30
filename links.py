@@ -31,4 +31,5 @@ def ckan(dataset):
     }
 
 def is_alive(url):
-    return True
+    r = requests.head(url, allow_redirects=True)
+    return r.status_code
