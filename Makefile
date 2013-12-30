@@ -25,7 +25,7 @@ state/apis: state
 	python2 -c 'import run; run.apis()'
 	touch state/apis
 
-reports/socrata-pricing.md:
+reports/socrata-pricing.md: state/apis state/datasets state/dataset-count
 	sqlite3 /tmp/open-data.sqlite < reports/socrata-pricing.sql
 	Rscript reports/socrata-pricing.r
 
