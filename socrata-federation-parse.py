@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 from socrata_homepages import build_network, dedupe
 from dumptruck import DumpTruck
 
