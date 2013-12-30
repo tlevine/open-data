@@ -71,17 +71,32 @@ def datasets(softwares = ['ckan','socrata']):
                     dataset['software'] = software
                     yield dataset
 
-def check_links(softwares = ['ckan','socrata']):
+def get_links(softwares = ['ckan','socrata']):
+    dt = DumpTruck('/tmp/open-data.sqlite')
+
+    dummyrow = dict(zip(['software','catalog','identifier', 'is_alive'], (['blah']*3) + [234]))
+    dt.create_table(dummyrow, 'links', if_not_exists = True)
+    dt.create_index(['software','catalog','identifier'], 'links', if_not_exists = True, unique = True)
+
     for software in softwares:
         for catalog in read.catalogs(software):
             if SOCRATA_FIX.get(catalog, 'this is a string, not None') == None:
                 continue
             try:
                 for row in _check_catalog(software, catalog):
-                    print(row)
+                    row['is_alive'] = None
+                    dt.upsert(row, 'links')
             except:
                 print(os.path.join('downloads',software,catalog))
                 raise
+
+def check_links():
+    dt = DumpTruck('/tmp/open-data.sqlite')
+    dt.create_index(['url'], 'links', if_not_exists = True, unique = False)
+    dt.create_index(['is_alive'], 'links', if_not_exists = True, unique = False)
+    for row in dt.execute('SELECT DISTINCT url FROM links WHERE is_alive IS NULL'):
+        print row
+        break
 
 SOFTWARE_MAP = {
     'identifier': {'ckan':'name','socrata':'id'}

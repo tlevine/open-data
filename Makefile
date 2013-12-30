@@ -17,7 +17,11 @@ state/datasets: state/download-dataset-metadata
 	python2 -c 'import run; run.to_sqlite3()'
 	touch state/datasets
 	
-state/check-links: state/datasets
+state/get-links: state/datasets
+	python2 -c 'import run; run.get_links()'
+	touch state/get-links
+
+state/check-links: state/get-links
 	python2 -c 'import run; run.check_links()'
 	touch state/check-links
 
@@ -36,4 +40,4 @@ from-disk:
 	cp state/cache/open-data.sqlite /tmp
 
 state:
-	mkdir -p state
+	test -d state || mkdir state
