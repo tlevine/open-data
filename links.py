@@ -4,7 +4,8 @@ import requests
 
 def socrata(view):
     is_href = view["viewType"] == "href"
-    links = view.get('metadata', {}).get('accessPoints', {}).values()
+    potential_links = view.get('metadata', {}).get('accessPoints', {}).values()
+    links = filter(lambda x: '://' in x, potential_links)
     return {
         'is_link': is_href,
         'url': None if links == [] else links[0],
