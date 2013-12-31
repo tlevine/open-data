@@ -120,10 +120,11 @@ def check_links():
 
     # Check links
     def _check_link(url_queue):
-        url = url_queue.get()
-        status_code, headers, error = links.is_alive(url)
-        sql = 'UPDATE links SET status_code = ?, headers = ?, error = ? WHERE is_link = 1 AND url = ?'
-        db_updates.put((sql, (status_code, headers, error, url)))
+        while True:
+            url = url_queue.get()
+            status_code, headers, error = links.is_alive(url)
+            sql = 'UPDATE links SET status_code = ?, headers = ?, error = ? WHERE is_link = 1 AND url = ?'
+            db_updates.put((sql, (status_code, headers, error, url)))
 
     processes = {}
     for i in range(50):
