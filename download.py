@@ -1,3 +1,7 @@
+'''
+The directory variable is something like downloads/socrata, downloads/ckan, &c.
+'''
+
 import os
 from time import sleep
 import re
@@ -14,6 +18,9 @@ try:
 except ImportError:
     from urlparse import urljoin
 
+def remove_protocol(url):
+    return re.sub(r'^https?://', '', url)
+
 def ckan(url, directory):
     '''
     Args:
@@ -22,11 +29,10 @@ def ckan(url, directory):
     Returns:
         Nothing
     '''
-    url_without_protocol = re.sub(r'^https?://', '', url)
 
     # Make sure the directory exists.
     try:
-        os.makedirs(os.path.join(directory, url_without_protocol))
+        os.makedirs(os.path.join(directory, remove_protocol(url)))
     except OSError:
         pass
 
@@ -42,7 +48,7 @@ def ckan(url, directory):
 
     # Metadata files
     for dataset in datasets:
-        filename = os.path.join(directory, url_without_protocol, dataset)
+        filename = os.path.join(directory, remove_protocol(url), dataset)
         if os.path.exists(filename):
             pass # print 'Already downloaded %s from %s' % (dataset, url_without_protocol)
         else:
@@ -66,7 +72,7 @@ def socrata(url, directory):
     page = 1
     while True:
         full_url = urljoin(url, '/api/views?page=%d' % page)
-        filename = os.path.join('downloads','socrata',re.sub('^https?://', '', full_url))
+        filename = os.path.join(directory, re.sub('^https?://', '', full_url))
         raw = get(full_url, cachedir = directory)
         try:
             search_results = json.loads(raw)
@@ -82,3 +88,28 @@ def socrata(url, directory):
             if len(search_results) == 0:
                 break
         page += 1
+
+def opendatasoft(url, directory):
+    '''
+    Args:
+        url: A string for the root of the portal (like "http://demo.ckan.org")
+        directory: The directory to which stuff should be saved
+    Returns:
+        Nothing
+    '''
+    # http://parisdata.opendatasoft.com/api/datasets/1.0/search?rows=1000000
+
+    # Make sure the directory exists.
+    try:
+        os.makedirs(directory)
+    except OSError:
+        pass
+
+    fn = os.path.join(directory, remove_protocol(url))
+    if not os.path.exists(fn):
+        try:
+            get(url + '/api/datasets/1.0/search?rows=1000000', cachedir = directory)
+        except:
+            print '**Error downloading %s**' % url
+        else:
+            print '  Downloaded %s' % url
