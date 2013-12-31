@@ -33,11 +33,11 @@ reports/socrata-pricing.md: state/apis state/datasets state/dataset-count
 	sqlite3 /tmp/open-data.sqlite < reports/socrata-pricing.sql
 	cd reports && Rscript socrata-pricing.r
 
-to-disk:
+to-disk: state
 	cp /tmp/open-data.sqlite state/cache
 
 from-disk:
 	cp state/cache/open-data.sqlite /tmp
 
 state:
-	test -d state || mkdir state
+	mkdir -p state/cache
