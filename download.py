@@ -113,3 +113,6 @@ def opendatasoft(url, directory):
             print('**Error downloading %s**' % url)
         else:
             print('  Downloaded %s' % url)
+
+if __name__ == '__main__':
+    ckan('http://datacatalogs.org', '/tmp')
