@@ -36,7 +36,7 @@ def ckan(dataset):
 
 def is_alive(url):
     try:
-        r = requests.head(url, allow_redirects=True)
+        r = requests.head(url, allow_redirects=True, timeout = 2)
     except:
         status_code = -42
         headers = None
