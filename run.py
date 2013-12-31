@@ -46,6 +46,9 @@ def catalogs():
         if url != None:
             yield 'socrata', url
 
+    for url_ in open('opendatasoft').readlines():
+        yield 'opendatasoft', url
+
 def download_metadata():
 
     processes = {}
@@ -134,8 +137,10 @@ def check_links():
         parallel.start(processes)
         parallel.join(processes)
 
+        break # Let's just see what this does.
+
 SOFTWARE_MAP = {
-    'identifier': {'ckan':'name','socrata':'id'}
+    'identifier': {'ckan':'name','socrata':'id', 'opendatasoft', 'datasetid'}
 }
 def to_sqlite3():
     dt = DumpTruck('/tmp/open-data.sqlite', auto_commit = False)
