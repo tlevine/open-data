@@ -18,7 +18,7 @@ from sqlite3 import DatabaseError
 from itertools import islice
 import signal
 import sys
-from multiprocessing import Process
+from multiprocessing import Process, Queue
 
 SOCRATA_FIX = {
     'http://datakc.org':'https://opendata.go.ke',
@@ -98,13 +98,13 @@ def get_links(softwares = ['ckan','socrata']):
                 raise
 
 def check_links():
-    dt = DumpTruck('/tmp/open-data.sqlite')
+    dt = DumpTruck('/tmp/open-data.sqlite', auto_commit = False)
     dt.create_index(['url'], 'links', if_not_exists = True, unique = False)
     dt.create_index(['status_code'], 'links', if_not_exists = True, unique = False)
     urls = [row['url'] for row in dt.execute('SELECT DISTINCT url FROM links WHERE status_code IS NULL')]
     random.shuffle(urls) # so that we randomly bounce around catalogs
 
-    def windows(seq, n=500):
+    def windows(seq, n=50):
         "Returns a sliding window (of width n) over data from the iterable"
         "   s -> (s0,s1,...s[n-1]), (s1,s2,...,sn), ...                   "
         it = iter(seq)
@@ -116,18 +116,21 @@ def check_links():
             yield result
 
     for window in windows(urls):
+        db_updates = Queue()
         def _check_link(url):
             status_code, headers, error = links.is_alive(url)
             sql = 'UPDATE links SET status_code = ?, headers = ?, error = ? WHERE is_link = 1 AND url = ?'
-            try:
-                dt.execute(sql, (status_code, headers, error, url))
-            except DatabaseError:
-                sleep(random.uniform(0,4))
-                dt.execute(sql, (status_code, headers, error, url))
+            db_updates.put((sql, (status_code, headers, error, url)))
+
+        def _db(queue):
+            dt = DumpTruck('/tmp/open-data.sqlite')
+            while True:
+                dt.execute(*queue.get())
 
         processes = {}
         for url in window:
             processes[url] = Process(target = _check_link, args = (url,))
+        processes['db'] = Process(target = _db, args = (db_updates,))
 
         def signal_handler(signal, frame):
             parallel.kill(processes)
@@ -137,10 +140,8 @@ def check_links():
         parallel.start(processes)
         parallel.join(processes)
 
-        break # Let's just see what this does.
-
 SOFTWARE_MAP = {
-    'identifier': {'ckan':'name','socrata':'id', 'opendatasoft', 'datasetid'}
+    'identifier': {'ckan':'name','socrata':'id', 'opendatasoft': 'datasetid'}
 }
 def to_sqlite3():
     dt = DumpTruck('/tmp/open-data.sqlite', auto_commit = False)
