@@ -11,7 +11,7 @@ from get import get
 
 # ckanapi requires python 2
 import ckanapi # https://twitter.com/CKANproject/status/378182161330753536
-from ckan.logic import  NotAuthorized, ValidationError
+from ckanapi import  NotAuthorized, ValidationError
 
 try:
     from urllib.parse import urljoin
@@ -110,6 +110,6 @@ def opendatasoft(url, directory):
         try:
             get(url + '/api/datasets/1.0/search?rows=1000000', cachedir = directory)
         except:
-            print '**Error downloading %s**' % url
+            print('**Error downloading %s**' % url)
         else:
-            print '  Downloaded %s' % url
+            print('  Downloaded %s' % url)
