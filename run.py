@@ -101,44 +101,41 @@ def check_links():
     dt = DumpTruck('/tmp/open-data.sqlite', auto_commit = False)
     dt.create_index(['url'], 'links', if_not_exists = True, unique = False)
     dt.create_index(['status_code'], 'links', if_not_exists = True, unique = False)
-    urls = [row['url'] for row in dt.execute('SELECT DISTINCT url FROM links WHERE status_code IS NULL')]
-    random.shuffle(urls) # so that we randomly bounce around catalogs
 
-    def windows(seq, n=50):
-        "Returns a sliding window (of width n) over data from the iterable"
-        "   s -> (s0,s1,...s[n-1]), (s1,s2,...,sn), ...                   "
-        it = iter(seq)
-        result = tuple(islice(it, n))
-        if len(result) == n:
-            yield result
-        for elem in it:
-            result = result[1:] + (elem,)
-            yield result
+    # Source
+    urls = Queue()
+    url_list = [row['url'] for row in dt.execute('SELECT DISTINCT url FROM links WHERE status_code IS NULL')]
+    random.shuffle(url_list) # so that we randomly bounce around catalogs
+    for url in url_list:
+        urls.put(url)
 
-    for window in windows(urls):
-        db_updates = Queue()
-        def _check_link(url):
-            status_code, headers, error = links.is_alive(url)
-            sql = 'UPDATE links SET status_code = ?, headers = ?, error = ? WHERE is_link = 1 AND url = ?'
-            db_updates.put((sql, (status_code, headers, error, url)))
+    # Sink to the database
+    def _db(queue):
+        dt = DumpTruck('/tmp/open-data.sqlite')
+        while True:
+            dt.execute(*queue.get())
+    db_updates = Queue()
+    db_process = Process(target = _db, args = (db_updates,))
+    db_process.start()
 
-        def _db(queue):
-            dt = DumpTruck('/tmp/open-data.sqlite')
-            while True:
-                dt.execute(*queue.get())
+    # Check links
+    def _check_link(url_queue):
+        url = url_queue.get()
+        status_code, headers, error = links.is_alive(url)
+        sql = 'UPDATE links SET status_code = ?, headers = ?, error = ? WHERE is_link = 1 AND url = ?'
+        db_updates.put((sql, (status_code, headers, error, url)))
 
-        processes = {}
-        for url in window:
-            processes[url] = Process(target = _check_link, args = (url,))
-        processes['db'] = Process(target = _db, args = (db_updates,))
+    processes = {}
+    for i in range(50):
+        processes[i] = Process(target = _check_link, args = (urls,))
 
-        def signal_handler(signal, frame):
-            parallel.kill(processes)
-            sys.exit(0)
+    def signal_handler(signal, frame):
+        parallel.kill(processes)
+        sys.exit(0)
 
-        signal.signal(signal.SIGINT, signal_handler)
-        parallel.start(processes)
-        parallel.join(processes)
+    signal.signal(signal.SIGINT, signal_handler)
+    parallel.start(processes)
+    parallel.join(processes)
 
 SOFTWARE_MAP = {
     'identifier': {'ckan':'name','socrata':'id', 'opendatasoft': 'datasetid'}
