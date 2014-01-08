@@ -38,7 +38,10 @@ get.datasets <- function() {
 
 get.catalogs <- function(datasets) {
   catalogs <- sqldf('
-  SELECT software, catalog, avg(alive) prop_alive
+  SELECT
+    software, catalog,
+    avg(alive) prop_alive,
+    count(*) n_datasets
   FROM datasets
   GROUP BY catalog
   ')
@@ -58,7 +61,6 @@ p.software <- ggplot(catalogs) +
   aes(x = catalog, y = prop_alive, fill = software) +
   geom_bar(stat = 'identity') + coord_flip()
 
-p.socrata <- ggplot(datasets[datasets$software == 'socrata',]) +
-  aes(x = mean(alive)) +
-  facet_wrap(~ software) +
+p.prop_links <- ggplot(catalogs) +
+  aes(x = mean(is_link), y = mean(alive), size = n_datasets, color = software) +
   geom_bar() + coord_flip()
