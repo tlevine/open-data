@@ -6,8 +6,8 @@ get.datasets <- function() {
   -- CKAN
   SELECT 
     software, catalog, identifier,
-    coalesce(status_code == 200, NOT is_link) \'alive\',
-    status_code
+    is_link, status_code,
+    coalesce(status_code == 200, NOT is_link) \'alive\'
   FROM links
   WHERE software = \'ckan\'
 
@@ -16,8 +16,8 @@ get.datasets <- function() {
   -- Socrata
   SELECT 
     links.software, links.catalog, links.identifier,
-    coalesce(status_code == 200, NOT is_link) \'alive\',
-    status_code
+    is_link, status_code,
+    coalesce(status_code == 200, NOT is_link) \'alive\'
   FROM socrata_deduplicated
   JOIN links
   WHERE socrata_deduplicated.catalog = links.catalog
@@ -54,11 +54,11 @@ if (!('catalogs' %in% ls())) {
   catalogs <- get.catalogs(datasets)
 }
 
-p1 <- ggplot(catalogs) +
+p.software <- ggplot(catalogs) +
   aes(x = catalog, y = prop_alive, fill = software) +
   geom_bar(stat = 'identity') + coord_flip()
 
-p2 <- ggplot(datasets) +
-  aes(x = catalog, fill = alive.factor) +
+p.socrata <- ggplot(datasets[datasets$software == 'socrata',]) +
+  aes(x = mean(alive)) +
   facet_wrap(~ software) +
   geom_bar() + coord_flip()
