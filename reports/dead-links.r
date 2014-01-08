@@ -105,7 +105,7 @@ p.has_links.socrata <- qplot(data = subset(catalogs, software == 'socrata'),
   scale_fill_discrete('Has links?') +
   theme(legend.position = 'bottom') +
   coord_flip() +
-  ggtitle('Proportion of data catalogs with externally linked datasets')
+  ggtitle('Proportion of Socrata data catalogs with externally linked datasets')
 
 p.has_links <- qplot(data = catalogs, x = software, fill = has_links,
   position = 'fill', geom = 'bar') +
@@ -125,8 +125,12 @@ p.software <- ggplot(catalogs) +
   geom_bar(stat = 'identity') + coord_flip()
 
 p.prop_links.socrata <- ggplot(subset(catalogs, software == 'socrata')) +
-  aes(y = prop_links, x = prop_alive) +
-  geom_point() + coord_flip()
+  aes(x = prop_links, y = prop_alive) +
+  geom_point() +
+  scale_x_continuous('Proportion of datasets that are external links', labels = percent) +
+  scale_y_continuous('Proportion of datasets that are alive', labels = percent) +
+  ggtitle('On Socrata, only external links can be dead.\n(Duh)')
+# ggtitle('Datasets need to be externally linked in order for them to be dead links.\n(Duh)')
 
 p.prop_links <- ggplot(catalogs) +
   aes(y = prop_links, x = prop_alive, color = software) +
