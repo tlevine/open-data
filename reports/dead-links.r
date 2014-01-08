@@ -1,4 +1,5 @@
 library(sqldf)
+library(ggplot2)
 
 sql <- '
 SELECT 
@@ -13,3 +14,10 @@ datasets$catalog <- factor(datasets$catalog)
 datasets$alive <- as.logical(datasets$alive)
 datasets$status_code <- factor(datasets$status_code)
 datasets$status_code[datasets$status_code == '-42'] <- NA
+
+
+
+p <- ggplot(datasets) +
+  aes(x = catalog, fill = alive) +
+  facet_wrap(~ software) +
+  geom_bar() + coord_flip()
