@@ -1,5 +1,6 @@
 library(sqldf)
 library(ggplot2)
+library(reshape2)
 
 get.datasets <- function() {
   sql <- '
@@ -73,9 +74,23 @@ get.catalogs <- function(datasets) {
   catalogs
 }
 
+get.link.groupings <- function(catalogs) {
+  catalogs$not.links <- 1 - catalogs$prop_links
+  catalogs$live.links <- catalogs$prop_links * catalogs$prop_live_links
+  catalogs$dead.links <- catalogs$prop_links * (1 - catalogs$prop_live_links)
+  
+  link.groupings <- melt(catalogs,
+    id.vars = c('software','catalog'),
+    measure.vars = paste(c('not', 'live', 'dead'), 'links', sep = '.'),
+    variable.name = 'link.type', value.name = c('proportion'))
+
+  link.groupings
+}
+
 if (!('catalogs' %in% ls())) {
   datasets <- get.datasets()
   catalogs <- get.catalogs(datasets)
+  link.groupings <- get.link.groupings(catalogs)
 }
 
 
