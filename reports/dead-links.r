@@ -101,7 +101,7 @@ if (!('catalogs' %in% ls())) {
 p.has_links.socrata <- qplot(data = subset(catalogs, software == 'socrata'),
   x = ' ',
   fill = has_links, position = 'fill', geom = 'bar') +
-  scale_y_continuous('Data catalogs', labels = percent) +
+  scale_y_continuous('Proportion of data catalogs', labels = percent) +
   scale_fill_discrete('Has links?') +
   theme(legend.position = 'bottom') +
   coord_flip() +
@@ -110,7 +110,7 @@ p.has_links.socrata <- qplot(data = subset(catalogs, software == 'socrata'),
 p.has_links <- qplot(data = catalogs, x = software, fill = has_links,
   position = 'fill', geom = 'bar') +
   xlab('Software') +
-  scale_y_continuous('Data catalogs', labels = percent) +
+  scale_y_continuous('Proportion of data catalogs', labels = percent) +
   scale_fill_discrete('Has links?') +
   theme(legend.position = 'bottom') +
   coord_flip() +
@@ -118,6 +118,10 @@ p.has_links <- qplot(data = catalogs, x = software, fill = has_links,
 
 p.software <- ggplot(catalogs) +
   aes(x = catalog, y = prop_alive, fill = software) +
+  scale_y_continuous('Proportion of datasets with live links', labels = percent) +
+  xlab('Data catalog') +
+  theme(legend.position = 'bottom') +
+  ggtitle('Dataset liveliness by data catalog') +
   geom_bar(stat = 'identity') + coord_flip()
 
 p.prop_links.socrata <- ggplot(subset(catalogs, software == 'socrata')) +
