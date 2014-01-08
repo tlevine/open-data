@@ -40,6 +40,7 @@ get.catalogs <- function(datasets) {
   catalogs <- sqldf('
   SELECT
     software, catalog,
+    avg(is_link) prop_links,
     avg(alive) prop_alive,
     count(*) n_datasets
   FROM datasets
@@ -62,5 +63,5 @@ p.software <- ggplot(catalogs) +
   geom_bar(stat = 'identity') + coord_flip()
 
 p.prop_links <- ggplot(catalogs) +
-  aes(x = mean(is_link), y = mean(alive), size = n_datasets, color = software) +
+  aes(x = prop_links, y = mean(alive), size = n_datasets, color = software) +
   geom_bar() + coord_flip()
