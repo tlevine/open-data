@@ -12,3 +12,4 @@ datasets$software <- factor(datasets$software)
 datasets$catalog <- factor(datasets$catalog)
 datasets$alive <- as.logical(datasets$alive)
 datasets$status_code <- factor(datasets$status_code)
+datasets$status_code[datasets$status_code == '-42'] <- NA
