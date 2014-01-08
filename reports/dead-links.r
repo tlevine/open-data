@@ -63,6 +63,6 @@ p.software <- ggplot(catalogs) +
   geom_bar(stat = 'identity') + coord_flip()
 
 p.prop_links <- ggplot(catalogs) +
-  aes(x = prop_links, y = prop_alive, color = software) +
+  aes(y = prop_links, x = prop_alive, color = software) +
   # aes(size = n_datasets) +
   geom_point() + coord_flip()
