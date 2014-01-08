@@ -130,11 +130,15 @@ p.prop_links.socrata <- ggplot(subset(catalogs, software == 'socrata')) +
   scale_x_continuous('Proportion of datasets that are external links', labels = percent) +
   scale_y_continuous('Proportion of datasets that are alive', labels = percent) +
   ggtitle('On Socrata, only external links can be dead.\n(Duh)')
-# ggtitle('Datasets need to be externally linked in order for them to be dead links.\n(Duh)')
 
 p.prop_links <- ggplot(catalogs) +
-  aes(y = prop_links, x = prop_alive, color = software) +
-  geom_point() + coord_flip()
+  aes(x = prop_links, y = prop_alive, color = software) +
+  geom_point() +
+  scale_x_continuous('Proportion of datasets that are external links', labels = percent) +
+  scale_y_continuous('Proportion of datasets that are alive', labels = percent) +
+  theme(legend.position = 'bottom') +
+  scale_color_discrete('Software') +
+  ggtitle('The power of forcing functions:\nIn CKAN, everything is basically an external link, so some of them are dead.')
 
 p.software.only_links <- ggplot(catalogs) +
   aes(x = catalog, y = prop_live_links, fill = software) +
