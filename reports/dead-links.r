@@ -142,8 +142,18 @@ p.prop_links <- ggplot(catalogs) +
 
 p.software.all_types <- ggplot(link.groupings) +
   aes(x = catalog, y = proportion, fill = link.type) +
-  geom_bar(stat = 'identity') + coord_flip()
+  geom_bar(stat = 'identity') + coord_flip() +
+  xlab('') +
+  scale_y_continuous('Proportion of datasets by catalog', labels = percent) +
+  theme(legend.position = 'bottom') +
+  scale_fill_discrete('Type of dataset') +
+  ggtitle('Non-links, live links and dead links across data catalogs')
 
 p.software.only_links <- ggplot(catalogs) +
   aes(x = catalog, y = prop_live_links, fill = software) +
-  geom_bar(stat = 'identity') + coord_flip()
+  geom_bar(stat = 'identity') + coord_flip() +
+  xlab('') +
+  scale_y_continuous('Proportion of datasets by catalog', labels = percent) +
+  theme(legend.position = 'bottom') +
+  scale_fill_discrete('Software') +
+  ggtitle('Of only the external links, what proportion of datasets are alive?')
