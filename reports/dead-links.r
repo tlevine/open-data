@@ -58,6 +58,12 @@ if (!('catalogs' %in% ls())) {
   catalogs <- get.catalogs(datasets)
 }
 
+catalogs$has_links <- factor(catalogs$prop_links > 0, levels = c(TRUE, FALSE))
+levels(catalogs$has_links) <- c('Yes','No')
+
+p.has_links <- qplot(data = catalogs, x = software, fill = has_links,
+  position = 'fill', geom = 'bar')
+
 p.software <- ggplot(catalogs) +
   aes(x = catalog, y = prop_alive, fill = software) +
   geom_bar(stat = 'identity') + coord_flip()
