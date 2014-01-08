@@ -75,9 +75,12 @@ get.catalogs <- function(datasets) {
 }
 
 get.link.groupings <- function(catalogs) {
+  catalogs$p <- catalogs$prop_live_links
+  catalogs$p[is.na(catalogs$p)] <- 0
+
   catalogs$not.links <- 1 - catalogs$prop_links
-  catalogs$live.links <- catalogs$prop_links * catalogs$prop_live_links
-  catalogs$dead.links <- catalogs$prop_links * (1 - catalogs$prop_live_links)
+  catalogs$live.links <- catalogs$prop_links * catalogs$p
+  catalogs$dead.links <- catalogs$prop_links * (1 - catalogs$p)
   
   link.groupings <- melt(catalogs,
     id.vars = c('software','catalog'),
@@ -100,6 +103,10 @@ p.has_links <- qplot(data = catalogs, x = software, fill = has_links,
 p.software <- ggplot(catalogs) +
   aes(x = catalog, y = prop_alive, fill = software) +
   geom_bar(stat = 'identity') + coord_flip()
+
+p.prop_links.socrata <- ggplot(subset(catalogs, software == 'socrata')) +
+  aes(y = prop_links, x = prop_alive) +
+  geom_point() + coord_flip()
 
 p.prop_links <- ggplot(catalogs) +
   aes(y = prop_links, x = prop_alive, color = software) +
