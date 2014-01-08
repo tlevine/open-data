@@ -54,14 +54,14 @@ get.catalogs <- function(datasets) {
     FROM datasets
     GROUP BY catalog
   ) a
-  JOIN (
+  LEFT JOIN (
     SELECT
       software, catalog, avg(alive) prop_live_links
     FROM datasets
     WHERE is_link
     GROUP BY catalog
   ) b
-  WHERE a.catalog = b.catalog
+  ON a.catalog = b.catalog
   ')
 
   # Order by liveliness.
@@ -107,4 +107,8 @@ p.prop_links <- ggplot(catalogs) +
 
 p.software.only_links <- ggplot(catalogs) +
   aes(x = catalog, y = prop_live_links, fill = software) +
+  geom_bar(stat = 'identity') + coord_flip()
+
+p.software.all_types <- ggplot(link.groupings) +
+  aes(x = catalog, y = proportion, fill = link.type) +
   geom_bar(stat = 'identity') + coord_flip()
