@@ -140,10 +140,10 @@ p.prop_links <- ggplot(catalogs) +
   scale_color_discrete('Software') +
   ggtitle('The power of forcing functions:\nIn CKAN, everything is basically an external link, so some of them are dead.')
 
-p.software.only_links <- ggplot(catalogs) +
-  aes(x = catalog, y = prop_live_links, fill = software) +
-  geom_bar(stat = 'identity') + coord_flip()
-
 p.software.all_types <- ggplot(link.groupings) +
   aes(x = catalog, y = proportion, fill = link.type) +
+  geom_bar(stat = 'identity') + coord_flip()
+
+p.software.only_links <- ggplot(catalogs) +
+  aes(x = catalog, y = prop_live_links, fill = software) +
   geom_bar(stat = 'identity') + coord_flip()
