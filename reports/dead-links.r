@@ -39,13 +39,30 @@ get.datasets <- function() {
 get.catalogs <- function(datasets) {
   catalogs <- sqldf('
   SELECT
-    software, catalog,
-    avg(is_link) prop_links,
-    avg(alive) prop_alive,
-    count(*) n_datasets
-  FROM datasets
-  GROUP BY catalog
+    a.software, a.catalog,
+    a.prop_links,
+    a.prop_alive,
+    a.n_datasets,
+    b.prop_live_links
+  FROM (
+    SELECT
+      software, catalog,
+      avg(is_link) prop_links,
+      avg(alive) prop_alive,
+      count(*) n_datasets
+    FROM datasets
+    GROUP BY catalog
+  ) a
+  JOIN (
+    SELECT
+      software, catalog, avg(alive) prop_live_links
+    FROM datasets
+    WHERE is_link
+    GROUP BY catalog
+  ) b
+  WHERE a.catalog = b.catalog
   ')
+
   # Order by liveliness.
   catalogs$catalog <- factor(catalogs$catalog,
     levels = catalogs$catalog[order(catalogs$prop_alive)])
@@ -71,5 +88,8 @@ p.software <- ggplot(catalogs) +
 
 p.prop_links <- ggplot(catalogs) +
   aes(y = prop_links, x = prop_alive, color = software) +
-  # aes(size = n_datasets) +
   geom_point() + coord_flip()
+
+p.software.only_links <- ggplot(catalogs) +
+  aes(x = catalog, y = prop_live_links, fill = software) +
+  geom_bar(stat = 'identity') + coord_flip()
