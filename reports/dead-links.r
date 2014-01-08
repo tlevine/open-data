@@ -1,6 +1,7 @@
 library(sqldf)
 library(ggplot2)
 library(reshape2)
+library(scales)
 
 get.datasets <- function() {
   sql <- '
@@ -97,8 +98,23 @@ if (!('catalogs' %in% ls())) {
 }
 
 
+p.has_links.socrata <- qplot(data = subset(catalogs, software == 'socrata'),
+  x = ' ',
+  fill = has_links, position = 'fill', geom = 'bar') +
+  scale_y_continuous('Data catalogs', labels = percent) +
+  scale_fill_discrete('Has links?') +
+  theme(legend.position = 'bottom') +
+  coord_flip() +
+  ggtitle('Proportion of data catalogs with externally linked datasets')
+
 p.has_links <- qplot(data = catalogs, x = software, fill = has_links,
-  position = 'fill', geom = 'bar')
+  position = 'fill', geom = 'bar') +
+  xlab('Software') +
+  scale_y_continuous('Data catalogs', labels = percent) +
+  scale_fill_discrete('Has links?') +
+  theme(legend.position = 'bottom') +
+  coord_flip() +
+  ggtitle('Proportion of data catalogs with externally linked datasets')
 
 p.software <- ggplot(catalogs) +
   aes(x = catalog, y = prop_alive, fill = software) +
