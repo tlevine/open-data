@@ -2,7 +2,7 @@ downloads/socrata-homepages:
 	./socrata-federation-download.sh
 
 state/download-dataset-metadata: state
-	python2 -c 'import run; run.download_metadata()'
+	#python2 -c 'import run; run.download_metadata()'
 	touch state/download-dataset-metadata
 
 state/defederate: downloads/socrata-homepages state/datasets

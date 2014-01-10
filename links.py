@@ -21,15 +21,15 @@ def ckan(dataset):
     # dataset['url']
     # all_links = [resource['url'] for resource in dataset['resources']]
         if dataset.get('resources', []) == []:
-            current_link = None
+            current_resource = {}
         else:
-            current_link = dataset['resources'][-1]['url']
+            current_resource = dataset['resources'][-1]
     except:
         print dataset['name']
         raise
     return {
-        'is_link': True,
-        'url': current_link,
+        'is_link': current_resource.get('resource_type', 'file.upload') != 'file.upload',
+        'url': current_resource.get('url'),
         'software': 'ckan',
         'identifier': dataset['name'],
     }
