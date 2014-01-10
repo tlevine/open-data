@@ -45,7 +45,8 @@ def is_alive(url):
     else:
         status_code = r.status_code
         headers = dict(r.headers)
-        headers['content-disposition'] = headers['content-disposition'].decode('unicode_escape')
+        if 'content-disposition' in headers:
+            headers['content-disposition'] = headers['content-disposition'].decode('unicode_escape')
         error = None
         print('Succeeded: ' + url)
 
