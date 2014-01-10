@@ -13,6 +13,11 @@ from get import get
 import ckanapi # https://twitter.com/CKANproject/status/378182161330753536
 from ckanapi import  NotAuthorized, ValidationError
 
+BIG_CKAN_PORTALS = {
+    'http://data.gov.uk',
+    'http://publicdata.eu',
+}
+
 try:
     from urllib.parse import urljoin
 except ImportError:
@@ -65,7 +70,8 @@ def ckan(url, directory):
             fp = open(filename, 'w')
             json.dump(dataset_information, fp)
             fp.close()
-            sleep(3)
+            if url not in BIG_CKAN_PORTALS:
+                sleep(3)
     print('**Finished downloading %s**' % url)
 
 def socrata(url, directory):
