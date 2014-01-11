@@ -2,7 +2,7 @@ downloads/socrata-homepages:
 	./socrata-federation-download.sh
 
 state/download-dataset-metadata: state
-	python2 -c 'import run; run.download_metadata()'
+#python2 -c 'import run; run.download_metadata()'
 	touch state/download-dataset-metadata
 
 state/defederate: downloads/socrata-homepages state/datasets
@@ -32,6 +32,9 @@ state/apis: state
 reports/socrata-pricing.md: state/apis state/datasets state/dataset-count
 	sqlite3 /tmp/open-data.sqlite < reports/socrata-pricing.sql
 	cd reports && Rscript socrata-pricing.r
+
+reports/dead-links.md: state/defederate state/check-links
+	cd reports && Rscript dead-links.r
 
 to-disk: state
 	cp /tmp/open-data.sqlite state/cache

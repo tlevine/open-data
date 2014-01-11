@@ -95,6 +95,10 @@ and the data got imported to the internal storage.
 
 ![](socrata-5.png)
 
+The non-data file approach also leads to internal storage.
+
+![](socrata-non-data.png)
+
 ### Forcing function
 If your data are stored in CKAN's FileStore or in Socrata's
 data storage (rather than as an external link), then it is
