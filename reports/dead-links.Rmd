@@ -113,10 +113,6 @@ We want to make sure that links to datasets stay alive. CKAN and Socrata both
 have a mechanism for forcing this on people.
 
 ## Caveats about the data
-These weren't finished when I did the download
-
-* publicdata.eu
-
-The downloads of other sites didn't work at all, mainly because they required
+The downloads of some sites didn't work at all, mainly because they required
 authorization (lolz "open data") that I did not have.
 
