@@ -65,8 +65,35 @@ As you might notice above, CKAN subtly encourages you to store things externally
 CKAN is a bit subtle in encouraging external storage, but do keep this in mind.
 
 ### Socrata
+While externally stored data exist on Socrata, I didn't find any way of creating
+such a dataset with the Socrata website. Here's what creating a new dataset on 
+Socrata looks like.
 
+![](socrata-start.png)
 
+If you choose to "Design from Scratch", you wind up entering the data through
+the table interface in Socrata; after you click through a few screens, you get
+an editor like this.
+
+![](socrata-scratch-2.png)
+
+If you choose to "Import a Data File", you see this.
+
+![](socrata-1.png)
+
+Because I was looking for a place to add externally stored data, I clicked on
+"On the Internet". I entered a file into this box, and the file got downloaded
+to Socrata.
+
+![](socrata-2.png)
+
+Then I got this schema editor,
+
+![](socrata-3.png)
+
+and the data got imported to the internal storage.
+
+![](socrata-5.png)
 
 ### Forcing function
 If your data are stored in CKAN's FileStore or in Socrata's
