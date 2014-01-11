@@ -1,10 +1,7 @@
-##
-These weren't finished when I did the download
+As I started looking at data on CKAN sites, I noticed that a lot of the
+datasets were links to files on other websites. And a lot of these links
+were dead.
 
-* publicdata.eu
-
-The downloads of other sites didn't work at all, mainly because they required
-authorization (lolz "open data") that I did not have.
 
 
 ## Internal versus external storage
@@ -20,16 +17,73 @@ With **external storage**, the dataset is a file that is stored on some other
 website on the internet, and we can reference the dataset with a URL. When we
 add the dataset to CKAN or Socrata, we are just linking to this other website.
 
-## Forcing function
-The forcing function is one paradigm for making sure that people do things.
-A forcing function is an aspect in the design of a thing that makes it impossible
-for people to do something that they aren't supposed to do.
+## Software suggests behaviour
+While both softwares support both storage methods, Socrata encourages the
+use of internal storage, and CKAN encourages the use of external storage.
+Let's walk through how you create a dataset in both CKAN and Socrata through
+their respective web interfaces.
 
+### CKAN
+In CKAN, this is the screen you get when you are specifying the data file
+for your dataset.
+
+![](ckan-1.png)
+
+The first screen says nothing about how to enter the data, but the second one does.
+
+![](ckan-2.png)
+
+You enter the URL of a file or an API,
+
+![](ckan-3.png)
+
+or you upload a file.
+
+![](ckan-4.png)
+
+After you upload the file, the box gets populated with the URL to which that
+has been uploaded. (This URL is inside the CKAN FileStore.)
+
+![](ckan-5.png)
+
+The first two cases lead to external storage, and
+the third case leads to internal storage.
+CKAN does fancy things depending on whether you say it's a file or an API
+and depending on the file format you tell it, but that's separate from the
+issue of internal versus external storage.
+
+As you might notice above, CKAN subtly encourages you to store things externally.
+
+1. There are two options for external storage but just one for internal.
+2. The two tabs for external storage options come before the third tab for
+    internal storage.
+3. In the web interface, internally stored, uploaded files are treated like
+    external links.
+4. One of the external storage options (the "Link to a file" tab) is selected
+    by default when you arrive at the page.
+
+CKAN is a bit subtle in encouraging external storage, but do keep this in mind.
+
+### Socrata
+
+
+
+### Forcing function
+If your data are stored in CKAN's FileStore or in Socrata's
+data storage (rather than as an external link), then it is
+practically impossible for the link to be dead.
+
+If we want to use fancy design-speak, we can call this a forcing function.
+A forcing function is an aspect in the design of a thing that makes it
+impossible for people to do something that they aren't supposed to do.
 We want to make sure that links to datasets stay alive. CKAN and Socrata both
 have a mechanism for forcing this on people.
 
-If your data are stored in CKAN's FileStore or in Socrata's
-data storage (rather than as an external link), then it is
-practically impossible for the link to be dead; if the link
-is dead, it's a major bug in the data catalog software--not
-a small problem with a particular dataset.
+## Caveats about the data
+These weren't finished when I did the download
+
+* publicdata.eu
+
+The downloads of other sites didn't work at all, mainly because they required
+authorization (lolz "open data") that I did not have.
+
