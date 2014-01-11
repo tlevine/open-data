@@ -1,8 +1,35 @@
+##
 These weren't finished when I did the download
 
-* data.gov.uk
 * publicdata.eu
-* hubofdata.ru ?
+
+The downloads of other sites didn't work at all, mainly because they required
+authorization (lolz "open data") that I did not have.
 
 
-Forcing function
+## Internal versus external storage
+I am going to define two different ways of serving a dataset on the web.
+These two approaches are supported by both Socrata and CKAN.
+
+With **internal storage**, the dataset is uploaded to the data catalog software
+itself. In CKAN, the dataset gets stored in the FileStore, and in Socrata,
+the dataset gets stored in Socrata's data storage. (There isn't really a
+name for this place in Socrata's architecture, as far as I know.)
+
+With **external storage**, the dataset is a file that is stored on some other
+website on the internet, and we can reference the dataset with a URL. When we
+add the dataset to CKAN or Socrata, we are just linking to this other website.
+
+## Forcing function
+The forcing function is one paradigm for making sure that people do things.
+A forcing function is an aspect in the design of a thing that makes it impossible
+for people to do something that they aren't supposed to do.
+
+We want to make sure that links to datasets stay alive. CKAN and Socrata both
+have a mechanism for forcing this on people.
+
+If your data are stored in CKAN's FileStore or in Socrata's
+data storage (rather than as an external link), then it is
+practically impossible for the link to be dead; if the link
+is dead, it's a major bug in the data catalog software--not
+a small problem with a particular dataset.
