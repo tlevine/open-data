@@ -59,12 +59,22 @@ As I explain [below](#software-suggests-behaviour),
 -->
 
 ```{r has_links, fig.width = 5, fig.height = 5}
-p.prop_links.socrata
-```
-
-```{r has_links, fig.width = 5, fig.height = 5}
 p.prop_links
 ```
+
+
+
+```{r has_links, fig.width = 8, fig.height = 6}
+p.software.all_types
+```
+{:.wide}
+
+
+```{r has_links, fig.width = 8, fig.height = 6}
+p.software.only_links
+```
+{:.wide}
+
 
 ## Software suggests behaviour
 While both softwares support both storage methods, Socrata encourages the
