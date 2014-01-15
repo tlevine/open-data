@@ -99,7 +99,10 @@ The non-data file approach also leads to internal storage.
 
 ![](socrata-non-data.png)
 
-http://dev.socrata.com/publishers/importing
+I don't even see any documentation as to how to do this
+[with the API](http://dev.socrata.com/publishers/importing).
+
+So it's pretty hard to add an externally stored dataset to Socrata.
 
 ### Forcing function
 If your data are stored in CKAN's FileStore or in Socrata's
