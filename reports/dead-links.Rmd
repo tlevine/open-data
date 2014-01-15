@@ -46,6 +46,10 @@ I checked whether datasets were alive by trying to download them.
 ([More precisely](https://github.com/tlevine/open-data/blob/master/links.py#L37),
 I really issued a HEAD request and checked the status code.)
 
+I combined this all into the same
+[SQLite3 database](http://bigdada.thomaslevine.com/open-data.sqlite.gz)
+as I used for the [Socrata products analysis](/!/socrata-products).
+
 ## Results
 
 ### How many data catalogs have external links?
