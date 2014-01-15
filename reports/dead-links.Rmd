@@ -119,5 +119,18 @@ impossible for people to do something that they aren't supposed to do.
 We want to make sure that links to datasets stay alive. CKAN and Socrata both
 have a mechanism for forcing this on people.
 
-Maybe
+Removing this external link feature should reduce the number of dead links
+to zero, and that might be nice. On the other hand, there might be some good
+things about external links, so maybe we can instead come up with some other
+software feature that helps people avoid or fix dead links. For example,
+perhaps there could be a page that lists the dead datasets and counts how
+many times people have tried accessing them.
+
+![Sketch of the aforementioned feature]()
+
+## Why measure data catalogs
+Detecting dead links is one of several things that we can easily do to
+measure the quality of a data catalog. Similarly, we can also measure
+[what licenses are used](/!/open-data-licensing),
+[how up-to-date the data are](/!/data-updatedness),
 
