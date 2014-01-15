@@ -1,3 +1,7 @@
+---
+twitter_image: figure/prop_links.png
+facebook_image: figure/prop_links.png
+---
 As I started looking at data on CKAN sites, I noticed that a lot of the
 datasets were links to files on other websites. And a lot of these links
 were dead.
@@ -53,23 +57,34 @@ as I used for the [Socrata products analysis](/!/socrata-products).
 ## Results
 
 ### How many data catalogs have external links?
+As I mention above, there are
+`r sum(catalogs$software == 'socrata')` Socrata catalogs.
+Of these,
+`r sum(catalogs$software == 'socrata' & catalogs$has_links == 'Yes')`
+(`r round(100 * mean(subset(catalogs, software == 'socrata')$has_links == 'Yes'))`%)
+have at least one externally stored dataset.
 
 ```{r has_links_socrata, fig.width = 5, fig.height = 2}
 p.has_links.socrata
 ```
+
+Of the `r sum(catalogs$software == 'ckan')` CKAN catalogs,
+`r sum(catalogs$software == 'ckan' & catalogs$has_links == 'Yes')`
+(`r round(100 * mean(subset(catalogs, software == 'ckan')$has_links == 'Yes'))`%)
+have externally stored dataset. That's a big difference.
 
 ```{r has_links, fig.width = 5, fig.height = 2}
 p.has_links
 ```
 
 ### Link types and liveliness by catalog
-Rather than looking at just whether there are any external links at all,
-let's now look at what proportion of the datasets are external links
+Rather than looking at just whether there are any externally stored datasets at all,
+let's now look at what proportion of the datasets are stored externally.
 
 ```{r software_all_types, fig.width = 8, fig.height = 6}
 p.software.all_types
 ```
-{:.wide}
+{:.wide,#all-types-of-link}
 
 Whether a dataset is stored internally or externally is related to whether it
 stays alive. This is a plot of what proportion of datasets on Socrata are stored
@@ -92,12 +107,21 @@ CKAN catalogs tend to have more externally stored data. When we add CKAN, the
 association between externally stored data and dead links continues.
 
 ### Liveliness among externally stored data
+Here's another way of seeing the above relationship. Let's look at only the externally
+stored datasets, and check what proportion of those are alive.
 
 ```{r software_only_links, fig.width = 8, fig.height = 6}
 p.software.only_links
 ```
 {:.wide}
 
+Some data catalogs are better than others, but about half of externally stored
+datasets tend to be dead. Thus, when we make more externally stored datasets,
+we should expect more dead datasets.
+
+Possibly interesting: the catalogs in this plot are ordered the same way they
+are in the [earlier similar-looking plot](#all-types-of-link), so higher catalogs
+are ones with fewer dead links.
 
 ## Software suggests behaviour
 While both softwares support both storage methods, Socrata encourages the
