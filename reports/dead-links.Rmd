@@ -43,10 +43,12 @@ From the metadata for each dataset, I
 whether the dataset was internally stored or externally stored.
 
 I checked whether datasets were alive by trying to download them.
-([More precisely(https://github.com/tlevine/open-data/blob/master/links.py#L37),
-I really just issued a HEAD request and checked the status code.)
+([More precisely](https://github.com/tlevine/open-data/blob/master/links.py#L37),
+I really issued a HEAD request and checked the status code.)
 
-##
+## Results
+
+### How many data catalogs have external links?
 
 ```{r has_links_socrata, fig.width = 5, fig.height = 2}
 p.has_links.socrata
@@ -56,11 +58,12 @@ p.has_links.socrata
 p.has_links
 ```
 
+### Link types and liveliness by catalog
 Rather than looking at just whether there are any external links at all,
 let's now look at what proportion of the datasets are external links
 
-```{r software, fig.width = 8, fig.height = 6}
-p.software
+```{r software_all_types, fig.width = 8, fig.height = 6}
+p.software.all_types
 ```
 {:.wide}
 
@@ -84,11 +87,7 @@ p.prop_links
 CKAN catalogs tend to have more externally stored data. When we add CKAN, the
 association between externally stored data and dead links continues.
 
-```{r software_all_types, fig.width = 8, fig.height = 6}
-p.software.all_types
-```
-{:.wide}
-
+### Liveliness among externally stored data
 
 ```{r software_only_links, fig.width = 8, fig.height = 6}
 p.software.only_links
