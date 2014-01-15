@@ -1,0 +1,8 @@
+15:02 < tlevine> Does CKAN have a plugin or something that detects dead resource links?
+15:03 < tlevine> and somehow tells someone what's dead
+15:09 -!- Joel_re [~jr@global-1-18.nat.csx.cam.ac.uk] has quit [Ping timeout: 265 seconds]
+15:10 < rossjones> tlevine ckanext-qa
+15:11 < rossjones> We use it to generate http://data.gov.uk/data/reports/qa/organisation/broken_resource_links/her-majestys-revenue-and-customs
+15:11 < rossjones> Sorry, it's at https://github.com/okfn/ckanext-qa
+15:17 < tlevine> rossjones thanks
+15:17 < rossjones> np

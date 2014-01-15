@@ -126,11 +126,19 @@ software feature that helps people avoid or fix dead links. For example,
 perhaps there could be a page that lists the dead datasets and counts how
 many times people have tried accessing them.
 
-![Sketch of the aforementioned feature]()
+The [CKAN Quality Assurance Extension](https://github.com/okfn/ckanext-qa)
+does just this; here's one of its reports.
+
+[![A table of datasets with statistics about how dead they are](ckanext-qa.png)](http://data.gov.uk/data/reports/qa/organisation/broken_resource_links/her-majestys-revenue-and-customs)
 
 ## Why measure data catalogs
 Detecting dead links is one of several things that we can easily do to
 measure the quality of a data catalog. Similarly, we can also measure
 [what licenses are used](/!/open-data-licensing),
-[how up-to-date the data are](/!/data-updatedness),
+[how up-to-date the data are](/!/data-updatedness).
 
+When we have lots of datasets on our data catalog, it becomes too much
+for someone to read through all of them. Measures like these help us get
+some idea of what is going on across the data catalog. They also help us
+choose where to focus our attention, so that we may identify good
+practices and diagnose problems.
