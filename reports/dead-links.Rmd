@@ -3,6 +3,10 @@ datasets were links to files on other websites. And a lot of these links
 were dead.
 
 
+## Caveats about the data
+The downloads of some sites didn't work at all, mainly because they required
+authorization (lolz "open data") that I did not have.
+
 
 ## Internal versus external storage
 I am going to define two different ways of serving a dataset on the web.
@@ -104,7 +108,7 @@ I don't even see any documentation as to how to do this
 
 So it's pretty hard to add an externally stored dataset to Socrata.
 
-### Forcing function
+## How to discourage dead links
 If your data are stored in CKAN's FileStore or in Socrata's
 data storage (rather than as an external link), then it is
 practically impossible for the link to be dead.
@@ -115,7 +119,5 @@ impossible for people to do something that they aren't supposed to do.
 We want to make sure that links to datasets stay alive. CKAN and Socrata both
 have a mechanism for forcing this on people.
 
-## Caveats about the data
-The downloads of some sites didn't work at all, mainly because they required
-authorization (lolz "open data") that I did not have.
+Maybe
 
