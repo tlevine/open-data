@@ -15,10 +15,36 @@ With **external storage**, the dataset is a file that is stored on some other
 website on the internet, and we can reference the dataset with a URL. When we
 add the dataset to CKAN or Socrata, we are just linking to this other website.
 
-## Caveats about the data
+## Acquiring the data.
+![Diagram of the data collection process]()
+
+I got [a list of Socrata catalogs]()
+([mirror]())
+and [a list of CKAN catalogs]()
+([mirror]()),
+and I tried accessing the APIs for all of these sites.
+
 The downloads of some sites didn't work at all, mainly because they required
 authorization (lolz "open data") that I did not have.
+I continued with all of the sites for which I could get the data;
+this wound up being
+`r sum(catalogs$software == 'ckan')` CKAN catalogs and.
+`r sum(catalogs$software == 'socrata')` Socrata catalogs.
 
+With each of these catalogs, I acquired the metadata JSON file for each dataset
+in the catalog. Here they are for
+[Socrata](https://github.com/tlevine/socrata-views) and for
+[CKAN](https://github.com/tlevine/ckan-datasets). These are also
+[submodules](https://github.com/tlevine/open-data/tree/master/downloads)
+to the [main repository](https://github.com/tlevine/open-data/tree/master).
+
+From the metadata for each dataset, I
+[determined](https://github.com/tlevine/open-data/blob/master/links.py)
+whether the dataset was internally stored or externally stored.
+
+I checked whether datasets were alive by trying to download them.
+([More precisely(https://github.com/tlevine/open-data/blob/master/links.py#L37),
+I really just issued a HEAD request and checked the status code.)
 
 ##
 
@@ -43,26 +69,20 @@ stays alive. This is a plot of what proportion of datasets on Socrata are stored
 internally and what proportion of datasets are alive; each dot is a data catalog
 run by Socrata.
 
-
 ```{r prop_links_socrata, fig.width = 5, fig.height = 5}
 p.prop_links.socrata
 ```
 
-Data catalogs with more externally stored data tend to have more dead links.
+Socrata data catalogs with more externally stored data tend to have more dead links.
 
 The above plot was for just Socrata; let's see what happens when we add CKAN.
-
-<!--
-here's a relationship it's harder (practically
-impossible) to have dead links on internally stored data. 
-As I explain [below](#software-suggests-behaviour),
--->
 
 ```{r prop_links, fig.width = 5, fig.height = 5}
 p.prop_links
 ```
 
-
+CKAN catalogs tend to have more externally stored data. When we add CKAN, the
+association between externally stored data and dead links continues.
 
 ```{r software_all_types, fig.width = 8, fig.height = 6}
 p.software.all_types
