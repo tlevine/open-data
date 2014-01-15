@@ -33,7 +33,7 @@ p.has_links
 Rather than looking at just whether there are any external links at all,
 let's now look at what proportion of the datasets are external links
 
-```{r has_links, fig.width = 8, fig.height = 6}
+```{r software, fig.width = 8, fig.height = 6}
 p.software
 ```
 {:.wide}
@@ -44,7 +44,7 @@ internally and what proportion of datasets are alive; each dot is a data catalog
 run by Socrata.
 
 
-```{r has_links, fig.width = 5, fig.height = 5}
+```{r prop_links_socrata, fig.width = 5, fig.height = 5}
 p.prop_links.socrata
 ```
 
@@ -58,19 +58,19 @@ impossible) to have dead links on internally stored data.
 As I explain [below](#software-suggests-behaviour),
 -->
 
-```{r has_links, fig.width = 5, fig.height = 5}
+```{r prop_links, fig.width = 5, fig.height = 5}
 p.prop_links
 ```
 
 
 
-```{r has_links, fig.width = 8, fig.height = 6}
+```{r software_all_types, fig.width = 8, fig.height = 6}
 p.software.all_types
 ```
 {:.wide}
 
 
-```{r has_links, fig.width = 8, fig.height = 6}
+```{r software_only_links, fig.width = 8, fig.height = 6}
 p.software.only_links
 ```
 {:.wide}

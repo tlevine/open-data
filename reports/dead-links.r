@@ -138,7 +138,7 @@ p.prop_links <- ggplot(catalogs) +
   aes(x = prop_links, y = prop_alive, color = software) +
   geom_point() +
   scale_x_continuous('Proportion of datasets that are externally stored', labels = percent) +
-  scale_y_continuous('Proportion of datasets that are alive', labels = percent) +
+  scale_y_continuous('Proportion of datasets that are alive', labels = percent, limits = 0:1) +
   theme(legend.position = 'bottom') +
   scale_color_discrete('Software') +
   ggtitle('CKAN catalogs have more externally stored datasets and more dead datasets.')
