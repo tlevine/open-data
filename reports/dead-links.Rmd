@@ -2,12 +2,6 @@ As I started looking at data on CKAN sites, I noticed that a lot of the
 datasets were links to files on other websites. And a lot of these links
 were dead.
 
-
-## Caveats about the data
-The downloads of some sites didn't work at all, mainly because they required
-authorization (lolz "open data") that I did not have.
-
-
 ## Internal versus external storage
 I am going to define two different ways of serving a dataset on the web.
 These two approaches are supported by both Socrata and CKAN.
@@ -20,6 +14,57 @@ name for this place in Socrata's architecture, as far as I know.)
 With **external storage**, the dataset is a file that is stored on some other
 website on the internet, and we can reference the dataset with a URL. When we
 add the dataset to CKAN or Socrata, we are just linking to this other website.
+
+## Caveats about the data
+The downloads of some sites didn't work at all, mainly because they required
+authorization (lolz "open data") that I did not have.
+
+
+##
+
+```{r has_links_socrata, fig.width = 5, fig.height = 2}
+p.has_links.socrata
+```
+
+```{r has_links, fig.width = 5, fig.height = 2}
+p.has_links
+```
+
+Rather than looking at just whether there are any external links at all,
+let's now look at what proportion of the datasets are external links
+
+```{r has_links, fig.width = 8, fig.height = 6}
+p.software
+```
+{:.wide}
+
+Whether a dataset is stored internally or externally is related to whether it
+stays alive. This is a plot of what proportion of datasets on Socrata are stored
+internally and what proportion of datasets are alive; each dot is a data catalog
+run by Socrata.
+
+
+```{r has_links, fig.width = 5, fig.height = 5}
+p.prop_links.socrata
+```
+
+Data catalogs with more externally stored data tend to have more dead links.
+
+The above plot was for just Socrata; let's see what happens when we add CKAN.
+
+<!--
+here's a relationship it's harder (practically
+impossible) to have dead links on internally stored data. 
+As I explain [below](#software-suggests-behaviour),
+-->
+
+```{r has_links, fig.width = 5, fig.height = 5}
+p.prop_links.socrata
+```
+
+```{r has_links, fig.width = 5, fig.height = 5}
+p.prop_links
+```
 
 ## Software suggests behaviour
 While both softwares support both storage methods, Socrata encourages the
@@ -108,7 +153,7 @@ I don't even see any documentation as to how to do this
 
 So it's pretty hard to add an externally stored dataset to Socrata.
 
-## How to discourage dead links
+## Interal storage encourages live links
 If your data are stored in CKAN's FileStore or in Socrata's
 data storage (rather than as an external link), then it is
 practically impossible for the link to be dead.
@@ -116,10 +161,10 @@ practically impossible for the link to be dead.
 If we want to use fancy design-speak, we can call this a forcing function.
 A forcing function is an aspect in the design of a thing that makes it
 impossible for people to do something that they aren't supposed to do.
-We want to make sure that links to datasets stay alive. CKAN and Socrata both
-have a mechanism for forcing this on people.
+If we make it impossible for links to be dead, they won't ever be dead.
 
-Removing this external link feature should reduce the number of dead links
+## Other ways of encouraging live links
+Removing the external link feature should reduce the number of dead links
 to zero, and that might be nice. On the other hand, there might be some good
 things about external links, so maybe we can instead come up with some other
 software feature that helps people avoid or fix dead links. For example,

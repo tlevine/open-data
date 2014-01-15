@@ -2,6 +2,7 @@ library(sqldf)
 library(ggplot2)
 library(reshape2)
 library(scales)
+library(knitr)
 
 get.datasets <- function() {
   sql <- '
@@ -105,7 +106,9 @@ p.has_links.socrata <- qplot(data = subset(catalogs, software == 'socrata'),
   scale_fill_discrete('Has links?') +
   theme(legend.position = 'bottom') +
   coord_flip() +
-  ggtitle('Proportion of Socrata data catalogs with externally linked datasets')
+  annotate('text', y = c(0.18, 0.69), x = 1,
+    label = c('Catalogs with\nexternal links', 'Catalogs without\nexternal links')) +
+  ggtitle('Proportion of Socrata data catalogs with externally stored datasets')
 
 p.has_links <- qplot(data = catalogs, x = software, fill = has_links,
   position = 'fill', geom = 'bar') +
@@ -114,7 +117,7 @@ p.has_links <- qplot(data = catalogs, x = software, fill = has_links,
   scale_fill_discrete('Has links?') +
   theme(legend.position = 'bottom') +
   coord_flip() +
-  ggtitle('Proportion of data catalogs with externally linked datasets')
+  ggtitle('Proportion of data catalogs with externally stored datasets')
 
 p.software <- ggplot(catalogs) +
   aes(x = catalog, y = prop_alive, fill = software) +
@@ -127,18 +130,18 @@ p.software <- ggplot(catalogs) +
 p.prop_links.socrata <- ggplot(subset(catalogs, software == 'socrata')) +
   aes(x = prop_links, y = prop_alive) +
   geom_point() +
-  scale_x_continuous('Proportion of datasets that are external links', labels = percent) +
+  scale_x_continuous('Proportion of datasets that are externally stored', labels = percent) +
   scale_y_continuous('Proportion of datasets that are alive', labels = percent) +
-  ggtitle('On Socrata, only external links can be dead.\n(Duh)')
+  ggtitle('On Socrata, only externally stored data can be dead.\n(Duh)')
 
 p.prop_links <- ggplot(catalogs) +
   aes(x = prop_links, y = prop_alive, color = software) +
   geom_point() +
-  scale_x_continuous('Proportion of datasets that are external links', labels = percent) +
+  scale_x_continuous('Proportion of datasets that are externally stored', labels = percent) +
   scale_y_continuous('Proportion of datasets that are alive', labels = percent) +
   theme(legend.position = 'bottom') +
   scale_color_discrete('Software') +
-  ggtitle('The power of forcing functions:\nIn CKAN, everything is basically an external link, so some of them are dead.')
+  ggtitle('CKAN catalogs have more externally stored datasets and more dead datasets.')
 
 p.software.all_types <- ggplot(link.groupings) +
   aes(x = catalog, y = proportion, fill = link.type) +
@@ -157,3 +160,5 @@ p.software.only_links <- ggplot(catalogs) +
   theme(legend.position = 'bottom') +
   scale_fill_discrete('Software') +
   ggtitle('Of only the external links, what proportion of datasets are alive?')
+
+knit('dead-links.Rmd')
