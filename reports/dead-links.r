@@ -104,7 +104,7 @@ p.has_links.socrata <- qplot(data = subset(catalogs, software == 'socrata'),
   fill = has_links, position = 'fill', geom = 'bar') +
   scale_y_continuous('Proportion of data catalogs', labels = percent) +
   scale_fill_discrete('Has links?') +
-  theme(legend.position = 'bottom') +
+  theme(legend.position = 'none') +
   coord_flip() +
   annotate('text', y = c(0.18, 0.69), x = 1,
     label = c('Catalogs with\nexternal links', 'Catalogs without\nexternal links')) +

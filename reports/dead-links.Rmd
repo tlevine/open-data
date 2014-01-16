@@ -99,7 +99,7 @@ Of these,
 (`r round(100 * mean(subset(catalogs, software == 'socrata')$has_links == 'Yes'))`%)
 have at least one externally stored dataset.
 
-```{r has_links_socrata, fig.width = 5, fig.height = 2}
+```{r has_links_socrata, fig.width = 8, fig.height = 3}
 p.has_links.socrata
 ```
 
@@ -108,7 +108,7 @@ Of the `r sum(catalogs$software == 'ckan')` CKAN catalogs,
 (`r round(100 * mean(subset(catalogs, software == 'ckan')$has_links == 'Yes'))`%)
 have externally stored dataset. That's a big difference.
 
-```{r has_links, fig.width = 5, fig.height = 2}
+```{r has_links, fig.width = 8, fig.height = 3}
 p.has_links
 ```
 
@@ -116,7 +116,7 @@ p.has_links
 Rather than looking at just whether there are any externally stored datasets at all,
 let's now look at what proportion of the datasets are stored externally.
 
-```{r software_all_types, fig.width = 8, fig.height = 6}
+```{r software_all_types, fig.width = 11, fig.height = 8}
 p.software.all_types
 ```
 {:.wide,#all-types-of-link}
@@ -126,7 +126,7 @@ stays alive. This is a plot of what proportion of datasets on Socrata are stored
 internally and what proportion of datasets are alive; each dot is a data catalog
 run by Socrata.
 
-```{r prop_links_socrata, fig.width = 5, fig.height = 5}
+```{r prop_links_socrata, fig.width = 8, fig.height = 8}
 p.prop_links.socrata
 ```
 
@@ -134,7 +134,7 @@ Socrata data catalogs with more externally stored data tend to have more dead li
 
 The above plot was for just Socrata; let's see what happens when we add CKAN.
 
-```{r prop_links, fig.width = 5, fig.height = 5}
+```{r prop_links, fig.width = 8, fig.height = 8}
 p.prop_links
 ```
 
@@ -145,7 +145,7 @@ association between externally stored data and dead links continues.
 Here's another way of seeing the above relationship. Let's look at only the externally
 stored datasets, and check what proportion of those are alive.
 
-```{r software_only_links, fig.width = 8, fig.height = 6}
+```{r software_only_links, fig.width = 11, fig.height = 8}
 p.software.only_links
 ```
 {:.wide}
