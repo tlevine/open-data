@@ -50,10 +50,10 @@ I collected data about dead links from CKAN and Socrata catalogs.
 I got [a list of Socrata catalogs](https://opendata.socrata.com/api/views/6wk3-4ija/rows.json?accessType=DOWNLOAD)
 ([mirror](https://github.com/tlevine/open-data/blob/master/opendata.socrata.com/api/views/6wk3-4ija/rows.json%3FaccessType%3DDOWNLOAD))
 and [a list of CKAN catalogs](http://instances.ckan.org/config/instances.json)
-([mirror](https://github.com/tlevine/open-data/blob/master/instances.ckan.org/config/instances.json)),
-and I tried accessing the APIs for all of these sites.
+([mirror](https://github.com/tlevine/open-data/blob/master/instances.ckan.org/config/instances.json)).
 
-The downloads of some sites didn't work at all, mainly because they required
+I tried querying the APIs for all of these sites.
+I couldn't do this for some of the sites, mainly because they required
 authorization (lolz "open data") that I did not have.
 I continued with all of the sites for which I could get the data;
 this wound up being
