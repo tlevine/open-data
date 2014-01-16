@@ -51,14 +51,14 @@ def catalogs():
 
     # Other interesting ones
     for pair in [
-        ('socrata', 'data.cityofchicago.org'),
-        ('socrata', 'data.cityofnewyork.us'),
+        ('socrata', 'https://data.cityofchicago.org'),
+        ('socrata', 'https://data.cityofnewyork.us'),
 
-        ('socrata', 'data.austintexas.gov'),
-        ('socrata', 'data.hawaii.gov'),
+        ('socrata', 'https://data.austintexas.gov'),
+        ('socrata', 'https://data.hawaii.gov'),
 
-        ('socrata', 'explore.data.gov'),
-        ('ckan', 'catalog.data.gov'),
+        ('socrata', 'https://explore.data.gov'),
+        ('ckan', 'https://catalog.data.gov'),
     ]:
         yield pair
 
