@@ -167,7 +167,7 @@ Possibly interesting: the catalogs in this plot are ordered the same way they
 are in the [earlier similar-looking plot](#all-types-of-link), so higher catalogs
 are ones with fewer dead links.
 
-## Software suggests behaviour
+## Software suggests behavior
 While both softwares support both storage methods, Socrata encourages the
 use of internal storage, and CKAN encourages the use of external storage.
 Let's walk through how you create a dataset in both CKAN and Socrata through
