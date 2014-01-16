@@ -54,7 +54,7 @@ I couldn't do this for some of the sites, mainly because they required
 authorization (lolz open data) that I did not have.
 I continued with all of the sites for which I could get the data;
 this wound up being
-`r sum(catalogs$software == 'ckan')` CKAN catalogs and.
+`r sum(catalogs$software == 'ckan')` CKAN catalogs and
 `r sum(catalogs$software == 'socrata')` Socrata catalogs.
 
 ### Dataset metadata
@@ -259,7 +259,7 @@ and I was having trouble doing that.
 
 So it's pretty hard to add an externally stored dataset to Socrata.
 
-## Interal storage encourages live links
+## Internal storage encourages live links
 If your data are stored in CKAN's FileStore or in Socrata's
 data storage (rather than as an external link), then it is
 practically impossible for the link to be dead.
@@ -286,7 +286,8 @@ does just this; here's one of its reports.
 Detecting dead links is one of several things that we can easily do to
 measure the quality of a data catalog. Similarly, we can also measure
 [what licenses are used](/!/open-data-licensing),
-[how up-to-date the data are](/!/data-updatedness).
+[how up-to-date the data are](/!/data-updatedness),
+and [what data formats the data are in](/!/socrata-formats).
 
 When we have lots of datasets on our data catalog, it becomes too much
 for someone to read through all of them. Measures like these help us get
