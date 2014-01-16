@@ -14,7 +14,10 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="data-collection.svg">
+   sodipodi:docname="data-collection.svg"
+   inkscape:export-filename="/home/tlevine/t/open-data/reports/dead-links-img/data-collection.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
   <defs
      id="defs4">
     <marker
@@ -53,8 +56,8 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.7"
-     inkscape:cx="181.43132"
+     inkscape:zoom="1.6809524"
+     inkscape:cx="420"
      inkscape:cy="236.2966"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
