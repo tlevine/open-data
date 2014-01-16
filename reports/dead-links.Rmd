@@ -5,7 +5,27 @@ facebook_image: figure/prop_links.png
 ---
 As I started looking at data on CKAN sites, I noticed that a lot of the
 datasets were links to files on other websites. And a lot of these links
-were dead.
+were dead. 
+
+It goes without saying that websites shouldn't have dead links, but here are
+a bunch of fancy reasons why dead links are bad on open data sites.
+
+* [Sunlight Foundation](http://sunlightfoundation.com/opendataguidelines/#permanent-access)
+    says to "Create permanent, lasting access to data".
+* [Project Open Data](http://project-open-data.github.io/principles/) says
+    that data should be "Managed Post-Release".
+* The Open Data Institute
+    [Open Data Certificate questionnaire](https://certificates.theodi.org/surveys/gb/ofm6KhncVg/take)
+    asks for a bunch of URLs, and I presume they should be alive. It also
+    asks "How long will this data be available for?"
+* The [questions](http://census.okfn.org/faq/#what-do-all-the-questions-about-the-datasets-mean-)
+    for Open Knowledge Foundation's Open Data Census include
+  * "Is the data available online?"
+  * "URL of data online?"
+* Under the [five-star linked open data scheme](http://www.w3.org/DesignIssues/LinkedData.html)
+    "you get one (big!) star if the information has been made public at all,
+    even if it is a photo of a scan of a fax of a table". I guess you still get
+    this star if your link dies, as long as another
 
 ## Internal versus external storage
 I am going to define two different ways of serving a dataset on the web.
