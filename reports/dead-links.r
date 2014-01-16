@@ -25,6 +25,7 @@ get.datasets <- function() {
   JOIN links
   WHERE socrata_deduplicated.catalog = links.catalog
     AND socrata_deduplicated.tableId = links.identifier
+  GROUP BY links.identifier
   ;'
 
   datasets <- with(new.env(), sqldf(sql, dbname = '/tmp/open-data.sqlite'))
@@ -73,6 +74,8 @@ get.catalogs <- function(datasets) {
   catalogs$has_links <- factor(catalogs$prop_links > 0, levels = c(TRUE, FALSE))
   levels(catalogs$has_links) <- c('Yes','No')
 
+  rownames(catalogs) <- catalogs$catalog
+
   catalogs
 }
 
@@ -92,7 +95,7 @@ get.link.groupings <- function(catalogs) {
   link.groupings
 }
 
-if (!('catalogs' %in% ls())) {
+if (!all(list('datasets','catalogs','link.groupings') %in% ls())) {
   datasets <- get.datasets()
   catalogs <- get.catalogs(datasets)
   link.groupings <- get.link.groupings(catalogs)
@@ -162,3 +165,5 @@ p.software.only_links <- ggplot(catalogs) +
   ggtitle('Of only the external links, what proportion of datasets are alive?')
 
 knit('dead-links.Rmd')
+
+# plot(prop_alive ~ log(n_datasets), data = catalogs, col = software) 

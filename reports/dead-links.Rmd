@@ -1,8 +1,11 @@
 ---
 title: Dead links on data catalogs
+description: 
 twitter_image: figure/prop_links.png
 facebook_image: figure/prop_links.png
 tags: ['open-data']
+kind: article
+created_at: 2014-01-16
 ---
 ```{r configure, echo=FALSE}
 opts_chunk$set(echo = FALSE, dpi = 42 * 5)
@@ -166,6 +169,10 @@ we should expect more dead datasets.
 Possibly interesting: the catalogs in this plot are ordered the same way they
 are in the [earlier similar-looking plot](#all-types-of-link), so higher catalogs
 are ones with fewer dead links.
+
+### Fun facts
+
+* 
 
 ## Software suggests behavior
 While both softwares support both storage methods, Socrata encourages the
