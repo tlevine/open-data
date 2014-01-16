@@ -34,10 +34,14 @@ As I started looking at data on [CKAN](http://ckan.org/) sites, I noticed that a
 datasets were links to files on other websites and that a lot of these links
 were dead. Then I started wondering how many and which ones.
 
-## Acquiring the data.
-I collected data about dead links from CKAN and [Socrata](http://www.socrata.com/open-data-portal/) catalogs.
+## Acquiring the data
+I collected data about dead links from CKAN and
+[Socrata](http://www.socrata.com/open-data-portal/) catalogs;
+it went a bit like this.
 
 ![Diagram of the data collection process](data-collection.png){:.wide}
+
+The next few sections explain this a bit more.
 
 ### Accessing data catalogs
 I downloaded [a list of Socrata catalogs](https://opendata.socrata.com/api/views/6wk3-4ija/rows.json?accessType=DOWNLOAD)
@@ -87,9 +91,9 @@ add the dataset to CKAN or Socrata, we are just linking to this other website.
 
 As I imply above, Socrata and CKAN both support both of these two approaches.
 
-### Resulting file
+### Final database
 I combined this all into the same
-[SQLite3 database](http://bigdada.thomaslevine.com/open-data.sqlite.gz)
+[SQLite3 file](http://bigdada.thomaslevine.com/open-data.sqlite.gz)
 as I used for the [Socrata products analysis](/!/socrata-products).
 
 ## Results
