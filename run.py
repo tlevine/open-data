@@ -46,8 +46,21 @@ def catalogs():
         if url != None:
             yield 'socrata', url
 
-    for url_ in open('opendatasoft').readlines():
-        yield 'opendatasoft', url
+#   for url in open('opendatasoft').readlines():
+#       yield 'opendatasoft', url
+
+    # Other interesting ones
+    for pair in [
+        ('socrata', 'data.cityofchicago.org'),
+        ('socrata', 'data.cityofnewyork.us'),
+
+        ('socrata', 'data.austintexas.gov'),
+        ('socrata', 'data.hawaii.gov'),
+
+        ('socrata', 'explore.data.gov'),
+        ('ckan', 'catalog.data.gov'),
+    ]:
+        yield pair
 
 def download_metadata():
 
