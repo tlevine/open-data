@@ -36,7 +36,7 @@ were dead. Then I started wondering which ones were dead.
 ## Acquiring the data.
 I collected data about dead links from CKAN and Socrata catalogs.
 
-![Diagram of the data collection process](data-collection.png)
+![Diagram of the data collection process](data-collection.png){:.wide}
 
 ### Accessing data catalogs
 I downloaded [a list of Socrata catalogs](https://opendata.socrata.com/api/views/6wk3-4ija/rows.json?accessType=DOWNLOAD)
