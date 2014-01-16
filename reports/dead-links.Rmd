@@ -173,24 +173,24 @@ their respective web interfaces.
 In CKAN, this is the screen you get when you are specifying the data file
 for your dataset.
 
-![](ckan-1.png)
+![](ckan-1.png){:.wide}
 
 The first screen says nothing about how to enter the data, but the second one does.
 
-![](ckan-2.png)
+![](ckan-2.png){:.wide}
 
 You enter the URL of a file or an API,
 
-![](ckan-3.png)
+![](ckan-3.png){:.wide}
 
 or you upload a file.
 
-![](ckan-4.png)
+![](ckan-4.png){:.wide}
 
 After you upload the file, the box gets populated with the URL to which that
 has been uploaded. (This URL is inside the CKAN FileStore.)
 
-![](ckan-5.png)
+![](ckan-5.png){:.wide}
 
 The first two cases lead to external storage, and
 the third case leads to internal storage.
@@ -215,35 +215,35 @@ While externally stored data exist on Socrata, I didn't find any way of creating
 such a dataset with the Socrata website. Here's what creating a new dataset on 
 Socrata looks like.
 
-![](socrata-start.png)
+![](socrata-start.png){:.wide}
 
 If you choose to "Design from Scratch", you wind up entering the data through
 the table interface in Socrata; after you click through a few screens, you get
 an editor like this.
 
-![](socrata-scratch-2.png)
+![](socrata-scratch-2.png){:.wide}
 
 If you choose to "Import a Data File", you see this.
 
-![](socrata-1.png)
+![](socrata-1.png){:.wide}
 
 Because I was looking for a place to add externally stored data, I clicked on
 "On the Internet". I entered a file into this box, and the file got downloaded
 to Socrata.
 
-![](socrata-2.png)
+![](socrata-2.png){:.wide}
 
 Then I got this schema editor,
 
-![](socrata-3.png)
+![](socrata-3.png){:.wide}
 
 and the data got imported to the internal storage.
 
-![](socrata-5.png)
+![](socrata-5.png){:.wide}
 
 The non-data file approach also leads to internal storage.
 
-![](socrata-non-data.png)
+![](socrata-non-data.png){:.wide}
 
 I don't even see any documentation as to how to do this
 [with the API](http://dev.socrata.com/publishers/importing).
