@@ -220,7 +220,7 @@ If you choose to "Design from Scratch", you wind up entering the data through
 the table interface in Socrata; after you click through a few screens, you get
 an editor like this.
 
-![A spreadsheet-like table editor in Socrata Open Data Portal software](socrata-scratch-2.png){:.wide}
+![A spreadsheet-like table editor in Socrata Open Data Portal software](socrata-scratch-2.png)
 
 If you choose to "Import a Data File", you see this.
 
@@ -275,7 +275,7 @@ many times people have tried accessing them.
 The [CKAN Quality Assurance Extension](https://github.com/okfn/ckanext-qa)
 does just this; here's one of its reports.
 
-[![A table of datasets with statistics about how dead they are](ckanext-qa.png)](http://data.gov.uk/data/reports/qa/organisation/broken_resource_links/her-majestys-revenue-and-customs)
+[![A table of datasets with statistics about how dead they are](ckanext-qa.png){:.wide}](http://data.gov.uk/data/reports/qa/organisation/broken_resource_links/her-majestys-revenue-and-customs)
 
 ## Why measure data catalogs
 Detecting dead links is one of several things that we can easily do to
