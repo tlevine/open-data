@@ -17,8 +17,9 @@ here are a bunch of fancy reasons why dead links are bad on open data sites.
   * "URL of data online?"
 * The Open Data Institute
     [Open Data Certificate questionnaire](https://certificates.theodi.org/surveys/gb/ofm6KhncVg/take)
-    asks for a bunch of URLs, and I presume they should be alive. It also
-    asks "How long will this data be available for?"
+    asks for a bunch of URLs about the dataset to be certified;
+    I presume they should be alive.
+    It also asks "How long will this data be available for?"
 
 So dead links are bad.
 
