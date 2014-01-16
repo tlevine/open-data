@@ -23,33 +23,21 @@ here are a bunch of fancy reasons why dead links are bad on open data sites.
 
 So dead links are bad.
 
-That said, if the alternative to having a dead link to a dataset is having no
+*That said, if the alternative to having a dead link to a dataset is having no
 link to a dataset, I'd say it's better to have the dead link so we know that the
-data exist. But live links are better.
+data exist. But live links are better; let's move on.*
 
 As I started looking at data on CKAN sites, I noticed that a lot of the
 datasets were links to files on other websites and that a lot of these links
 were dead. Then I started wondering which ones were dead.
-
-## Internal versus external storage
-I am going to define two different ways of serving a dataset on the web.
-These two approaches are supported by both Socrata and CKAN.
-
-With **internal storage**, the dataset is uploaded to the data catalog software
-itself. In CKAN, the dataset gets stored in the FileStore, and in Socrata,
-the dataset gets stored in Socrata's data storage. (There isn't really a
-name for this place in Socrata's architecture, as far as I know.)
-
-With **external storage**, the dataset is a file that is stored on some other
-website on the internet, and we can reference the dataset with a URL. When we
-add the dataset to CKAN or Socrata, we are just linking to this other website.
 
 ## Acquiring the data.
 I collected data about dead links from CKAN and Socrata catalogs.
 
 ![Diagram of the data collection process]()
 
-I got [a list of Socrata catalogs](https://opendata.socrata.com/api/views/6wk3-4ija/rows.json?accessType=DOWNLOAD)
+### Accessing data catalogs
+I downloaded [a list of Socrata catalogs](https://opendata.socrata.com/api/views/6wk3-4ija/rows.json?accessType=DOWNLOAD)
 ([mirror](https://github.com/tlevine/open-data/blob/master/opendata.socrata.com/api/views/6wk3-4ija/rows.json%3FaccessType%3DDOWNLOAD))
 and [a list of CKAN catalogs](http://instances.ckan.org/config/instances.json)
 ([mirror](https://github.com/tlevine/open-data/blob/master/instances.ckan.org/config/instances.json)).
@@ -62,6 +50,7 @@ this wound up being
 `r sum(catalogs$software == 'ckan')` CKAN catalogs and.
 `r sum(catalogs$software == 'socrata')` Socrata catalogs.
 
+### Dataset metadata
 With each of these catalogs, I acquired the metadata JSON file for each dataset
 in the catalog. Here they are for
 [Socrata](https://github.com/tlevine/socrata-views) and for
@@ -69,14 +58,33 @@ in the catalog. Here they are for
 [submodules](https://github.com/tlevine/open-data/tree/master/downloads)
 to the [main repository](https://github.com/tlevine/open-data/tree/master).
 
-From the metadata for each dataset, I
-[determined](https://github.com/tlevine/open-data/blob/master/links.py)
-whether the dataset was internally stored or externally stored.
+### Link liveliness
+From the metadata for each dataset, I pulled out the
+[URL]()
+for the dataset if there was a URL.
 
 I checked whether datasets were alive by trying to download them.
 ([More precisely](https://github.com/tlevine/open-data/blob/master/links.py#L37),
 I really issued a HEAD request and checked the status code.)
 
+### Internal versus external storage
+Once I had the metadata files about each dataset, I also
+[determined](https://github.com/tlevine/open-data/blob/master/links.py)
+whether the dataset was stored *internally* or *externally*.
+These are terms that I just invented, so I define them below.
+
+With **internal storage**, the dataset is uploaded to the data catalog software
+itself. In CKAN, the dataset gets stored in the FileStore, and in Socrata,
+the dataset gets stored in Socrata's data storage. (There isn't really a
+name for this place in Socrata's architecture, as far as I know.)
+
+With **external storage**, the dataset is a file that is stored on some other
+website on the internet, and we can reference the dataset with a URL. When we
+add the dataset to CKAN or Socrata, we are just linking to this other website.
+
+As I imply above, Socrata and CKAN both support both of these two approaches.
+
+### Resulting file
 I combined this all into the same
 [SQLite3 database](http://bigdada.thomaslevine.com/open-data.sqlite.gz)
 as I used for the [Socrata products analysis](/!/socrata-products).
