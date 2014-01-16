@@ -98,8 +98,6 @@ if (!('catalogs' %in% ls())) {
   link.groupings <- get.link.groupings(catalogs)
 }
 
-theme_set(theme_gray(base_size = 18))
-
 p.has_links.socrata <- qplot(data = subset(catalogs, software == 'socrata'),
   x = ' ',
   fill = has_links, position = 'fill', geom = 'bar') +
