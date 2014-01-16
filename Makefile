@@ -2,7 +2,8 @@ downloads/socrata-homepages:
 	./socrata-federation-download.sh
 
 download-dataset-metadata:
-	python2 -c 'import run; run.download_metadata()'
+	#python2 -c 'import run; run.download_metadata()'
+	sleep 0s
 
 defederate: downloads/socrata-homepages datasets
 	./socrata-federation-parse.py

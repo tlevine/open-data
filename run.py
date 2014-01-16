@@ -26,7 +26,6 @@ SOCRATA_FIX = {
     'www.consumerfinance.gov': None,
     'www.usaid.gov': None,
     'ethics.data.gov': None,
-    'www.data.gov': None,
 }
 CKAN_FIX = {
 }
@@ -57,7 +56,6 @@ def catalogs():
         ('socrata', 'https://data.austintexas.gov'),
         ('socrata', 'https://data.hawaii.gov'),
 
-        ('socrata', 'https://explore.data.gov'),
         ('ckan', 'https://catalog.data.gov'),
     ]:
         yield pair
@@ -65,7 +63,9 @@ def catalogs():
 def download_metadata():
 
     processes = {}
-    for software, url in catalogs():
+    c = list(catalogs())
+    random.shuffle(c)
+    for software, url in c:
         args = (url, os.path.join('downloads', software))
         processes[(software, url)] = Process(target = getattr(download, software), args = args)
 
