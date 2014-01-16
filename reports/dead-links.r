@@ -98,6 +98,7 @@ if (!('catalogs' %in% ls())) {
   link.groupings <- get.link.groupings(catalogs)
 }
 
+theme_set(theme_gray(base_size = 18))
 
 p.has_links.socrata <- qplot(data = subset(catalogs, software == 'socrata'),
   x = ' ',
@@ -106,9 +107,10 @@ p.has_links.socrata <- qplot(data = subset(catalogs, software == 'socrata'),
   scale_fill_discrete('Has links?') +
   theme(legend.position = 'none') +
   coord_flip() +
+  xlab('') +
   annotate('text', y = c(0.18, 0.69), x = 1,
     label = c('Catalogs with\nexternal links', 'Catalogs without\nexternal links')) +
-  ggtitle('Proportion of Socrata data catalogs with externally stored datasets')
+  ggtitle('Socrata catalogs with externally stored datasets')
 
 p.has_links <- qplot(data = catalogs, x = software, fill = has_links,
   position = 'fill', geom = 'bar') +
@@ -117,7 +119,7 @@ p.has_links <- qplot(data = catalogs, x = software, fill = has_links,
   scale_fill_discrete('Has links?') +
   theme(legend.position = 'bottom') +
   coord_flip() +
-  ggtitle('Proportion of data catalogs with externally stored datasets')
+  ggtitle('Proportion of data catalogs\nwith externally stored datasets')
 
 p.software <- ggplot(catalogs) +
   aes(x = catalog, y = prop_alive, fill = software) +
@@ -141,7 +143,7 @@ p.prop_links <- ggplot(catalogs) +
   scale_y_continuous('Proportion of datasets that are alive', labels = percent, limits = 0:1) +
   theme(legend.position = 'bottom') +
   scale_color_discrete('Software') +
-  ggtitle('CKAN catalogs have more externally stored datasets and more dead datasets.')
+  ggtitle('CKAN catalogs have more externally stored datasets\nand more dead datasets.')
 
 p.software.all_types <- ggplot(link.groupings) +
   aes(x = catalog, y = proportion, fill = link.type) +

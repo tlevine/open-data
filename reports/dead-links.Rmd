@@ -4,6 +4,9 @@ twitter_image: figure/prop_links.png
 facebook_image: figure/prop_links.png
 tags: ['open-data']
 ---
+```{r configure, echo=FALSE}
+opts_chunk$set(echo = FALSE, dpi = 42 * 5)
+```
 It goes without saying that websites usually shouldn't have dead links, but
 here are a bunch of fancy reasons why dead links are bad on open data sites.
 
@@ -106,17 +109,19 @@ p.has_links.socrata
 Of the `r sum(catalogs$software == 'ckan')` CKAN catalogs,
 `r sum(catalogs$software == 'ckan' & catalogs$has_links == 'Yes')`
 (`r round(100 * mean(subset(catalogs, software == 'ckan')$has_links == 'Yes'))`%)
-have externally stored dataset. That's a big difference.
+have at least one externally stored dataset.
 
 ```{r has_links, fig.width = 8, fig.height = 3}
 p.has_links
 ```
 
+That's a big difference.
+
 ### Link types and liveliness by catalog
 Rather than looking at just whether there are any externally stored datasets at all,
 let's now look at what proportion of the datasets are stored externally.
 
-```{r software_all_types, fig.width = 11, fig.height = 8}
+```{r software_all_types, fig.width = 11, fig.height = 11}
 p.software.all_types
 ```
 {:.wide,#all-types-of-link}
@@ -145,7 +150,7 @@ association between externally stored data and dead links continues.
 Here's another way of seeing the above relationship. Let's look at only the externally
 stored datasets, and check what proportion of those are alive.
 
-```{r software_only_links, fig.width = 11, fig.height = 8}
+```{r software_only_links, fig.width = 11, fig.height = 11}
 p.software.only_links
 ```
 {:.wide}
