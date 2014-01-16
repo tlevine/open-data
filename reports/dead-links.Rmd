@@ -3,12 +3,8 @@ title: Dead links on data catalogs
 twitter_image: figure/prop_links.png
 facebook_image: figure/prop_links.png
 ---
-As I started looking at data on CKAN sites, I noticed that a lot of the
-datasets were links to files on other websites. And a lot of these links
-were dead. 
-
-It goes without saying that websites shouldn't have dead links, but here are
-a bunch of fancy reasons why dead links are bad on open data sites.
+It goes without saying that websites usually shouldn't have dead links, but
+here are a bunch of fancy reasons why dead links are bad on open data sites.
 
 * [Sunlight Foundation](http://sunlightfoundation.com/opendataguidelines/#permanent-access)
     says to "Create permanent, lasting access to data".
@@ -22,6 +18,16 @@ a bunch of fancy reasons why dead links are bad on open data sites.
     [Open Data Certificate questionnaire](https://certificates.theodi.org/surveys/gb/ofm6KhncVg/take)
     asks for a bunch of URLs, and I presume they should be alive. It also
     asks "How long will this data be available for?"
+
+So dead links are bad.
+
+That said, if the alternative to having a dead link to a dataset is having no
+link to a dataset, I'd say it's better to have the dead link so we know that the
+data exist. But live links are better.
+
+As I started looking at data on CKAN sites, I noticed that a lot of the
+datasets were links to files on other websites and that a lot of these links
+were dead. Then I started wondering which ones were dead.
 
 ## Internal versus external storage
 I am going to define two different ways of serving a dataset on the web.
@@ -37,12 +43,14 @@ website on the internet, and we can reference the dataset with a URL. When we
 add the dataset to CKAN or Socrata, we are just linking to this other website.
 
 ## Acquiring the data.
+I collected data about dead links from CKAN and Socrata catalogs.
+
 ![Diagram of the data collection process]()
 
-I got [a list of Socrata catalogs]()
-([mirror]())
-and [a list of CKAN catalogs]()
-([mirror]()),
+I got [a list of Socrata catalogs](https://opendata.socrata.com/api/views/6wk3-4ija/rows.json?accessType=DOWNLOAD)
+([mirror](https://github.com/tlevine/open-data/blob/master/opendata.socrata.com/api/views/6wk3-4ija/rows.json%3FaccessType%3DDOWNLOAD))
+and [a list of CKAN catalogs](http://instances.ckan.org/config/instances.json)
+([mirror](https://github.com/tlevine/open-data/blob/master/instances.ckan.org/config/instances.json)),
 and I tried accessing the APIs for all of these sites.
 
 The downloads of some sites didn't work at all, mainly because they required
