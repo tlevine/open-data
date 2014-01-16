@@ -2,6 +2,7 @@
 title: Dead links on data catalogs
 twitter_image: figure/prop_links.png
 facebook_image: figure/prop_links.png
+tags: ['open-data']
 ---
 It goes without saying that websites usually shouldn't have dead links, but
 here are a bunch of fancy reasons why dead links are bad on open data sites.
