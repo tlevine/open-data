@@ -37,15 +37,24 @@ get.datasets <- function() {
   datasets
 }
 
-if (!all(list('datasets', 'catalogs') %in% ls())) {
-  datasets <- get.datasets()
+get.catalogs <- function(datasets) {
   catalogs <- sqldf('
 SELECT
+  software,
   catalog,
-  avg(status_code == \'Timeout\') \'timeouts\',
+  sum(status_code == \'Timeout\') \'timeouts\',
   sum(status_code != \'Not link\') \'links\',
   count(*) \'datasets\'
 FROM datasets GROUP BY catalog')
+  catalogs$prop.timeouts <- catalogs$timeouts / catalogs$links
+  catalogs$catalog <- factor(catalogs$catalog,
+    levels = catalogs$catalog[order(catalogs$prop.timeouts, decreasing = TRUE)])
+  catalogs
+}
+
+if (!all(list('datasets', 'catalogs') %in% ls())) {
+  datasets <- get.datasets()
+  catalogs <- get.catalogs(datasets)
 }
 
 p.codes <- ggplot(datasets) + aes(x = status_code) + geom_bar() +
@@ -65,13 +74,27 @@ p.dati.trentino.it <- ggplot(subset(datasets, catalog == 'dati.trentino.it')) +
   scale_y_continuous('Number of datasets', labels = comma) +
   ggtitle('Which status codes were returned when I checked link liveliness on dati.trentino.it?')
 
-p.timeouts <- ggplot(catalogs) +
-  aes(x = catalog, y = timeouts, width = links / sum(links)) +
-  geom_bar(stat = 'identity', position = 'identity') +
+p.timeouts <- ggplot(subset(catalogs, links > 0)) +
+  aes(x = catalog, y = prop.timeouts, fill = software) +
+  geom_bar(stat = 'identity') +
+  xlab('Data catalog\n(Only data catalogs with externally stored datasets are included.)') +
+  scale_y_continuous('Proportion of external datasets that timed out', labels = percent) +
+  ggtitle('External link timeouts by data catalog') +
+  theme(legend.position = 'bottom') +
   coord_flip()
 
 p.catalogs <- ggplot(catalogs) +
-  aes(x = links, y = timeouts) +
-  geom_point()
+  aes(x = links, y = timeouts, color = software, label = catalog) +
+  theme(legend.position = 'bottom') +
+  scale_x_log10('Number of external links on the catalog', labels = comma, breaks = 10^(0:5)) +
+  scale_y_log10('Number of timeouts when accessing external links', labels = comma, breaks = 10^(0:5)) +
+  geom_text(size = 7, alpha = 0.5)
+
+# Remove publicdata.eu and hubofdata.ru
+p.canonical.catalogs <- ggplot(subset(catalogs,
+  catalog != 'hubofdata.ru' & catalog != 'publicdata.eu' & catalog != 'data.gov.uk')) +
+  aes(x = links, y = timeouts, color = software, label = catalog) +
+  theme(legend.position = 'bottom') +
+  geom_text(size = 7, alpha = 0.5)
 
 # knit('zombie-links.Rmd')
