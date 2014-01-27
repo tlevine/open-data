@@ -38,3 +38,21 @@ p.codes
 
 Let's look at this plot for just the specific catalogs that those Tweets were
 about.
+
+
+
+
+It seems like there were a lot of timeouts,
+
+```r
+sort(table(subset(datasets, catalog == 'data.openva.com')$status_code), decreasing = T)[1:5]
+```
+
+```r
+sort(table(subset(datasets, catalog == 'dati.trentino.it')$status_code), decreasing = T)[1:5]
+```
+
+but that doesn't fully explain the results in the chart from the other post.
+It looks like I have duplicate records in the table.
+
+    select catalog, identifier, count(*) from links where software = 'ckan' group by catalog, identifier order by count(*) desc limit 1;
