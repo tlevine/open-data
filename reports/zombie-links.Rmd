@@ -31,3 +31,10 @@ This simplifies things a little bit.
 
 Here are all of the status codes that I received, from all of the different
 links from all of the catalogs.
+
+```{r status_codes}
+p.codes
+```
+
+Let's look at this plot for just the specific catalogs that those Tweets were
+about.
