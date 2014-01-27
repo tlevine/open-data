@@ -1,0 +1,33 @@
+---
+title: Zombie links on data catalogs
+description: Software just might influence the liveliness of URLs.
+tweet_text: The next big drug craze will be a URL resurrection potion. http://thomaslevine.com/!/data-catalog-dead-links #opendata
+twitter_image: figure/prop_links.png
+facebook_image: figure/prop_links.png
+tags: ['open-data']
+kind: article
+created_at: 2014-01-28
+---
+```{r configure, echo=FALSE}
+opts_chunk$set(echo = FALSE, dpi = 42 * 5)
+```
+After I wrote about
+[dead links on data catalogs](/!/dead-links-on-data-catalogs),
+some people commented that the links were less dead than I'd thought.
+
+
+Some explanations were proposed.
+
+**CKAN fails on HEAD requests**
+
+**Redirects (Waldo)**
+
+What was really going on?
+
+## Status codes
+I called a URL alive if an ordinary HEAD request to it returned a
+[status code](http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html) of 200.
+This simplifies things a little bit.
+
+Here are all of the status codes that I received, from all of the different
+links from all of the catalogs.
