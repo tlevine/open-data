@@ -10,7 +10,7 @@ get.datasets <- function() {
   SELECT 
     software, catalog, identifier,
     is_link, status_code,
-    coalesce(status_code == 200, NOT is_link) \'alive\'
+    coalesce(status_code < 200, NOT is_link) \'alive\'
   FROM links
   WHERE software = \'ckan\'
 
@@ -20,7 +20,7 @@ get.datasets <- function() {
   SELECT 
     links.software, links.catalog, links.identifier,
     is_link, status_code,
-    coalesce(status_code == 200, NOT is_link) \'alive\'
+    coalesce(status_code < 400, NOT is_link) \'alive\'
   FROM socrata_deduplicated
   JOIN links
   WHERE socrata_deduplicated.catalog = links.catalog

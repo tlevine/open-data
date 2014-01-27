@@ -10,6 +10,3 @@
 [submodule "downloads/socrata-apis"]
 	path = downloads/socrata-apis
 	url = git@github.com:tlevine/socrata-apis.git
-[submodule "state"]
-	path = state
-	url = git@github.com:tlevine/open-data-state.git
