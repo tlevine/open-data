@@ -28,8 +28,10 @@ get.datasets <- function() {
 
   datasets$software <- factor(datasets$software)
   datasets$catalog <- factor(datasets$catalog)
-  datasets$status_code <- factor(datasets$status_code, exclude = c())
+  datasets$status_code <- factor(datasets$status_code)
   levels(datasets$status_code)[grep('-42', levels(datasets$status_code))] <- 'Timeout'
+  datasets$status_code <- factor(datasets$status_code,
+    levels = c(sort(levels(datasets$status_code)), NA), exclude = c())
   levels(datasets$status_code)[is.na(levels(datasets$status_code))] <- 'Not link'
 
   datasets
