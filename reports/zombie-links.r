@@ -84,17 +84,10 @@ p.timeouts <- ggplot(subset(catalogs, links > 0)) +
   coord_flip()
 
 p.catalogs <- ggplot(catalogs) +
-  aes(x = links, y = timeouts, color = software, label = catalog) +
-  theme(legend.position = 'bottom') +
+  aes(x = links, y = timeouts, color = catalog == 'data.openva.com' | catalog == 'dati.trentino.it', label = catalog) +
+  theme(legend.position = 'none') +
   scale_x_log10('Number of external links on the catalog', labels = comma, breaks = 10^(0:5)) +
   scale_y_log10('Number of timeouts when accessing external links', labels = comma, breaks = 10^(0:5)) +
-  geom_text(size = 7, alpha = 0.5)
-
-# Remove publicdata.eu and hubofdata.ru
-p.canonical.catalogs <- ggplot(subset(catalogs,
-  catalog != 'hubofdata.ru' & catalog != 'publicdata.eu' & catalog != 'data.gov.uk')) +
-  aes(x = links, y = timeouts, color = software, label = catalog) +
-  theme(legend.position = 'bottom') +
   geom_text(size = 7, alpha = 0.5)
 
 # knit('zombie-links.Rmd')
