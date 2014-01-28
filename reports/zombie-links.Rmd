@@ -56,3 +56,9 @@ but that doesn't fully explain the results in the chart from the other post.
 It looks like I have duplicate records in the table.
 
     select catalog, identifier, count(*) from links where software = 'ckan' group by catalog, identifier order by count(*) desc limit 1;
+
+
+
+I had thought that there was a unique index on
+`links.software, links.catalog, links.identifier`,
+but there wasn't!
