@@ -111,4 +111,9 @@ p.duplicates.socrata <- ggplot(subset(unique.links, software == 'socrata')) +
   aes(x = n) + facet_wrap(~ is_link, nrow = 2) + geom_histogram() +
   scale_y_sqrt()
 
+unique.links.socrata <- subset(unique.links, software == 'socrata' & is_link)
+table.duplicates.socrata <- table(subset(unique.links, software == 'socrata' & is_link)$n)
+table.duplicates.socrata.by.catalog <- table(unique.links.socrata$catalog, unique.links.socrata$n)
+
+
 # knit('zombie-links.Rmd')
