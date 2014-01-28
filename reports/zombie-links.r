@@ -52,9 +52,23 @@ FROM datasets GROUP BY catalog')
   catalogs
 }
 
-if (!all(list('datasets', 'catalogs') %in% ls())) {
+get.duplicates <- function() {
+  sql = '
+SELECT
+  software, catalog, identifier, error,
+  (min(status_code) = max(status_code)) same_status_code,
+  count(*) n, round(avg(is_link)) is_link
+FROM links
+GROUP BY catalog, identifier
+'
+  unique.links <- with(new.env(), sqldf(sql, dbname = '/tmp/open-data.sqlite'))
+  unique.links
+}
+
+if (!all(list('datasets', 'catalogs', 'unique.links') %in% ls())) {
   datasets <- get.datasets()
   catalogs <- get.catalogs(datasets)
+  unique.links <- get.duplicates()
 }
 
 p.codes <- ggplot(datasets) + aes(x = status_code) + geom_bar() +
@@ -89,5 +103,12 @@ p.catalogs <- ggplot(catalogs) +
   scale_x_log10('Number of external links on the catalog', labels = comma, breaks = 10^(0:5)) +
   scale_y_log10('Number of timeouts when accessing external links', labels = comma, breaks = 10^(0:5)) +
   geom_text(size = 7, alpha = 0.5)
+
+p.duplicates.ckan <- ggplot(subset(unique.links, software == 'ckan')) +
+  aes(x = n) + facet_wrap(~ is_link, nrow = 2) + geom_histogram()
+
+p.duplicates.socrata <- ggplot(subset(unique.links, software == 'socrata')) +
+  aes(x = n) + facet_wrap(~ is_link, nrow = 2) + geom_histogram() +
+  scale_y_sqrt()
 
 # knit('zombie-links.Rmd')
