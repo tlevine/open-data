@@ -11,6 +11,7 @@ get.datasets <- function() {
     software, catalog, identifier, status_code
   FROM links
   WHERE software = \'ckan\'
+  GROUP BY links.catalog, links.identifier
 
   UNION ALL
 
