@@ -118,7 +118,7 @@ def check_links():
 
     # Source
     urls = Queue()
-    sql = 'SELECT DISTINCT url FROM links WHERE status_code IS NULL AND is_link AND url != \'\''
+    sql = 'SELECT DISTINCT url FROM links WHERE status_code IS NULL AND is_link'
     url_list = [row['url'] for row in dt.execute(sql)]
     random.shuffle(url_list) # so that we randomly bounce around catalogs
     for url in url_list:
