@@ -62,3 +62,27 @@ It looks like I have duplicate records in the table.
 I had thought that there was a unique index on
 `links.software, links.catalog, links.identifier`,
 but there wasn't!
+
+
+
+also, I had interpreted NULL as meaning that the dataset is not a link,
+but it really represents that link's liveliness has yet  to be checked.
+
+    url_list = [row['url'] for row in dt.execute('SELECT DISTINCT url FROM links WHERE status_code IS NULL')]
+
+
+Here are some non-link datasets in the links table.
+
+    select 'https://' || links.catalog || '/d/' || id url from links join socrata where not is_link and links.identifier=socrata.tableId limit 10;                                                                         
+    url                               
+    ----------------------------------
+    https://data.sfgov.org/d/3fig-nit3
+    https://data.sfgov.org/d/3hay-yzem
+    https://data.sfgov.org/d/3nwz-3n68
+    https://data.sfgov.org/d/3twj-ueew
+    https://data.sfgov.org/d/4ang-frd3
+    https://data.sfgov.org/d/5q3n-q6kw
+    https://data.sfgov.org/d/7ybj-xpju
+    https://data.sfgov.org/d/99js-dqmz
+    https://data.sfgov.org/d/akvp-jmwa
+    https://data.sfgov.org/d/di4e-7emh
