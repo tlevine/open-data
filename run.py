@@ -18,7 +18,8 @@ from sqlite3 import DatabaseError
 from itertools import islice
 import signal
 import sys
-from multiprocessing import Process, Queue
+from threading import Thread
+from Queue import Queue
 
 SOCRATA_FIX = {
     'http://datakc.org':'https://opendata.go.ke',
@@ -62,21 +63,15 @@ def catalogs():
 
 def download_metadata():
 
-    processes = {}
+    threads = {}
     c = list(catalogs())
     random.shuffle(c)
     for software, url in c:
         args = (url, os.path.join('downloads', software))
-        processes[(software, url)] = Process(target = getattr(download, software), args = args)
+        threads[(software, url)] = Thread(None, target = getattr(download, software), args = args)
 
-    def signal_handler(signal, frame):
-        parallel.kill(processes)
-        db_process.terminate()
-        sys.exit(0)
-
-    signal.signal(signal.SIGINT, signal_handler)
-    parallel.start(processes)
-    parallel.join(processes)
+    for thread in threads.values():
+        thread.start()
 
 def _check_catalog(software, catalog):
     for dataset in getattr(read, software)(catalog):
@@ -118,9 +113,15 @@ def check_links():
 
     # Source
     urls = Queue()
-    sql = 'SELECT DISTINCT url FROM links WHERE status_code IS NULL AND is_link'
+    sql = '''
+SELECT DISTINCT url
+FROM links
+WHERE (status_code = -42 OR status_code IS NULL) AND is_link AND url NOT NULL
+ORDER BY status_code, substr(30, 100);
+'''
+    # Order by the substring so that we randomly bounce around catalogs
+
     url_list = [row['url'] for row in dt.execute(sql)]
-    random.shuffle(url_list) # so that we randomly bounce around catalogs
     for url in url_list:
         urls.put(url)
 
@@ -130,8 +131,8 @@ def check_links():
         while True:
             dt.execute(*queue.get())
     db_updates = Queue()
-    db_process = Process(target = _db, args = (db_updates,))
-    db_process.start()
+    db_thread = Thread(None, target = _db, args = (db_updates,))
+    db_thread.start()
 
     # Check links
     def _check_link(url_queue):
@@ -143,17 +144,12 @@ def check_links():
             sql = 'UPDATE links SET status_code = ?, headers = ?, error = ? WHERE is_link = 1 AND url = ?'
             db_updates.put((sql, (status_code, headers, error, url)))
 
-    processes = {}
+    threads = {}
     for i in range(50):
-        processes[i] = Process(target = _check_link, args = (urls,))
+        threads[i] = Thread(None, target = _check_link, args = (urls,))
 
-    def signal_handler(signal, frame):
-        parallel.kill(processes)
-        sys.exit(0)
-
-    signal.signal(signal.SIGINT, signal_handler)
-    parallel.start(processes)
-    parallel.join(processes)
+    for thread in threads.values():
+        thread.start()
 
 SOFTWARE_MAP = {
     'identifier': {'ckan':'name','socrata':'id', 'opendatasoft': 'datasetid'}
