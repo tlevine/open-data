@@ -71,6 +71,7 @@ def download_metadata():
 
     def signal_handler(signal, frame):
         parallel.kill(processes)
+        db_process.terminate()
         sys.exit(0)
 
     signal.signal(signal.SIGINT, signal_handler)
@@ -117,7 +118,8 @@ def check_links():
 
     # Source
     urls = Queue()
-    url_list = [row['url'] for row in dt.execute('SELECT DISTINCT url FROM links WHERE status_code IS NULL')]
+    sql = 'SELECT DISTINCT url FROM links WHERE status_code IS NULL AND is_link AND url != \'\''
+    url_list = [row['url'] for row in dt.execute(sql)]
     random.shuffle(url_list) # so that we randomly bounce around catalogs
     for url in url_list:
         urls.put(url)
@@ -133,7 +135,7 @@ def check_links():
 
     # Check links
     def _check_link(url_queue):
-        while True:
+        while not urls.empty():
             url = url_queue.get()
             if url == None:
                 raise ValueError('url is None')
