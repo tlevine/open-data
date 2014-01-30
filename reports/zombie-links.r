@@ -46,7 +46,7 @@ SELECT
   sum(status_code == \'Timeout\') \'timeouts\',
   sum(status_code == \'Not link\') \'not_links\',
   sum(status_code != \'Not link\' AND status_code != \'Timeout\' AND status_code = 200) \'live_links\',
-  sum(status_code != \'Not link\' AND status_code != \'Timeout\' AND status_code NOT NULL) \'dead_links\',
+  sum(status_code != \'Not link\' AND status_code != \'Timeout\' AND status_code != 200 AND status_code NOT NULL) \'dead_links\',
   count(*) \'datasets\'
 FROM datasets GROUP BY catalog')
   catalogs$prop.bad <- catalogs$live_links / (catalogs$datasets - catalogs$not_links)
