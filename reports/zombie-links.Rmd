@@ -145,3 +145,7 @@ A bunch of datasets have listed links but provided an empty URL.
 
 sqlite> select count(*) from links where url like '//%';
 0
+
+
+
+I didn't have good error logs, so I fixed that.

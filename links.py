@@ -36,8 +36,7 @@ def ckan(dataset):
 
 def is_alive(url, log = False):
     try:
-        _url = 'http' + url if url.startswith('//' else url
-        r = requests.head(_url, allow_redirects=True, timeout = 4)
+        r = requests.head(url, allow_redirects=True, timeout = 4)
     except Exception as e:
         status_code = -42
         headers = None
