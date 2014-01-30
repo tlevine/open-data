@@ -106,6 +106,45 @@ def get_links(softwares = ['ckan','socrata']):
                 print(os.path.join('downloads',software,catalog))
                 raise
 
+def check_timeouts():
+    dt = DumpTruck('/tmp/open-data.sqlite', auto_commit = False)
+    dt.execute('''
+CREATE TABLE IF NOT EXISTS link_speed (
+  url TEXT NOT NULL,
+  elapsed FLOAT NOT NULL,
+  UNIQUE(url)
+);''')
+    urls = Queue()
+    url_list = [row['url'] for row in dt.execute('SELECT DISTINCT url FROM links WHERE status_code = -42')]
+    for url in url_list:
+        urls.put(url)
+
+    # Sink to the database
+    def _db(queue):
+        dt = DumpTruck('/tmp/open-data.sqlite')
+        while True:
+            dt.execute(*queue.get())
+    db_updates = Queue()
+    db_thread = Thread(None, target = _db, args = (db_updates,))
+    db_thread.start()
+
+    # Check links
+    def _check_link(url_queue):
+        while not urls.empty():
+            url = url_queue.get()
+            if url == None:
+                raise ValueError('url is None')
+            r = requests.head(url, allow_redirects=True, timeout = 30)
+            sql = 'UPDATE links SET elapsed = ? WHERE url = ?'
+            db_updates.put((sql, (r.elapsed.total_seconds(), url)))
+
+    threads = {}
+    for i in range(100):
+        threads[i] = Thread(None, target = _check_link, args = (urls,))
+
+    for thread in threads.values():
+        thread.start()
+
 def check_links():
     dt = DumpTruck('/tmp/open-data.sqlite', auto_commit = False)
     dt.create_index(['url'], 'links', if_not_exists = True, unique = False)

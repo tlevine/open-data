@@ -21,6 +21,9 @@ get-links: datasets
 check-links: get-links
 	python2 -c 'import run; run.check_links()'
 
+check-timeouts: check-links
+	python2 -c 'import run; run.check_timeouts()'
+
 apis:
 	python2 -c 'import run; run.apis()'
 
