@@ -31,7 +31,7 @@ get.datasets <- function() {
   datasets$software <- factor(datasets$software)
   datasets$catalog <- factor(datasets$catalog)
   datasets$status_code <- factor(datasets$status_code)
-  levels(datasets$status_code)[grep('-42', levels(datasets$status_code))] <- 'Timeout'
+  levels(datasets$status_code)[grep('-42', levels(datasets$status_code))] <- 'No response'
   datasets$status_code <- factor(datasets$status_code,
     levels = c(sort(levels(datasets$status_code)), NA), exclude = c())
   levels(datasets$status_code)[is.na(levels(datasets$status_code))] <- 'Not link'
@@ -44,10 +44,10 @@ get.catalogs <- function(datasets) {
 SELECT
   software,
   catalog,
-  sum(status_code == \'Timeout\') \'timeouts\',
+  sum(status_code == \'No response\') \'no_response\',
   sum(status_code == \'Not link\') \'not_links\',
-  sum(status_code != \'Not link\' AND status_code != \'Timeout\' AND status_code = 200) \'live_links\',
-  sum(status_code != \'Not link\' AND status_code != \'Timeout\' AND status_code != 200 AND status_code NOT NULL) \'dead_links\',
+  sum(status_code != \'Not link\' AND status_code != \'No response\' AND status_code = 200) \'live_links\',
+  sum(status_code != \'Not link\' AND status_code != \'No response\' AND status_code != 200 AND status_code NOT NULL) \'dead_links\',
   count(*) \'datasets\'
 FROM datasets GROUP BY catalog')
   catalogs$prop.bad <- catalogs$live_links / (catalogs$datasets - catalogs$not_links)
@@ -57,13 +57,13 @@ FROM datasets GROUP BY catalog')
 }
 
 get.link.groupings <- function(catalogs) {
-  for (column in c('timeouts','not_links','live_links','dead_links')){
+  for (column in c('no_response','not_links','live_links','dead_links')){
     catalogs[,column] <- catalogs[,column] / catalogs$datasets
   }
 
   link.groupings <- melt(catalogs,
     id.vars = c('software','catalog'),
-    measure.vars = c('not_links','live_links','dead_links','timeouts'),
+    measure.vars = c('not_links','live_links','dead_links','no_response'),
     variable.name = 'link.type', value.name = c('proportion'))
 
   link.groupings <- link.groupings[order(link.groupings$catalog),]
@@ -118,15 +118,15 @@ p.bad <- ggplot(subset(catalogs, datasets > 0)) +
   geom_bar(stat = 'identity') +
   xlab('Data catalog\n(Only data catalogs with externally stored datasets are included.)') +
   scale_y_continuous('Proportion of external datasets that timed out', labels = percent) +
-  ggtitle('External link timeouts by data catalog') +
+  ggtitle('Unresponsive external links by data catalog') +
   theme(legend.position = 'bottom') +
   coord_flip()
 
 p.catalogs <- ggplot(catalogs) +
-  aes(x = links, y = timeouts, color = catalog == 'data.openva.com' | catalog == 'dati.trentino.it', label = catalog) +
+  aes(x = links, y = no_response, color = catalog == 'data.openva.com' | catalog == 'dati.trentino.it', label = catalog) +
   theme(legend.position = 'none') +
   scale_x_log10('Number of external links on the catalog', labels = comma, breaks = 10^(0:5)) +
-  scale_y_log10('Number of timeouts when accessing external links', labels = comma, breaks = 10^(0:5)) +
+  scale_y_log10('Number of non-responses when accessing external links', labels = comma, breaks = 10^(0:5)) +
   geom_text(size = 7, alpha = 0.5)
 
 p.duplicates.ckan <- ggplot(subset(unique.links, software == 'ckan')) +
@@ -188,5 +188,11 @@ p.errors.by.scheme <- ggplot(subset(datasets, !has.scheme & status_code != 'Not 
 # table(datasets$catalog, datasets$has.scheme)
 
 # knit('zombie-links.Rmd')
+
+
+
+
+
+
 
 

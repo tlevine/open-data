@@ -42,7 +42,7 @@ about.
 
 
 
-It seems like there were a lot of timeouts,
+It seems like there were a lot of non-responses,
 
 ```r
 sort(table(subset(datasets, catalog == 'data.openva.com')$status_code), decreasing = T)[1:5]
