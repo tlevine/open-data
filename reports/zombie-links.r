@@ -89,7 +89,7 @@ GROUP BY catalog, identifier
 
 if (!all(list('datasets', 'catalogs', 'unique.links', 'link.groupings') %in% ls())) {
 # datasets <- get.datasets()
-  datasets$has.scheme <- grepl('://', datasets$url)
+  datasets$has.scheme <- grepl('://', datasets$url) | grepl('^//', datasets$url)
   datasets$hostname <- sub('(?:(?:http|ftp|https)://)?([^/]*)/.*$', '\\1', datasets$url)
   catalogs <- get.catalogs(datasets)
   unique.links <- get.duplicates()
@@ -167,7 +167,7 @@ p.scheme <- ggplot(subset(datasets, status_code != 'Not link')) +
   aes(x = catalog, fill = has.scheme) +
   theme(legend.position = 'bottom', axis.text.y = element_text(size = 10)) +
   xlab('') +
-  scale_fill_discrete('Does the dataset have a URL scheme (like "http://")?') +
+  scale_fill_discrete('Does the dataset have a URI scheme (like "http://")?') +
   coord_flip()
 
 p.scheme.count <- p.scheme + geom_bar() +
@@ -179,7 +179,7 @@ p.scheme.prop <- p.scheme + geom_bar(position = 'fill') +
 p.errors.by.scheme <- ggplot(subset(datasets, !has.scheme & status_code != 'Not link')) +
   aes(x = catalog, fill = status_code) +
   geom_bar() +
-  ggtitle('URLs without schemes wind up timing out.')
+  ggtitle('URIs without schemes wind up timing out.')
 
 
 # table(datasets$catalog, datasets$has.scheme)
