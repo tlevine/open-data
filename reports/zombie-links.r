@@ -89,7 +89,7 @@ GROUP BY catalog, identifier
 
 if (!all(list('datasets', 'catalogs', 'unique.links', 'link.groupings') %in% ls())) {
 # datasets <- get.datasets()
-  datasets$has.schema <- grepl('://', datasets$url)
+  datasets$has.scheme <- grepl('://', datasets$url)
   datasets$hostname <- sub('(?:(?:http|ftp|https)://)?([^/]*)/.*$', '\\1', datasets$url)
   catalogs <- get.catalogs(datasets)
   unique.links <- get.duplicates()
@@ -159,29 +159,29 @@ p.link.types.specifics <- ggplot(subset(link.groupings, catalog == 'dati.trentin
   ggtitle('Non-links, live links and dead links across data catalogs')
 
 datasets$catalog <- factor(datasets$catalog,
-  levels = sqldf('SELECT catalog from datasets group by catalog order by avg(has_schema)')[,1])
-datasets$has.schema.factor <- factor(datasets$has.schema, levels = c(TRUE, FALSE))
-levels(datasets$has.schema.factor) <- c('Yes','No')
+  levels = sqldf('SELECT catalog from datasets group by catalog order by avg(has_scheme)')[,1])
+datasets$has.scheme.factor <- factor(datasets$has.scheme, levels = c(TRUE, FALSE))
+levels(datasets$has.scheme.factor) <- c('Yes','No')
 
-p.schema <- ggplot(subset(datasets, status_code != 'Not link')) +
-  aes(x = catalog, fill = has.schema) +
+p.scheme <- ggplot(subset(datasets, status_code != 'Not link')) +
+  aes(x = catalog, fill = has.scheme) +
   theme(legend.position = 'bottom', axis.text.y = element_text(size = 10)) +
   xlab('') +
-  scale_fill_discrete('Does the dataset have a URL schema (like "http://")?') +
+  scale_fill_discrete('Does the dataset have a URL scheme (like "http://")?') +
   coord_flip()
 
-p.schema.count <- p.schema + geom_bar() +
+p.scheme.count <- p.scheme + geom_bar() +
   scale_y_continuous('Number of datasets', labels = comma)
 
-p.schema.prop <- p.schema + geom_bar(position = 'fill') +
+p.scheme.prop <- p.scheme + geom_bar(position = 'fill') +
   scale_y_continuous('Proportion', labels = percent)
 
-p.errors.by.schema <- ggplot(subset(datasets, !has.schema & status_code != 'Not link')) +
+p.errors.by.scheme <- ggplot(subset(datasets, !has.scheme & status_code != 'Not link')) +
   aes(x = catalog, fill = status_code) +
   geom_bar() +
-  ggtitle('URLs without schemas wind up timing out.')
+  ggtitle('URLs without schemes wind up timing out.')
 
 
-# table(datasets$catalog, datasets$has.schema)
+# table(datasets$catalog, datasets$has.scheme)
 
 # knit('zombie-links.Rmd')
