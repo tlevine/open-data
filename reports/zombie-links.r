@@ -65,6 +65,10 @@ get.link.groupings <- function(catalogs) {
     measure.vars = c('not_links','live_links','dead_links','timeouts'),
     variable.name = 'link.type', value.name = c('proportion'))
 
+  link.groupings <- link.groupings[order(link.groupings$catalog),]
+  link.groupings$catalog <- factor(link.groupings$catalog,
+    levels = levels(catalogs$catalog)[order(catalogs$prop.bad)])
+
   link.groupings
 }
 
@@ -133,14 +137,22 @@ unique.links.socrata <- subset(unique.links, software == 'socrata' & is_link)
 table.duplicates.socrata <- table(subset(unique.links, software == 'socrata' & is_link)$n)
 table.duplicates.socrata.by.catalog <- table(unique.links.socrata$catalog, unique.links.socrata$n)
 
-p.link.types <- ggplot(subset(link.groupings, catalog == 'www.criminalytics.org' | catalog == 'data.gov.uk')) +
+p.link.types <- ggplot(link.groupings) +
   aes(x = catalog, y = proportion, fill = link.type) +
   geom_bar(stat = 'identity') + coord_flip() +
   xlab('') +
   scale_y_continuous('Proportion of datasets by catalog', labels = percent) +
   theme(legend.position = 'bottom', axis.text.y = element_text(size = 10)) +
   scale_fill_discrete('Type of dataset') +
-  facet_wrap(~ software, nrow = 2) +
+  ggtitle('Non-links, live links and dead links across data catalogs')
+
+p.link.types.specifics <- ggplot(subset(link.groupings, catalog == 'dati.trentino.it' | catalog == 'data.openva.com')) +
+  aes(x = catalog, y = proportion, fill = link.type) +
+  geom_bar(stat = 'identity') + coord_flip() +
+  xlab('') +
+  scale_y_continuous('Proportion of datasets by catalog', labels = percent) +
+  theme(legend.position = 'bottom', axis.text.y = element_text(size = 10)) +
+  scale_fill_discrete('Type of dataset') +
   ggtitle('Non-links, live links and dead links across data catalogs')
 
 

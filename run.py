@@ -143,9 +143,10 @@ ORDER BY status_code, substr(30, 100);
             status_code, headers, error = links.is_alive(url)
             sql = 'UPDATE links SET status_code = ?, headers = ?, error = ? WHERE is_link = 1 AND url = ?'
             db_updates.put((sql, (status_code, headers, error, url)))
+            print(url)
 
     threads = {}
-    for i in range(50):
+    for i in range(100):
         threads[i] = Thread(None, target = _check_link, args = (urls,))
 
     for thread in threads.values():

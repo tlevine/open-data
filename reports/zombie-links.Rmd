@@ -86,3 +86,13 @@ Here are some non-link datasets in the links table.
     https://data.sfgov.org/d/99js-dqmz
     https://data.sfgov.org/d/akvp-jmwa
     https://data.sfgov.org/d/di4e-7emh
+
+
+I ran again things that timed out.
+I checked a few manually.
+
+dati.trentino.it/storage/f/2013-06-16T111814/_ggeiWE.csv
+
+This works but sometimes takes a while.
+
+https://www-genesis.destatis.de/genesis/online/link/tabelleDownload/46421-0001.html
