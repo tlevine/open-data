@@ -163,7 +163,7 @@ datasets$catalog <- factor(datasets$catalog,
 datasets$has.schema.factor <- factor(datasets$has.schema, levels = c(TRUE, FALSE))
 levels(datasets$has.schema.factor) <- c('Yes','No')
 
-p.schema <- ggplot(datasets) +
+p.schema <- ggplot(subset(datasets, status_code != 'Not link')) +
   aes(x = catalog, fill = has.schema) +
   theme(legend.position = 'bottom', axis.text.y = element_text(size = 10)) +
   xlab('') +
@@ -176,6 +176,12 @@ p.schema.count <- p.schema + geom_bar() +
 p.schema.prop <- p.schema + geom_bar(position = 'fill') +
   scale_y_continuous('Proportion', labels = percent)
 
-print(table(datasets$catalog, datasets$has.schema))
+p.errors.by.schema <- ggplot(subset(datasets, !has.schema & status_code != 'Not link')) +
+  aes(x = catalog, fill = status_code) +
+  geom_bar() +
+  ggtitle('URLs without schemas wind up timing out.')
+
+
+# table(datasets$catalog, datasets$has.schema)
 
 # knit('zombie-links.Rmd')
