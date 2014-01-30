@@ -8,7 +8,7 @@ get.datasets <- function() {
   sql <- '
   -- CKAN
   SELECT 
-    software, catalog, identifier, status_code
+    software, catalog, identifier, status_code, url
   FROM links
   WHERE software = \'ckan\'
   GROUP BY links.catalog, links.identifier
@@ -17,7 +17,7 @@ get.datasets <- function() {
 
   -- Socrata
   SELECT 
-    links.software, links.catalog, links.identifier, status_code
+    links.software, links.catalog, links.identifier, status_code, url
   FROM socrata_deduplicated
   JOIN links
   WHERE socrata_deduplicated.catalog = links.catalog
