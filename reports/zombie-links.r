@@ -3,6 +3,7 @@ library(ggplot2)
 library(reshape2)
 library(scales)
 library(knitr)
+library(httr)
 
 get.datasets <- function() {
   sql <- '
@@ -88,6 +89,7 @@ GROUP BY catalog, identifier
 
 if (!all(list('datasets', 'catalogs', 'unique.links', 'link.groupings') %in% ls())) {
 # datasets <- get.datasets()
+  datasets[!is.na(datasets$url),'hostname'] <- sapply(datasets[!is.na(datasets$url),'url'], function(x){parse_url(x)$hostname})
   catalogs <- get.catalogs(datasets)
   unique.links <- get.duplicates()
   link.groupings <- get.link.groupings(catalogs)
