@@ -113,7 +113,8 @@ def check_timeouts():
     dt.execute('''
 CREATE TABLE IF NOT EXISTS link_speeds (
   url TEXT NOT NULL,
-  elapsed FLOAT NOT NULL,
+  elapsed FLOAT,
+  error TEXT NOT NULL,
   UNIQUE(url)
 );''')
     urls = Queue()
@@ -138,12 +139,13 @@ CREATE TABLE IF NOT EXISTS link_speeds (
                 raise ValueError('url is None')
             try:
                 r = requests.head(url, allow_redirects=True, timeout = 30)
-            except:
-                print(url)
-                raise
+            except Exception as e:
+                e = str(type(e)) + ' ' + str(f)
+                sql = 'INSERT INTO link_speeds (url, elapsed, error) VALUES (?,?,?)'
+                db_updates.put((sql, (url, r.elapsed.total_seconds(), e)))
             else:
-                sql = 'UPDATE link_speeds SET elapsed = ? WHERE url = ?'
-                db_updates.put((sql, (r.elapsed.total_seconds(), url)))
+                sql = 'INSERT INTO link_speeds (url, elapsed, error) VALUES (?,?,\'\')'
+                db_updates.put((sql, (url, r.elapsed.total_seconds())))
 
     threads = {}
     for i in range(100):
