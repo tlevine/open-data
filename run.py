@@ -111,7 +111,7 @@ def check_timeouts():
 
     dt = DumpTruck('/tmp/open-data.sqlite', auto_commit = False)
     dt.execute('''
-CREATE TABLE IF NOT EXISTS link_speed (
+CREATE TABLE IF NOT EXISTS link_speeds (
   url TEXT NOT NULL,
   elapsed FLOAT NOT NULL,
   UNIQUE(url)
@@ -137,7 +137,7 @@ CREATE TABLE IF NOT EXISTS link_speed (
             if url == None:
                 raise ValueError('url is None')
             r = requests.head(url, allow_redirects=True, timeout = 30)
-            sql = 'UPDATE links SET elapsed = ? WHERE url = ?'
+            sql = 'UPDATE link_speeds SET elapsed = ? WHERE url = ?'
             db_updates.put((sql, (r.elapsed.total_seconds(), url)))
 
     threads = {}
