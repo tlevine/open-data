@@ -119,7 +119,7 @@ CREATE TABLE IF NOT EXISTS link_speeds (
   UNIQUE(url)
 );''')
     urls = Queue()
-    url_list = [row['url'] for row in dt.execute('SELECT DISTINCT url FROM links WHERE status_code = -42')]
+    url_list = [row['url'] for row in dt.execute('SELECT DISTINCT url FROM links WHERE status_code = -42 and URL NOT IN (SELECT url from link_speeds)')]
     for url in url_list:
         urls.put(url)
 
@@ -147,13 +147,13 @@ CREATE TABLE IF NOT EXISTS link_speeds (
                 r = requests.head(url, allow_redirects=True, timeout = 30)
             except Exception as e:
                 sql = 'INSERT INTO link_speeds (url, error_type, error) VALUES (?,?,?)'
-                db_updates.put((sql, (url, str(type(e)), str(e))))
+                db_updates.put((sql, (url, unicode(type(e)), unicode(e)))) # ew python 2
             else:
                 sql = 'INSERT INTO link_speeds (url, elapsed, error_type, error) VALUES (?,?,\'\',\'\')'
                 db_updates.put((sql, (url, r.elapsed.total_seconds())))
 
     threads = {}
-    for i in range(100):
+    for i in range(500):
         threads[i] = Thread(None, target = _check_link, args = (urls,))
 
     for thread in threads.values():
