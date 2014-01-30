@@ -182,6 +182,11 @@ p.errors.by.scheme <- ggplot(subset(datasets, !has.scheme & status_code != 'Not 
   ggtitle('URIs without schemes wind up timing out.')
 
 
+#sqlite> select count(*), url like '% %' from links where is_link and url not null group by 2;
+
+
 # table(datasets$catalog, datasets$has.scheme)
 
 # knit('zombie-links.Rmd')
+
+
