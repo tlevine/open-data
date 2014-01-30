@@ -89,7 +89,6 @@ GROUP BY catalog, identifier
 
 if (!all(list('datasets', 'catalogs', 'unique.links', 'link.groupings') %in% ls())) {
 # datasets <- get.datasets()
-# datasets[!is.na(datasets$url),'hostname'] <- sapply(datasets[!is.na(datasets$url),'url'], function(x){parse_url(x)$hostname})
   datasets$has.schema <- grepl('://', datasets$url)
   datasets$hostname <- sub('(?:(?:http|ftp|https)://)?([^/]*)/.*$', '\\1', datasets$url)
   catalogs <- get.catalogs(datasets)
@@ -159,5 +158,24 @@ p.link.types.specifics <- ggplot(subset(link.groupings, catalog == 'dati.trentin
   scale_fill_discrete('Type of dataset') +
   ggtitle('Non-links, live links and dead links across data catalogs')
 
+datasets$catalog <- factor(datasets$catalog,
+  levels = sqldf('SELECT catalog from datasets group by catalog order by avg(has_schema)')[,1])
+datasets$has.schema.factor <- factor(datasets$has.schema, levels = c(TRUE, FALSE))
+levels(datasets$has.schema.factor) <- c('Yes','No')
+
+p.schema <- ggplot(datasets) +
+  aes(x = catalog, fill = has.schema) +
+  theme(legend.position = 'bottom', axis.text.y = element_text(size = 10)) +
+  xlab('') +
+  scale_fill_discrete('Does the dataset have a URL schema (like "http://")?') +
+  coord_flip()
+
+p.schema.count <- p.schema + geom_bar() +
+  scale_y_continuous('Number of datasets', labels = comma)
+
+p.schema.prop <- p.schema + geom_bar(position = 'fill') +
+  scale_y_continuous('Proportion', labels = percent)
+
+print(table(datasets$catalog, datasets$has.schema))
 
 # knit('zombie-links.Rmd')
