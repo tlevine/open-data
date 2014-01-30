@@ -136,9 +136,14 @@ CREATE TABLE IF NOT EXISTS link_speeds (
             url = url_queue.get()
             if url == None:
                 raise ValueError('url is None')
-            r = requests.head(url, allow_redirects=True, timeout = 30)
-            sql = 'UPDATE link_speeds SET elapsed = ? WHERE url = ?'
-            db_updates.put((sql, (r.elapsed.total_seconds(), url)))
+            try:
+                r = requests.head(url, allow_redirects=True, timeout = 30)
+            except:
+                print(url)
+                raise
+            else:
+                sql = 'UPDATE link_speeds SET elapsed = ? WHERE url = ?'
+                db_updates.put((sql, (r.elapsed.total_seconds(), url)))
 
     threads = {}
     for i in range(100):
