@@ -108,6 +108,7 @@ def get_links(softwares = ['ckan','socrata']):
 
 def check_timeouts():
     import requests
+    from unidecode import unidecode
 
     dt = DumpTruck('/tmp/open-data.sqlite', auto_commit = False)
     dt.execute('''
@@ -147,7 +148,7 @@ CREATE TABLE IF NOT EXISTS link_speeds (
                 r = requests.head(url, allow_redirects=True, timeout = 30)
             except Exception as e:
                 sql = 'INSERT INTO link_speeds (url, error_type, error) VALUES (?,?,?)'
-                db_updates.put((sql, (url, unicode(type(e)), unicode(e)))) # ew python 2
+                db_updates.put((sql, (url, unicode(type(e)), unidecode(unicode(e))))) # ew python 2
             else:
                 sql = 'INSERT INTO link_speeds (url, elapsed, error_type, error) VALUES (?,?,\'\',\'\')'
                 db_updates.put((sql, (url, r.elapsed.total_seconds())))
