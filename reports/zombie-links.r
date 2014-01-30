@@ -88,7 +88,7 @@ GROUP BY catalog, identifier
 }
 
 if (!all(list('datasets', 'catalogs', 'unique.links', 'link.groupings') %in% ls())) {
-# datasets <- get.datasets()
+  datasets <- get.datasets()
   datasets$has.scheme <- grepl('://', datasets$url) | grepl('^//', datasets$url)
   datasets$hostname <- sub('(?:(?:http|ftp|https)://)?([^/]*)/.*$', '\\1', datasets$url)
   catalogs <- get.catalogs(datasets)
