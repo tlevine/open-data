@@ -114,6 +114,7 @@ def check_timeouts():
 CREATE TABLE IF NOT EXISTS link_speeds (
   url TEXT NOT NULL,
   elapsed FLOAT,
+  error_type TEXT NOT NULL,
   error TEXT NOT NULL,
   UNIQUE(url)
 );''')
@@ -131,6 +132,11 @@ CREATE TABLE IF NOT EXISTS link_speeds (
     db_thread = Thread(None, target = _db, args = (db_updates,))
     db_thread.start()
 
+#   def signal_handler(signal, frame):
+#       db_thread.terminate()
+#       sys.exit(0)
+#   signal.signal(signal.SIGINT, signal_handler)
+
     # Check links
     def _check_link(url_queue):
         while not urls.empty():
@@ -140,11 +146,10 @@ CREATE TABLE IF NOT EXISTS link_speeds (
             try:
                 r = requests.head(url, allow_redirects=True, timeout = 30)
             except Exception as e:
-                e = str(type(e)) + ' ' + str(f)
-                sql = 'INSERT INTO link_speeds (url, elapsed, error) VALUES (?,?,?)'
-                db_updates.put((sql, (url, r.elapsed.total_seconds(), e)))
+                sql = 'INSERT INTO link_speeds (url, error_type, error) VALUES (?,?,?)'
+                db_updates.put((sql, (url, str(type(e)), str(e))))
             else:
-                sql = 'INSERT INTO link_speeds (url, elapsed, error) VALUES (?,?,\'\')'
+                sql = 'INSERT INTO link_speeds (url, elapsed, error_type, error) VALUES (?,?,\'\',\'\')'
                 db_updates.put((sql, (url, r.elapsed.total_seconds())))
 
     threads = {}
