@@ -1,2 +1,4 @@
 ckanapi==2.2
 get-cached==0.0.1
+requests==2.2.1
+dumptruck
