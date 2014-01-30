@@ -126,3 +126,18 @@ Now I think this is what was going on.
 The link is alive, but my timeout of 4 seconds (originally 2 seconds)
 might be too short. It would have worked in this case, but it came kind
 of close.
+
+
+
+
+
+
+
+
+
+
+
+A bunch of datasets have listed links but provided an empty URL.
+
+    select catalog,count(*) from links where is_link and url is null group by catalog order by 2;
+
