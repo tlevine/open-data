@@ -96,3 +96,33 @@ dati.trentino.it/storage/f/2013-06-16T111814/_ggeiWE.csv
 This works but sometimes takes a while.
 
 https://www-genesis.destatis.de/genesis/online/link/tabelleDownload/46421-0001.html
+
+In case the problem was an internet connection (tethered from a phone),
+I used a big-boy computer in a datacenter to run the checker again on
+all datasets that had timed out. Results didn't remarkably change.
+
+
+
+
+
+## Slow datasets
+Now I think this is what was going on.
+
+  url = 'http://dati.trentino.it/storage/f/2013-06-16T114537/_EBmYVk.csv'
+  import requests
+
+  get = requests.get(url)
+  head = requests.head(url)                                                                                     
+
+  print(get)
+  # <Response [200]>
+
+  print(head)
+  # <Response [200]>
+
+  print(head.elapsed)
+  # datetime.timedelta(0, 3, 353558)
+
+The link is alive, but my timeout of 4 seconds (originally 2 seconds)
+might be too short. It would have worked in this case, but it came kind
+of close.
