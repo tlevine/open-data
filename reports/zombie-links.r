@@ -89,7 +89,8 @@ GROUP BY catalog, identifier
 
 if (!all(list('datasets', 'catalogs', 'unique.links', 'link.groupings') %in% ls())) {
 # datasets <- get.datasets()
-  datasets[!is.na(datasets$url),'hostname'] <- sapply(datasets[!is.na(datasets$url),'url'], function(x){parse_url(x)$hostname})
+# datasets[!is.na(datasets$url),'hostname'] <- sapply(datasets[!is.na(datasets$url),'url'], function(x){parse_url(x)$hostname})
+  datasets$hostname <- sub('(?:http|ftp|https)://([^/].*)/.*$', '\\1', datasets$url)
   catalogs <- get.catalogs(datasets)
   unique.links <- get.duplicates()
   link.groupings <- get.link.groupings(catalogs)
