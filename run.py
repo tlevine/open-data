@@ -107,6 +107,8 @@ def get_links(softwares = ['ckan','socrata']):
                 raise
 
 def check_timeouts():
+    import requests
+
     dt = DumpTruck('/tmp/open-data.sqlite', auto_commit = False)
     dt.execute('''
 CREATE TABLE IF NOT EXISTS link_speed (
