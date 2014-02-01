@@ -87,6 +87,11 @@ GROUP BY catalog, identifier
   unique.links
 }
 
+get.errors <- function() {
+  sql <- 'SELECT * from link_speeds;'
+  with(new.env(), sqldf(sql, dbname = '/tmp/open-data.sqlite'))
+}
+
 if (!all(list('datasets', 'catalogs', 'unique.links', 'link.groupings') %in% ls())) {
   datasets <- get.datasets()
   datasets$has.scheme <- grepl('://', datasets$url) | grepl('^//', datasets$url)
@@ -94,6 +99,7 @@ if (!all(list('datasets', 'catalogs', 'unique.links', 'link.groupings') %in% ls(
   catalogs <- get.catalogs(datasets)
   unique.links <- get.duplicates()
   link.groupings <- get.link.groupings(catalogs)
+  errors <- get.errors()
 }
 
 p.codes <- ggplot(datasets) + aes(x = status_code) + geom_bar() +
@@ -117,7 +123,7 @@ p.bad <- ggplot(subset(catalogs, datasets > 0)) +
   aes(x = catalog, y = prop.bad, fill = software) +
   geom_bar(stat = 'identity') +
   xlab('Data catalog\n(Only data catalogs with externally stored datasets are included.)') +
-  scale_y_continuous('Proportion of external datasets that timed out', labels = percent) +
+  scale_y_continuous('Proportion of external datasets that did not respond', labels = percent) +
   ggtitle('Unresponsive external links by data catalog') +
   theme(legend.position = 'bottom') +
   coord_flip()
@@ -176,10 +182,14 @@ p.scheme.count <- p.scheme + geom_bar() +
 p.scheme.prop <- p.scheme + geom_bar(position = 'fill') +
   scale_y_continuous('Proportion', labels = percent)
 
-p.errors.by.scheme <- ggplot(subset(datasets, !has.scheme & status_code != 'Not link')) +
+p.no_scheme <- ggplot(subset(datasets, !has.scheme & status_code != 'Not link')) +
   aes(x = catalog, fill = status_code) +
   geom_bar() +
   ggtitle('URIs without schemes wind up timing out.')
+
+p.errors <- ggplot(errors) +
+  aes(fill = error_type, x = catalog) +
+  geom_bar() #position = 'fill')
 
 
 #sqlite> select count(*), url like '% %' from links where is_link and url not null group by 2;
