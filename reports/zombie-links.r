@@ -87,7 +87,7 @@ GROUP BY catalog, identifier
   unique.links
 }
 
-get.link.errors <- function() {
+get.errors <- function() {
   sql <- '
 SELECT
   links.catalog, links.identifier,
