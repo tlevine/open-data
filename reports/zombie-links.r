@@ -87,9 +87,17 @@ GROUP BY catalog, identifier
   unique.links
 }
 
-get.errors <- function() {
-  sql <- 'SELECT * from link_speeds;'
-  with(new.env(), sqldf(sql, dbname = '/tmp/open-data.sqlite'))
+get.link.errors <- function() {
+  sql <- '
+SELECT
+  links.catalog, links.identifier,
+  links.url, links.is_link,
+  link_speeds.elapsed, link_speeds.error_type, link_speeds.error
+FROM links LEFT JOIN link_speeds
+ON links.url = link_speeds.url;
+  '
+  datasets <- with(new.env(), sqldf(sql, dbname = '/tmp/open-data.sqlite'))
+  datasets
 }
 
 if (!all(list('datasets', 'catalogs', 'unique.links', 'link.groupings') %in% ls())) {
