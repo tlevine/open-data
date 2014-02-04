@@ -87,16 +87,18 @@ GROUP BY catalog, identifier
   unique.links
 }
 
-get.errors <- function(df) {
+get.errors <- function() {
   sql <- '
 SELECT
-  df.catalog, df.identifier,
-  df.url, df.status_code,
+  datasets_deduplicated.catalog, datasets_deduplicated.identifier,
+  datasets_deduplicated.url, datasets_deduplicated.status_code,
   link_speeds.elapsed, link_speeds.error_type, link_speeds.error
-FROM df LEFT JOIN link_speeds
-ON df.url = link_speeds.url;
+FROM datasets_deduplicated
+LEFT JOIN links ON datasets_deduplicated.catalog 
+LEFT JOIN link_speeds
+ON datasets_deduplicated.url = link_speeds.url;
   '
-  datasets <- sqldf(sql, dbname = '/tmp/open-data.sqlite')
+  datasets <- with(new.env(), sqldf(sql, dbname = '/tmp/open-data.sqlite'))
 
   datasets$error_type[is.na(datasets$error_type) | datasets$error_type == ''] <- 'No error'
   datasets$error_type <- sub("^<class 'requests.*exceptions.([^']*)'>", '\\1', datasets$error_type)
