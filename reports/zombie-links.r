@@ -99,7 +99,7 @@ ON links.url = link_speeds.url;
   datasets <- with(new.env(), sqldf(sql, dbname = '/tmp/open-data.sqlite'))
   datasets$is_link <- as.logical(datasets$is_link)
   datasets$error_type[is.na(datasets$error_type) | datasets$error_type == ''] <- 'No error'
-  datasets$error_type <- sub("^<class '([^']*)'>", '\\1', datasets$error_type)
+  datasets$error_type <- sub("^<class 'requests.*exceptions.([^']*)'>", '\\1', datasets$error_type)
   datasets$error_type <- factor(datasets$error_type)
   datasets$error <- factor(datasets$error)
   datasets
@@ -211,11 +211,3 @@ p.errors <- ggplot(errors) +
 # table(datasets$catalog, datasets$has.scheme)
 
 # knit('zombie-links.Rmd')
-
-
-
-
-
-
-
-
