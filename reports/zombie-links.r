@@ -100,6 +100,10 @@ get.errors <- function() {
 
   datasets$error <- factor(datasets$error)
 
+  datasets$hostname.pretty <- factor(datasets$hostname,
+    levels = c(names(sort(table(datasets$hostname), decreasing = TRUE)[1:10]), NA), exclude = c())
+  levels(datasets$hostname.pretty)[is.na(levels(datasets$hostname.pretty))] <- 'Other'
+
   datasets
 }
 
@@ -200,6 +204,10 @@ p.no_scheme <- ggplot(subset(datasets, !has.scheme & status_code != 'Not link'))
 
 p.errors.total <- ggplot(errors) +
   aes(x = error_type) +
+  geom_bar()
+
+p.hostnames.total <- ggplot(errors) +
+  aes(x = hostnames.pretty) +
   geom_bar()
 
 errors
