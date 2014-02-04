@@ -90,13 +90,12 @@ GROUP BY catalog, identifier
 get.errors <- function() {
   sql <- '
 SELECT
-  datasets_deduplicated.catalog, datasets_deduplicated.identifier,
-  datasets_deduplicated.url, datasets_deduplicated.status_code,
+  links_deduplicated.catalog, links_deduplicated.identifier,
+  links_deduplicated.url, links_deduplicated.is_link,
   link_speeds.elapsed, link_speeds.error_type, link_speeds.error
-FROM datasets_deduplicated
-LEFT JOIN links ON datasets_deduplicated.catalog 
-LEFT JOIN link_speeds
-ON datasets_deduplicated.url = link_speeds.url;
+FROM link_speeds
+LEFT JOIN links_deduplicated
+WHERE links_deduplicated.url = link_speeds.url;
   '
   datasets <- with(new.env(), sqldf(sql, dbname = '/tmp/open-data.sqlite'))
 
