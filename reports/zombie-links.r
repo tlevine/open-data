@@ -103,7 +103,7 @@ ON links.url = link_speeds.url;
   datasets$error_type[is.na(datasets$error_type) | datasets$error_type == ''] <- 'No error'
   datasets$error_type <- sub("^<class 'requests.*exceptions.([^']*)'>", '\\1', datasets$error_type)
   datasets$error_type <- factor(datasets$error_type)
-  datasets$error_type <- datasets$error_type[order(table(errors$error_type), decreasing = TRUE)]
+  levels(datasets$error_type) <- levels(datasets$error_type)[order(table(errors$error_type), decreasing = TRUE)]
 
   datasets$error <- factor(datasets$error)
 
