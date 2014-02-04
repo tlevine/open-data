@@ -88,21 +88,15 @@ GROUP BY catalog, identifier
 }
 
 get.errors <- function() {
-  sql <- '
-SELECT
-  links_deduplicated.catalog, links_deduplicated.identifier,
-  links_deduplicated.url, links_deduplicated.is_link,
-  link_speeds.elapsed, link_speeds.error_type, link_speeds.error
-FROM link_speeds
-LEFT JOIN links_deduplicated
-WHERE links_deduplicated.url = link_speeds.url;
-  '
+  sql <- 'SELECT * FROM link_speeds'
   datasets <- with(new.env(), sqldf(sql, dbname = '/tmp/open-data.sqlite'))
+
+  datasets$hostname <- sub('(?:(?:http|ftp|https)://)?([^/]*)/.*$', '\\1', datasets$url)
 
   datasets$error_type[is.na(datasets$error_type) | datasets$error_type == ''] <- 'No error'
   datasets$error_type <- sub("^<class 'requests.*exceptions.([^']*)'>", '\\1', datasets$error_type)
-  datasets$error_type <- factor(datasets$error_type)
-  levels(datasets$error_type) <- levels(datasets$error_type)[order(table(errors$error_type), decreasing = TRUE)]
+  datasets$error_type <- factor(datasets$error_type,
+    levels = sort(table(errors$error_type), decreasing = TRUE))
 
   datasets$error <- factor(datasets$error)
 
