@@ -206,11 +206,20 @@ p.errors.total <- ggplot(errors) +
   aes(x = error_type) +
   geom_bar()
 
-p.hostnames.total <- ggplot(errors) +
-  aes(x = hostnames.pretty) +
-  geom_bar()
+p.hostname.total <- ggplot(errors) +
+  aes(x = hostname.pretty) +
+  geom_bar() +
+  xlab('"hostname" extracted my my hostname-extractor') +
+  scale_y_continuous('Number of seemingly dead links', labels = comma) +
+  ggtitle('Which servers give errors?')
 
-errors
+p.hostname.error <- ggplot(errors) +
+  aes(x = hostname.pretty, fill = error_type) +
+  geom_bar() +
+  xlab('"hostname" extracted my my hostname-extractor') +
+  scale_y_continuous('Number of seemingly dead links', labels = comma) +
+  scale_fill_discrete('Type of error') +
+  ggtitle('Reason for dead link is related to the server serving the link.')
 
 #sqlite> select count(*), url like '% %' from links where is_link and url not null group by 2;
 
