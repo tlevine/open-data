@@ -95,6 +95,21 @@ SELECT
   link_speeds.elapsed, link_speeds.error_type, link_speeds.error
 FROM links LEFT JOIN link_speeds
 ON links.url = link_speeds.url;
+WHERE software = \'ckan\'
+GROUP BY links.catalog, links.identifier
+
+UNION ALL
+
+SELECT
+  links.catalog, links.identifier,
+  links.url, links.is_link,
+  link_speeds.elapsed, link_speeds.error_type, link_speeds.error
+FROM socrata_deduplicated
+JOIN links ON
+  socrata_deduplicated.catalog = links.catalog AND
+  socrata_deduplicated.tableId = links.identifier
+JOIN link_speeds ON links.url = link_speeds.url
+GROUP BY links.identifier
   '
   datasets <- with(new.env(), sqldf(sql, dbname = '/tmp/open-data.sqlite'))
 
@@ -205,10 +220,11 @@ p.no_scheme <- ggplot(subset(datasets, !has.scheme & status_code != 'Not link'))
   geom_bar() +
   ggtitle('URIs without schemes wind up timing out.')
 
-p.errors <- ggplot(errors) +
-  aes(fill = error_type, x = catalog) +
-  geom_bar() #position = 'fill')
+p.errors.total <- ggplot(errors) +
+  aes(x = error_type) +
+  geom_bar()
 
+errors
 
 #sqlite> select count(*), url like '% %' from links where is_link and url not null group by 2;
 
