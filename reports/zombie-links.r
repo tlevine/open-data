@@ -67,10 +67,8 @@ get.link.groupings <- function(catalogs) {
     measure.vars = c('not_links','live_links','dead_links','no_response'),
     variable.name = 'link.type', value.name = c('proportion'))
 
-  link.groupings <- link.groupings[order(link.groupings$catalog),]
   link.groupings$catalog <- factor(link.groupings$catalog,
-    levels = levels(catalogs$catalog)[order(catalogs$prop.bad)])
-
+    levels = catalogs$catalog[order(catalogs$live_links + catalogs$not_links)])
   link.groupings
 }
 
@@ -166,6 +164,15 @@ table.duplicates.socrata.by.catalog <- table(unique.links.socrata$catalog, uniqu
 p.link.types <- ggplot(link.groupings) +
   aes(x = catalog, y = proportion, fill = link.type) +
   geom_bar(stat = 'identity') + coord_flip() +
+  xlab('') +
+  scale_y_continuous('Proportion of datasets by catalog', labels = percent) +
+  theme(legend.position = 'bottom', axis.text.y = element_text(size = 10)) +
+  scale_fill_discrete('Type of dataset') +
+  ggtitle('Non-links, live links and dead links across data catalogs')
+
+p.link.types.onlylinks <- ggplot(subset(link.groupings, link.type != 'not_links')) +
+  aes(x = catalog, y = proportion, fill = link.type) +
+  geom_bar(stat = 'identity', position = 'fill') + coord_flip() +
   xlab('') +
   scale_y_continuous('Proportion of datasets by catalog', labels = percent) +
   theme(legend.position = 'bottom', axis.text.y = element_text(size = 10)) +
@@ -269,6 +276,16 @@ p.timeout <- ggplot(errors.elapsed) +
   aes(x = elapsed) + facet_wrap(~ hostname.pretty, ncol = 1) +
   geom_bar() + ylab('Number of links') + xlab('How many seconds did the file take to download?')
 # geom_vline(color = 'pink', xintercept = 1.5, size = 2)
+
+p.prop_links <- ggplot(catalogs) +
+  aes(x = 1 - not_links/datasets, y = (not_links + live_links)/datasets, color = software) +
+  geom_point(size = 5) +
+  scale_x_continuous('Proportion of datasets that are externally stored', labels = percent) +
+  scale_y_continuous('Proportion of datasets that are alive', labels = percent, limits = 0:1) +
+  theme(legend.position = 'bottom') +
+  scale_color_discrete('Software') +
+  ggtitle('CKAN catalogs have more externally stored datasets\nand more dead datasets.')
+
 
 # p.elapsed <- function() {
 #   par(mfrow = 2:1)
