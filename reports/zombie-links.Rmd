@@ -24,6 +24,9 @@ Some explanations were proposed.
 
 What was really going on?
 
+
+# Appendix: How I figured this all out
+
 ## Status codes
 I called a URL alive if an ordinary HEAD request to it returned a
 [status code](http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html) of 200.
@@ -38,9 +41,6 @@ p.codes
 
 Let's look at this plot for just the specific catalogs that those Tweets were
 about.
-
-
-
 
 It seems like there were a lot of non-responses,
 
