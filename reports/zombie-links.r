@@ -4,6 +4,7 @@ library(reshape2)
 library(scales)
 library(knitr)
 library(httr)
+library(plyr)
 
 get.datasets <- function() {
   sql <- '
@@ -243,11 +244,19 @@ p.hostname.facet <- ggplot(subset(errors, error_type != 'InvalidURL')) +
 
 p.storage <- ggplot(errors) + aes(x = error_type, fill = grepl('/storage/', url)) + geom_bar()
 
-p.elapsed <- ggplot(subset(errors, error_type == 'Timeout' | error_type == 'No error')) +
-  facet_wrap(~ error_type, nrow = 1) +
-  geom_bar(data = subset(errors, error_type == 'Timeout'), aes(x = hostname.pretty)) +
-  geom_point(data = subset(errors, error_type == 'No error'), aes(x = hostname.pretty, y = elapsed)) +
-  coord_flip()
+errors.elapsed <- subset(errors, error_type == 'Timeout' | error_type == 'No error')
+errors.elapsed$error_type <- factor(errors.elapsed$error_type, levels = c('Timeout', 'No error'))
+e.timeout <- 'Proportion of links that timed out'
+e.elapsed <- 'Elapsed time for working links (seconds)'
+levels(errors.elapsed$error_type) <- c(e.timeout,e.elapsed)
+p.elapsed <- ggplot(errors.elapsed) +
+  facet_wrap(~ error_type, ncol = 1, scale = 'free') +
+  geom_bar(data = ddply(errors.elapsed, 'hostname.pretty',
+    function(df){ c(prop = mean(df$error_type == e.timeout)) }),
+    aes(x = hostname.pretty, y = prop), stat = 'identity') +
+  geom_violin(data = subset(errors.elapsed, error_type == e.elapsed),
+    aes(x = hostname.pretty, y = elapsed)) +
+  scale_x_discrete('Website (hostname) that the link is hosted on', drop = F) + ylab('')
 
 
 # p.elapsed <- function() {
