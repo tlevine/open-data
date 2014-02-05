@@ -240,9 +240,14 @@ p.hostname.facet <- ggplot(subset(errors, error_type != 'InvalidURL')) +
   coord_flip() +
   ggtitle('Reason for dead link is related to the server serving the link.')
 
+p.storage <- ggplot(errors) + aes(x = error_type, fill = grepl('/storage/', url)) + geom_bar()
+
+p.elapsed <- ggplot(errors) +
+# facet_wrap(~ error_type, scale = 'free', ncol = 1) +
+# geom_bar(data = subset(errors, error_type == 'No error'), aes(x = hostname.pretty)) +
+  geom_point(subset(errors, error_type == 'Timeout'), aes(x = hostname.pretty, y = elapsed))
 
 #sqlite> select count(*), url like '% %' from links where is_link and url not null group by 2;
-
 
 # table(datasets$catalog, datasets$has.scheme)
 

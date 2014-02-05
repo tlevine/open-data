@@ -175,11 +175,10 @@ which the site just can't be contacted.
 errors.connectionerror <- subset(errors, error_type == 'ConnectionError')
 errors.connectionerror$has.tab <- grepl('\t', errors.connectionerror$url)
 errors.connectionerror$has.space <- grepl(' ', errors.connectionerror$url)
-errors.connectionerror$has.backslash <- grepl('\\', errors.connectionerror$url)
+errors.connectionerror$has.backslash <- grepl('[\\]', errors.connectionerror$url)
 ggplot(errors.connectionerror) +
   aes(x = has.tab | has.space | has.backslash) +
   geom_bar()
-
 
 Invalid schemas are for datasets sent over protocals other than HTTP, like FTP.
 Most of these schemas indicate that the files are stored on local systems
