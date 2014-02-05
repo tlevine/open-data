@@ -149,3 +149,65 @@ sqlite> select count(*) from links where url like '//%';
 
 
 I didn't have good error logs, so I fixed that.
+
+
+
+
+### Inspecting data from each hostname
+
+#### Invalid URLs
+
+The "http:" datasets weren't valid URLs.
+
+```{r}
+t.hostnames[['http:']]
+```
+
+#### More invalid URLs
+It turns out that missing schemas, invalid schemas,
+
+connection errors and SSL errors
+could all be 
+
+Connection errors seem to correspond to some datasets with strange URLs and others for
+which the site just can't be contacted.
+
+errors.connectionerror <- subset(errors, error_type == 'ConnectionError')
+errors.connectionerror$has.tab <- grepl('\t', errors.connectionerror$url)
+errors.connectionerror$has.space <- grepl(' ', errors.connectionerror$url)
+errors.connectionerror$has.backslash <- grepl('\\', errors.connectionerror$url)
+ggplot(errors.connectionerror) +
+  aes(x = has.tab | has.space | has.backslash) +
+  geom_bar()
+
+
+Invalid schemas are for datasets sent over protocals other than HTTP, like FTP.
+Most of these schemas indicate that the files are stored on local systems
+rather than being accessible from the internet.
+
+ggplot(subset(errors, error_type == 'InvalidSchema')) + aes(x = sub(':.*', '', url)) + geom_bar()
+
+
+Missing schemas are for datasets where the hostname was not specified. For example
+
+t.error_types$MissingSchema$url
+
+ggplot(subset(errors, error_type == 'MissingSchema')) + aes(x = grepl('^/', url)) + geom_bar()
+
+
+
+
+#### Timeouts
+Once we get rid of the invalid URLs, most of these links have no errors or have
+timeouts. (Remember, these are the links that I marked as dead in my previous
+analysis, and I tried downloading again for the present analysis.)
+
+p.hostname.facet
+
+The "www-genesis.destatis.de" datasets seem mostly okay, though there are some timeouts.
+
+  ggplot(subset(errors, hostname == 'www-genesis.destatis.de')) + aes(x = error_type) + geom_bar()
+
+
+  t.hostnames[['www-genesis.destatis.de']]
+

@@ -101,7 +101,7 @@ get.errors <- function() {
   datasets$error <- factor(datasets$error)
 
   datasets$hostname.pretty <- factor(datasets$hostname,
-    levels = c(names(sort(table(datasets$hostname), decreasing = TRUE)[1:10]), NA), exclude = c())
+    levels = c(names(sort(table(datasets$hostname), decreasing = TRUE)[1:7]), NA), exclude = c())
   levels(datasets$hostname.pretty)[is.na(levels(datasets$hostname.pretty))] <- 'Other'
 
   datasets
@@ -220,6 +220,26 @@ p.hostname.error <- ggplot(errors) +
   scale_y_continuous('Number of seemingly dead links', labels = comma) +
   scale_fill_discrete('Type of error') +
   ggtitle('Reason for dead link is related to the server serving the link.')
+
+t.hostnames <- list()
+for (.hostname in levels(errors$hostname.pretty)){
+  t.hostnames[[.hostname]] <- subset(errors, hostname.pretty == .hostname)[1:5,c('error_type','url')]
+}
+
+t.error_types <- list()
+for (.error_type in levels(errors$error_type)){
+  t.error_types[[.error_type]] <- subset(errors, error_type == .error_type)[1:5,c('hostname','url')]
+}
+
+p.hostname.facet <- ggplot(subset(errors, error_type != 'InvalidURL')) +
+  aes(x = error_type) + facet_wrap(~ hostname.pretty, ncol = 2) +
+  geom_bar() +
+  xlab('"hostname" extracted my my hostname-extractor') +
+  scale_y_continuous('Number of seemingly dead links', labels = comma) +
+  scale_fill_discrete('Type of error') +
+  coord_flip() +
+  ggtitle('Reason for dead link is related to the server serving the link.')
+
 
 #sqlite> select count(*), url like '% %' from links where is_link and url not null group by 2;
 
