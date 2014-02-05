@@ -103,6 +103,7 @@ get.errors <- function() {
   datasets$hostname.pretty <- factor(datasets$hostname,
     levels = c(names(sort(table(datasets$hostname), decreasing = TRUE)[1:7]), NA), exclude = c())
   levels(datasets$hostname.pretty)[is.na(levels(datasets$hostname.pretty))] <- 'Other'
+  datasets$hostname.pretty[is.na(datasets$hostname.pretty)] <- 'Other'
 
   datasets
 }
@@ -242,10 +243,18 @@ p.hostname.facet <- ggplot(subset(errors, error_type != 'InvalidURL')) +
 
 p.storage <- ggplot(errors) + aes(x = error_type, fill = grepl('/storage/', url)) + geom_bar()
 
-p.elapsed <- ggplot(errors) +
-# facet_wrap(~ error_type, scale = 'free', ncol = 1) +
-# geom_bar(data = subset(errors, error_type == 'No error'), aes(x = hostname.pretty)) +
-  geom_point(subset(errors, error_type == 'Timeout'), aes(x = hostname.pretty, y = elapsed))
+p.elapsed <- ggplot(subset(errors, error_type == 'Timeout' | error_type == 'No error')) +
+  facet_wrap(~ error_type, nrow = 1) +
+  geom_bar(data = subset(errors, error_type == 'Timeout'), aes(x = hostname.pretty)) +
+  geom_point(data = subset(errors, error_type == 'No error'), aes(x = hostname.pretty, y = elapsed)) +
+  coord_flip()
+
+
+# p.elapsed <- function() {
+#   par(mfrow = 2:1)
+#   barplot(table(subset(errors, error_type == 'No error')$hostname.pretty))
+#   plot(elapsed ~ hostname.pretty, data = subset(errors, error_type == 'Timeout'))
+# }
 
 #sqlite> select count(*), url like '% %' from links where is_link and url not null group by 2;
 
