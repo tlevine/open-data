@@ -260,10 +260,10 @@ p.elapsed <- ggplot(errors.elapsed) +
 
 errors.elapsed <- subset(errors, (error_type == 'Timeout' | error_type == 'No error') &
   url != 'http://www.fcc.gov/ftp/Bureaus/MB/Databases/cdbs/all-cdbs-files.zip') # something weird about this one
-errors.elapsed$elapsed <- factor(cut(errors.elapsed$elapsed, breaks = seq(0,64,2), labels = F) * 2 - 1)
-levels(errors.elapsed$elapsed)['61'] <- 'More than a minute'
-errors.elapsed$elapsed[errors.elapsed$elapsed == '61'] <- 'More than a minute'
-levels(errors.elapsed$elapsed)['63'] <- 'Timeout'
+errors.elapsed$elapsed <- factor((cut(errors.elapsed$elapsed, breaks = seq(0,70,5), labels = F)-1)*5)
+levels(errors.elapsed$elapsed)['65'] <- 'Longer'
+errors.elapsed$elapsed[errors.elapsed$elapsed == '65'] <- 'Longer'
+levels(errors.elapsed$elapsed)['70'] <- 'Timeout'
 errors.elapsed$elapsed[errors.elapsed$error_type == 'Timeout'] <- 'Timeout'
 p.timeout <- ggplot(errors.elapsed) +
   aes(x = elapsed) + facet_wrap(~ hostname.pretty, ncol = 1) +
