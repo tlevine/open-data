@@ -100,55 +100,44 @@ I had thought that there was a unique index on
 but there wasn't!
 
 
-## Unresponsive datasets
+## Misinterpreting NULLs
 Another issue: I had interpreted NULL as meaning that the dataset is not a link,
 but it really represents that link's liveliness has yet  to be checked;
 here's the relevant line of code.
 
     url_list = [row['url'] for row in dt.execute('SELECT DISTINCT url FROM links WHERE status_code IS NULL')]
 
-Here are some non-link datasets in the links table.
+I don't remember exactly how this affected the results thought; it might not have
+been a big deal.
 
-    select 'https://' || links.catalog || '/d/' || id url from links join socrata where not is_link and links.identifier=socrata.tableId limit 10;                                                                         
-    url                               
-    ----------------------------------
-    https://data.sfgov.org/d/3fig-nit3
-    https://data.sfgov.org/d/3hay-yzem
-    https://data.sfgov.org/d/3nwz-3n68
-    https://data.sfgov.org/d/3twj-ueew
-    https://data.sfgov.org/d/4ang-frd3
-    https://data.sfgov.org/d/5q3n-q6kw
-    https://data.sfgov.org/d/7ybj-xpju
-    https://data.sfgov.org/d/99js-dqmz
-    https://data.sfgov.org/d/akvp-jmwa
-    https://data.sfgov.org/d/di4e-7emh
+## Unresponsive datasets
+I recorded when HTTP requests for datasets timed out.
+(I used the status code -42.)
+I checked a few of these manually. Here are two of them.
 
+    dati.trentino.it/storage/f/2013-06-16T111814/_ggeiWE.csv
+    https://www-genesis.destatis.de/genesis/online/link/tabelleDownload/46421-0001.html
 
-I ran again things that timed out.
-I checked a few manually.
-
-dati.trentino.it/storage/f/2013-06-16T111814/_ggeiWE.csv
-
-This works but sometimes takes a while.
-
-https://www-genesis.destatis.de/genesis/online/link/tabelleDownload/46421-0001.html
-
-In case the problem was an internet connection (tethered from a phone),
-I used a big-boy computer in a datacenter to run the checker again on
+They both work, but they take a while. Also, I found that they took longer
+to download to my desktop computer on my desk than they took to download to
+my server in a datacenter.
+In case the problem was my internet connection (tethered from a phone),
+I used that server in a datacenter to run the checker again on
 all datasets that had timed out. Results didn't remarkably change.
 
-
-
-
-
 ## Slow datasets
-Now I think this is what was going on.
+Those links took a while to download. Maybe my timeout threshold is being hit?
 
   url = 'http://dati.trentino.it/storage/f/2013-06-16T114537/_EBmYVk.csv'
   import requests
 
+  timeout = requests.head(url, timeout = 2)
+  # timeout error
+
+So it is. More detail follows.
+
   get = requests.get(url)
-  head = requests.head(url)                                                                                     
+  head = requests.head(url)
 
   print(get)
   # <Response [200]>
@@ -159,25 +148,29 @@ Now I think this is what was going on.
   print(head.elapsed)
   # datetime.timedelta(0, 3, 353558)
 
-The link is alive, but my timeout of 4 seconds (originally 2 seconds)
-might be too short. It would have worked in this case, but it came kind
-of close.
+The link is alive, but my timeout of 2 seconds was too short.
+In this case, the request with a timeout failed, so the initial
+response took too long. Also, it took a total of 3.35 seconds to
+download. The elapsed time isn't the same thing as the time until
+which the request will time out, but they're related.
 
+## Bad URLs
+A bunch of datasets have a field for an external link but provided
+an empty URL.
 
+```{r}
+sqldf("
+SELECT catalog,count(*)
+FROM links
+WHERE is_link AND url IS NULL
+GROUP BY catalog
+ORDER BY 2;
+")
+```
 
+Others have
 
-
-
-
-
-
-
-
-A bunch of datasets have listed links but provided an empty URL.
-
-    select catalog,count(*) from links where is_link and url is null group by catalog order by 2;
-
-
+```{r}
 
 sqlite> select count(*) from links where url like '//%';
 0
