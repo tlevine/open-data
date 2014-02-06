@@ -15,6 +15,9 @@ After I wrote about
 [dead links on data catalogs](/!/dead-links-on-data-catalogs),
 some people commented that the links were less dead than I'd thought.
 
+**trentino*
+
+**openva**
 
 Some explanations were proposed.
 
@@ -22,8 +25,21 @@ Some explanations were proposed.
 
 **Redirects (Waldo)**
 
-What was really going on?
+It turns out that neither of these were the issue. Also, there wasn't just
+one issue. Here are the main factor I identified as leading to the strange
+results.
 
+* I didn't fully parse links to datasets.
+* I had a low timeout on my HTTP requests (2 seconds).
+* I had duplicate data in my database.
+
+## Parsing links
+
+## Low Timeout
+
+## Duplicate data
+
+## New results
 
 # Appendix: How I figured this all out
 
