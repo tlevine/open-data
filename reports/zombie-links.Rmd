@@ -175,25 +175,34 @@ my code for doing that turned out to be broken.
 I fixed that! Collecting better error information, I ran the checker
 on all of the links that had failed before.
 
-### Inspecting data from each hostname
+### Hostname
+I figured that errors might be related to the server that a dataset comes
+from, and I figured that the hostname of the URL would be a decent proxy
+for server. (In the URL "http://thomaslevine.com/open-data", the hostname
+is "thomaslevine.com".) So I wrote a sloppy function to detect these hostnames.
 
-#### Invalid URLs
+      datasets$hostname <- sub('(?:(?:http|ftp|https)://)?([^/]*)/.*$', '\\1', datasets$url)
 
+Here are the top few hostnames and the number of datasets with each hostname.
+
+```{r}
+sort(table(datasets$hostname))[1:10]
+```
+
+Having come up with this variable, I now could look at error types by hostname.
+
+### Invalid URLs
 The "http:" datasets weren't valid URLs.
 
 ```{r}
 t.hostnames[['http:']]
 ```
 
-#### More invalid URLs
-It turns out that missing schemas, invalid schemas,
-
-connection errors and SSL errors
-could all be 
-
+### Connection errors
 Connection errors seem to correspond to some datasets with strange URLs and others for
 which the site just can't be contacted.
 
+```{r connectionerror}
 errors.connectionerror <- subset(errors, error_type == 'ConnectionError')
 errors.connectionerror$has.tab <- grepl('\t', errors.connectionerror$url)
 errors.connectionerror$has.space <- grepl(' ', errors.connectionerror$url)
@@ -201,34 +210,72 @@ errors.connectionerror$has.backslash <- grepl('[\\]', errors.connectionerror$url
 ggplot(errors.connectionerror) +
   aes(x = has.tab | has.space | has.backslash) +
   geom_bar()
+```
 
+### Invalid schemas
 Invalid schemas are for datasets sent over protocals other than HTTP, like FTP.
-Most of these schemas indicate that the files are stored on local systems
-rather than being accessible from the internet.
 
+```{r invalidschema}
 ggplot(subset(errors, error_type == 'InvalidSchema')) + aes(x = sub(':.*', '', url)) + geom_bar()
+```
 
+Most of these schemas indicate that the files are stored on local systems
+rather than being accessible from the internet. But a large minority of these
+(FTP, specifically) is fully reasonable to put on the internet; I didn't
+check them properly.
 
-Missing schemas are for datasets where the hostname was not specified. For example
+### Missing schemas
+Missing schemas tend to be for datasets where the hostname was not specified.
+Examples:
 
+```{r}
 t.error_types$MissingSchema$url
+```
 
+```{r missingschema}
 ggplot(subset(errors, error_type == 'MissingSchema')) + aes(x = grepl('^/', url)) + geom_bar()
+```
 
+This is a valid relative URL. I could have gotten the hostname from the site
+from which I got the link, but I did not do this.
 
+### SSL Errors
+A bunch of sites did not have SSL certificates that I recognized.
 
+```{r}
+ggplot(subset(errors, error_type == 'SSLError')) +
+  aes(x = hostname) + geom_bar() + coord_flip()
+```
 
-#### Timeouts
-Once we get rid of the invalid URLs, most of these links have no errors or have
+I could ignore the certificates and download the dataset, but the SSL warning
+is slightly unnerving.
+
+SSL errors explain only a small part of the links I marked as dead. Of the
+datasets that I'd marked as dead before, here are the numbers of datasets
+with and without SSL errors.
+
+```{r}
+table(errors$error_type == 'SSLError')
+```
+
+They are interesting, but they don't explain my strange results.
+
+### Timeouts
+Once we get rid of the strange URLs, most of these links have no errors or have
 timeouts. (Remember, these are the links that I marked as dead in my previous
 analysis, and I tried downloading again for the present analysis.)
 
+```{r}
 p.hostname.facet
+```
 
 The "www-genesis.destatis.de" datasets seem mostly okay, though there are some timeouts.
 
-  ggplot(subset(errors, hostname == 'www-genesis.destatis.de')) + aes(x = error_type) + geom_bar()
+```{r_plot_destatis}
+ggplot(subset(errors, hostname == 'www-genesis.destatis.de')) + aes(x = error_type) + geom_bar()
+```
 
-
-  t.hostnames[['www-genesis.destatis.de']]
+```{r_table_destatis}
+t.hostnames[['www-genesis.destatis.de']]
+```
 
