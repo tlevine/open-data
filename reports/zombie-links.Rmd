@@ -168,19 +168,12 @@ ORDER BY 2;
 ")
 ```
 
-Others have
+Then I realized I could look at the errors for each of the links
+I checked. I thought I had saved the error in the database, but
+my code for doing that turned out to be broken.
 
-```{r}
-
-sqlite> select count(*) from links where url like '//%';
-0
-
-
-
-I didn't have good error logs, so I fixed that.
-
-
-
+I fixed that! Collecting better error information, I ran the checker
+on all of the links that had failed before.
 
 ### Inspecting data from each hostname
 
