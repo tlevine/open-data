@@ -35,11 +35,31 @@ results.
 
 ## Parsing links
 
+p.scheme
+
+p.scheme.count
+
+p.scheme.prop
+
+p.no_scheme
+
 ## Low Timeout
 
 ## Duplicate data
 
+p.duplicates.ckan
+
+p.duplicates.socrata
+
 ## New results
+
+p.link.types
+
+p.link.types.onlylinks
+
+p.link.types.specifics
+
+p.prop_links
 
 # Appendix: How I figured this all out
 
@@ -191,6 +211,15 @@ sort(table(datasets$hostname))[1:10]
 
 Having come up with this variable, I now could look at error types by hostname.
 
+### Base error rate
+
+p.errors.total
+
+p.hostname.total
+
+p.hostname.error
+
+p.hostname.facet
 ### Invalid URLs
 The "http:" datasets weren't valid URLs.
 
@@ -279,3 +308,12 @@ ggplot(subset(errors, hostname == 'www-genesis.destatis.de')) + aes(x = error_ty
 t.hostnames[['www-genesis.destatis.de']]
 ```
 
+
+p.elapsed
+
+errors.elapsed
+
+The `/storage` endpoint is typically used for the CKAN filestore. It looks like
+that can take a while to respond.
+
+p.storage
