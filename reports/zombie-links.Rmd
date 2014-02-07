@@ -50,29 +50,26 @@ Here are the main factors I see as leading to the strange results.
 * I had a low timeout on my HTTP requests (2 seconds).
 * I had duplicate data in my database.
 
-### Parsing links
+### Incompletely parsed URIs
+A bunch of datasets have a field for an external link but provided
+an empty URL.
+
+```{r p_incomplete_url}
+df <- sqldf("
+SELECT catalog,count(*) \'datasets\'
+FROM links
+WHERE is_link AND url = ''
+GROUP BY catalog
+ORDER BY 2;
+", dbname = '/tmp/open-data.sqlite')
+ggplot(df) + aes(x = catalog, y = datasets) +
+  geom_bar(stat = 'identity')
+```
+
+### Links that had probably never come to life
 I tweaked my downloader and ran it on just the links that had timed out or
 otherwise not responded; I didn't run it on links that had responded with
 error status codes like 404. Then I looked at the errors I got back.
-
-One thing I checked was the presence of a URI scheme. That's the part that
-looks like `http://`, `https://`, `ssh://`, &c. Here's the function for that.
-
-    datasets$has.scheme <- grepl('://', datasets$url) | grepl('^//', datasets$url)
-
-
-
-```{r p_scheme_count}
-p.scheme.count
-```
-
-```{r p_scheme_prop}
-p.scheme.prop
-```
-
-```{r p_no_scheme}
-p.no_scheme
-```
 
 ## Low Timeout
 
@@ -147,7 +144,7 @@ Then I wound up changing my mind and using the links table to store a single rec
 per dataset. Here arose a problem; there was no unique index on this datasets table,
 but I thought there was, so I added multiple records for each link.
 
-```{r}
+```{r duplicates}
 kable(sqldf("
 SELECT catalog, identifier, count(*)
 FROM links
@@ -217,11 +214,12 @@ response took too long. Also, it took a total of 3.35 seconds to
 download. The elapsed time isn't the same thing as the time until
 which the request will time out, but they're related.
 
-## Bad URLs
-A bunch of datasets have a field for an external link but provided
+### Bad URLs
+As I explain above,
+a bunch of datasets have a field for an external link but provided
 an empty URL.
 
-```{r}
+```{r bad_urls}
 sqldf("
 SELECT catalog,count(*)
 FROM links
@@ -250,7 +248,7 @@ is "thomaslevine.com".) So I wrote a sloppy function to detect these hostnames.
 
 Here are the top few hostnames and the number of datasets with each hostname.
 
-```{r}
+```{r hostnames}
 sort(table(datasets$hostname))[1:10]
 ```
 
@@ -276,7 +274,7 @@ p.hostname.facet
 ### Invalid URLs
 The "http:" datasets weren't valid URLs.
 
-```{r}
+```{r invalid_urls}
 t.hostnames[['http:']]
 ```
 
@@ -310,7 +308,7 @@ check them properly.
 Missing schemas tend to be for datasets where the hostname was not specified.
 Examples:
 
-```{r}
+```{r table_missing_schema}
 t.error_types$MissingSchema$url
 ```
 
@@ -324,9 +322,10 @@ from which I got the link, but I did not do this.
 ### SSL Errors
 A bunch of sites did not have SSL certificates that I recognized.
 
-```{r}
+```{r p_ssl_error}
 ggplot(subset(errors, error_type == 'SSLError')) +
-  aes(x = hostname) + geom_bar() + coord_flip()
+  aes(x = hostname) + geom_bar() + coord_flip() +
+  ylab('Number of datasets with SSL errors')
 ```
 
 I could ignore the certificates and download the dataset, but the SSL warning
@@ -336,7 +335,7 @@ SSL errors explain only a small part of the links I marked as dead. Of the
 datasets that I'd marked as dead before, here are the numbers of datasets
 with and without SSL errors.
 
-```{r}
+```{r t_ssl}
 table(errors$error_type == 'SSLError')
 ```
 
