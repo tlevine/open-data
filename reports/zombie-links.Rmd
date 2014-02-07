@@ -147,8 +147,8 @@ I don't remember exactly how this affected the results thought; it might not hav
 been a big deal.
 
 ## Unresponsive datasets
-I recorded when HTTP requests for datasets timed out.
-(I used the status code -42.)
+I recorded when HTTP requests for datasets had timed out or otherwise
+not responded. (In the database, these are indicated as status code -42.)
 I checked a few of these manually. Here are two of them.
 
     dati.trentino.it/storage/f/2013-06-16T111814/_ggeiWE.csv
