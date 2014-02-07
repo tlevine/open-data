@@ -29,15 +29,31 @@ the CKAN FileStore doesn't support HEAD requests.
 And Waldo suggested that I might be checking for status code 200 but
 receiving status code 303 (redirect) from OpenVA.
 
-Having looked more, I don't think either of these was the issue.
-Also, there wasn't just one issue. Here are the main factors I identified
-as leading to the strange results.
+So what was going on?
+
+## Not reasons
+I considered the two possibilities that were mentioned above, and
+I don't think either of them was the issue.
+
+### HEAD
+
+It could be that there was a CKAN bug and it has been fixed in the past two
+weeks, but I doubt it.
+
+### Status code
+
+## Reasons
+It's not like there was just one issue, of course.
+Here are the main factors I see as leading to the strange results.
 
 * I didn't fully parse links to datasets.
 * I had a low timeout on my HTTP requests (2 seconds).
 * I had duplicate data in my database.
 
-## Parsing links
+### Parsing links
+I tweaked my downloader and ran it on just the links that had timed out or
+otherwise not responded; I didn't run it on links that had responded with
+error status codes like 404. Then I looked at the errors I got back.
 
 ```{r p_scheme_count}
 p.scheme.count
