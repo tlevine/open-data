@@ -320,7 +320,7 @@ Once we get rid of the strange URLs, most of these links have no errors or have
 timeouts. (Remember, these are the links that I marked as dead in my previous
 analysis, and I tried downloading again for the present analysis.)
 
-```{r p_hostname_facet}
+```{r p_hostname_facet_again}
 p.hostname.facet
 ```
 
