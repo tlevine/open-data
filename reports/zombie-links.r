@@ -297,4 +297,4 @@ p.prop_links <- ggplot(catalogs) +
 
 # table(datasets$catalog, datasets$has.scheme)
 
-# knit('zombie-links.Rmd')
+knit('zombie-links.Rmd')

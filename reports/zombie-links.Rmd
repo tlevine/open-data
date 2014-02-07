@@ -35,19 +35,15 @@ results.
 
 ## Parsing links
 
-```{r}
-p.scheme
-```
-
-```{r}
+```{r p_scheme_count}
 p.scheme.count
 ```
 
-```{r}
+```{r p_scheme_prop}
 p.scheme.prop
 ```
 
-```{r}
+```{r p_no_scheme}
 p.no_scheme
 ```
 
@@ -55,29 +51,29 @@ p.no_scheme
 
 ## Duplicate data
 
-```{r}
+```{r p_duplicates_ckan}
 p.duplicates.ckan
 ```
 
-```{r}
+```{r p_duplicates_socrata}
 p.duplicates.socrata
 ```
 
 ## New results
 
-```{r}
+```{r p_link_types}
 p.link.types
 ```
 
-```{r}
+```{r p_link_types_onlylinks}
 p.link.types.onlylinks
 ```
 
-```{r}
+```{r p_link_types_specifics}
 p.link.types.specifics
 ```
 
-```{r}
+```{r p_prop_links}
 p.prop_links
 ```
 
@@ -125,14 +121,14 @@ per dataset. Here arose a problem; there was no unique index on this datasets ta
 but I thought there was, so I added multiple records for each link.
 
 ```{r}
-sqldf("
+kable(sqldf("
 SELECT catalog, identifier, count(*)
 FROM links
 WHERE software = 'ckan'
 GROUP BY catalog, identifier
 ORDER BY count(*) DESC
 LIMIT 10;
-", dbname = '/tmp/open-data.sqlite')
+", dbname = '/tmp/open-data.sqlite'))
 ```
 
 I had thought that there was a unique index on
@@ -202,17 +198,19 @@ an empty URL.
 sqldf("
 SELECT catalog,count(*)
 FROM links
-WHERE is_link AND url IS NULL
+WHERE is_link AND url = ''
 GROUP BY catalog
 ORDER BY 2;
-")
+", dbname = '/tmp/open-data.sqlite')
 ```
 
-Then I realized I could look at the errors for each of the links
+Aside from being interesting in itself, this pointed out to me that
+there were probably lots of types of errors that I hadn't really
+thought about. I realized I could look at the errors for each of the links
 I checked. I thought I had saved the error in the database, but
 my code for doing that turned out to be broken.
 
-I fixed that! Collecting better error information, I ran the checker
+So I fixed that! Collecting better error information, I ran the checker
 on all of the links that had failed before.
 
 ### Hostname
@@ -232,14 +230,22 @@ sort(table(datasets$hostname))[1:10]
 Having come up with this variable, I now could look at error types by hostname.
 
 ### Base error rate
-
+```{r p_errors_total}
 p.errors.total
+```
 
+```{r p_hostname_total}
 p.hostname.total
+```
 
+```{r p_hostname_error}
 p.hostname.error
+```
 
+```{r p_hostname_facet}
 p.hostname.facet
+```
+
 ### Invalid URLs
 The "http:" datasets weren't valid URLs.
 
@@ -314,26 +320,31 @@ Once we get rid of the strange URLs, most of these links have no errors or have
 timeouts. (Remember, these are the links that I marked as dead in my previous
 analysis, and I tried downloading again for the present analysis.)
 
-```{r}
+```{r p_hostname_facet}
 p.hostname.facet
 ```
 
 The "www-genesis.destatis.de" datasets seem mostly okay, though there are some timeouts.
 
-```{r_plot_destatis}
+```{r plot_destatis}
 ggplot(subset(errors, hostname == 'www-genesis.destatis.de')) + aes(x = error_type) + geom_bar()
 ```
 
-```{r_table_destatis}
+```{r table_destatis}
 t.hostnames[['www-genesis.destatis.de']]
 ```
 
-
+```{r p_elapsed}
 p.elapsed
+```
 
+```{r errors_elapsed}
 errors.elapsed
+```
 
 The `/storage` endpoint is typically used for the CKAN filestore. It looks like
 that can take a while to respond.
 
+```{r storage}
 p.storage
+```
