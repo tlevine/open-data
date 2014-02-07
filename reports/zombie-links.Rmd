@@ -43,6 +43,18 @@ weeks, but I doubt it.
 ### Status code
 
 ## Reasons
+If the HEAD request thing and the redirect status code weren't the issues,
+what was?
+
+To figure this out, I tweaked my downloader and ran it on just the links that
+had timed out or otherwise not responded; I didn't run it on links that had
+responded with error status codes like 404. I also pulled out the hostname of
+the links. (For example, `thomaslevine.com` of the URL of the page you're
+reading.) Then I looked at the errors I got back.
+
+I also looked around in the SQLite3 database in which I'd been storing
+everything for this link analysis.
+
 It's not like there was just one issue, of course.
 Here are the main factors I see as leading to the strange results.
 
@@ -50,28 +62,42 @@ Here are the main factors I see as leading to the strange results.
 * I had a low timeout on my HTTP requests (2 seconds).
 * I had duplicate data in my database.
 
-### Incompletely parsed URIs
-A bunch of datasets have a field for an external link but provided
-an empty URL.
+### Incompletely parsed URLs
+I looked at the different sorts of errors that I got when I requested links
+to different hostnames.
 
-```{r p_incomplete_url}
-df <- sqldf("
-SELECT catalog,count(*) \'datasets\'
-FROM links
-WHERE is_link AND url = ''
-GROUP BY catalog
-ORDER BY 2;
-", dbname = '/tmp/open-data.sqlite')
-ggplot(df) + aes(x = catalog, y = datasets) +
-  geom_bar(stat = 'identity')
+```{r p_hostname_error}
+p.hostname.error
 ```
 
-### Links that had probably never come to life
-I tweaked my downloader and ran it on just the links that had timed out or
-otherwise not responded; I didn't run it on links that had responded with
-error status codes like 404. Then I looked at the errors I got back.
+That the left-most bar, for the hostname `http:`, is quite large and has
+a lot of invalid URLs. Things that my hostname-parser detected as `http:` are
+usually invalid URLs.
 
-## Low Timeout
+```{r invalid_urls}
+subset(errors, error_type == 'InvalidURL')[1:5,'url']
+```
+
+### Low Timeout
+Aside from the invalid URLs, most of the links gave no longer or gave a timeout.
+
+```{r p_errors_total}
+p.errors.total
+```
+
+As we saw above, different websites (hostnames) tend to give different errors.
+The following plot should make it more clear.
+
+```{r p_hostname_facet_again}
+p.hostname.facet
+```
+
+The `/storage` endpoint is typically used for the CKAN filestore. It looks like
+that can take a while to respond.
+
+```{r storage}
+p.storage
+```
 
 ## Duplicate data
 
@@ -215,8 +241,7 @@ download. The elapsed time isn't the same thing as the time until
 which the request will time out, but they're related.
 
 ### Bad URLs
-As I explain above,
-a bunch of datasets have a field for an external link but provided
+A bunch of datasets have a field for an external link but provided
 an empty URL.
 
 ```{r bad_urls}
