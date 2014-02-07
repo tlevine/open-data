@@ -19,15 +19,19 @@ some people commented that the links were less dead than I'd thought.
 
 [![@thomaslevine You've got ~45% of data․openva․com datasets missing. I just audited 75% of them, and found just 2 missing. Any idea what's up?](openva.png)](https://twitter.com/waldojaquith/status/424026174508261376)
 
-Some explanations were proposed.
+Some explanations were proposed. Samuele and Jindřich both suggested that
+the CKAN FileStore doesn't support HEAD requests.
 
-**CKAN fails on HEAD requests**
+[![@DatiTrentinoit @statshero @thomaslevine Ckan returns 404 on HEAD requests, that's the problem..](samuele.png)])https://twitter.com/_rshk/status/424208140016418816)
 
-**Redirects (Waldo)**
+[![](jindrich.png)](https://twitter.com/jindrichmynarz/status/428194318063370241)
 
-It turns out that neither of these were the issue. Also, there wasn't just
-one issue. Here are the main factor I identified as leading to the strange
-results.
+And Waldo suggested that I might be checking for status code 200 but
+receiving status code 303 (redirect) from OpenVA.
+
+Having looked more, I don't think either of these was the issue.
+Also, there wasn't just one issue. Here are the main factors I identified
+as leading to the strange results.
 
 * I didn't fully parse links to datasets.
 * I had a low timeout on my HTTP requests (2 seconds).
