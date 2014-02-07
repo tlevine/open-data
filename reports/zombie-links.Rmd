@@ -35,31 +35,51 @@ results.
 
 ## Parsing links
 
+```{r}
 p.scheme
+```
 
+```{r}
 p.scheme.count
+```
 
+```{r}
 p.scheme.prop
+```
 
+```{r}
 p.no_scheme
+```
 
 ## Low Timeout
 
 ## Duplicate data
 
+```{r}
 p.duplicates.ckan
+```
 
+```{r}
 p.duplicates.socrata
+```
 
 ## New results
 
+```{r}
 p.link.types
+```
 
+```{r}
 p.link.types.onlylinks
+```
 
+```{r}
 p.link.types.specifics
+```
 
+```{r}
 p.prop_links
+```
 
 # Appendix: How I figured this all out
 
