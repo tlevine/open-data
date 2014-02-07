@@ -209,7 +209,9 @@ p.scheme.prop <- p.scheme + geom_bar(position = 'fill') +
 p.no_scheme <- ggplot(subset(datasets, !has.scheme & status_code != 'Not link')) +
   aes(x = catalog, fill = status_code) +
   geom_bar() +
-  ggtitle('URIs without schemes wind up timing out.')
+  xlab('Hostname of dataset link') +
+  ylab('Number of externally stored datasets with scheme-less URL references') +
+  ggtitle('My link-checker fails on URIs without schemes.')
 
 p.errors.total <- ggplot(errors) +
   aes(x = error_type) +

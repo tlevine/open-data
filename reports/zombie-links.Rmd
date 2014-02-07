@@ -55,6 +55,13 @@ I tweaked my downloader and ran it on just the links that had timed out or
 otherwise not responded; I didn't run it on links that had responded with
 error status codes like 404. Then I looked at the errors I got back.
 
+One thing I checked was the presence of a URI scheme. That's the part that
+looks like `http://`, `https://`, `ssh://`, &c. Here's the function for that.
+
+    datasets$has.scheme <- grepl('://', datasets$url) | grepl('^//', datasets$url)
+
+
+
 ```{r p_scheme_count}
 p.scheme.count
 ```
