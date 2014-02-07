@@ -15,9 +15,9 @@ After I wrote about
 [dead links on data catalogs](/!/dead-links-on-data-catalogs),
 some people commented that the links were less dead than I'd thought.
 
-**trentino*
+[![Anecdotally I don't think that @DatiTrentinoit has so many broken links. Check validator? @thomaslevine http://thomaslevine.com/!/data-catalog-dead-links/](trentino.png)](https://twitter.com/statshero/status/424147773852622848)
 
-**openva**
+[![@thomaslevine You've got ~45% of data․openva․com datasets missing. I just audited 75% of them, and found just 2 missing. Any idea what's up?](openva.png)](https://twitter.com/waldojaquith/status/424026174508261376)
 
 Some explanations were proposed.
 
