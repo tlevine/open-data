@@ -36,11 +36,27 @@ I considered the two possibilities that were mentioned above, and
 I don't think either of them was the issue.
 
 ### HEAD
+CKAN does just fine on HEAD requests.
+
+  url = 'http://dati.trentino.it/storage/f/2013-06-16T114537/_EBmYVk.csv'
+  import requests
+
+  get = requests.get(url)
+  head = requests.head(url)
+  
+  print(get.status_code)
+  # 200
+  print(head)
+  # 200
 
 It could be that there was a CKAN bug and it has been fixed in the past two
 weeks, but I doubt it.
 
+I don't think the issue was that CKAN returns 404 on HEAD requests.
+
 ### Status code
+
+XXX
 
 ## Reasons
 If the HEAD request thing and the redirect status code weren't the issues,
@@ -100,6 +116,9 @@ p.storage
 ```
 
 ## Duplicate data
+It turned out that I had duplicate records in my table of link information. As I was working
+with it, I forgot the correct schema and remembered a different one; I thought I had a unique
+index on something for which I didn't.
 
 ```{r p_duplicates_ckan}
 p.duplicates.ckan
@@ -109,23 +128,37 @@ p.duplicates.ckan
 p.duplicates.socrata
 ```
 
+XXX Write a sentence after looking at the plots.
+
 ## New results
+I used a longer timeout on the previously-erring links and deduplicated my duplicates.
+Here are the new results.
+
+XXX Write a sentence after looking at the plot.
 
 ```{r p_link_types}
 p.link.types
 ```
 
+XXX Write a sentence after looking at the plot.
+
 ```{r p_link_types_onlylinks}
 p.link.types.onlylinks
 ```
+
+XXX Write a sentence after looking at the plot.
 
 ```{r p_link_types_specifics}
 p.link.types.specifics
 ```
 
+XXX Write a sentence after looking at the plot.
+
 ```{r p_prop_links}
 p.prop_links
 ```
+
+XXX Write a sentence after looking at the plot.
 
 # Appendix: How I figured this all out
 
