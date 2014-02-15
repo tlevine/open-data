@@ -46,7 +46,7 @@ CKAN does just fine on HEAD requests.
   
   print(get.status_code)
   # 200
-  print(head)
+  print(head.status_code)
   # 200
 
 It could be that there was a CKAN bug and it has been fixed in the past two
@@ -159,6 +159,10 @@ p.prop_links
 ```
 
 XXX Write a sentence after looking at the plot.
+
+## Conclusion
+
+XXX
 
 # Appendix: How I figured this all out
 
