@@ -55,8 +55,49 @@ weeks, but I doubt it.
 I don't think the issue was that CKAN returns 404 on HEAD requests.
 
 ### Status code
+I counted a link as alive if and only if it returned a status code of 200.
+Could the issue be that I needed to check for other status codes? Specifically,
+could it be that the URLs for files hosted on some CKAN FileStores are redirects
+rather than final URLs?
 
-XXX
+URLs from the CKAN FileStore should not be an issue because I didn't check URLs
+when the data were marked as being stored internally in the catalog.
+
+That said, it's possible that people uploaded the data to the CKAN FileStore and
+then told CKAN that it was an external link; it turns out that this was the case
+for OpenVA
+
+<!--
+sqlite> select is_link,count(url like 'data.openva.com.s3.amazonaws.com%') 'aws', count(*) 'total' from links where catalog = 'data.openva.com' group by is_link;
+is_link     aws         total     
+----------  ----------  ----------
+0           9           9         
+1           99          99        
+-->
+
+Running this query
+
+    SELECT DISTINCT url FROM links WHERE catalog = 'data.openva.com' AND NOT is_link;
+
+yields three URLs with that characteristic.
+
+    https://data.openva.com.s3.amazonaws.com/2013-06-30T21:27:16.600Z/2013.json
+    https://data.openva.com.s3.amazonaws.com/2013-12-16T03:06:56.875Z/sentencing.csv
+    https://data.openva.com.s3.amazonaws.com/2013-05-11T04:57:18.031Z/agency-websites.csv
+
+While they have issues with SSL certificates,
+
+    requests.head('https://data.openva.com.s3.amazonaws.com/2013-06-30T21:27:16.600Z/2013.json')   
+    # SSLError: hostname 'data.openva.com.s3.amazonaws.com' doesn't match either of '*.s3.amazonaws.com', 's3.amazonaws.com'
+
+they work just fine with unencrypted HTTP.
+
+    requests.head('http://data.openva.com.s3.amazonaws.com/2013-06-30T21:27:16.600Z/2013.json').status_code
+    # 200
+
+Moreover, there aren't very many redirect status codes across all the links.
+
+XXX Add a plot. I've probably already made it.
 
 ## Reasons
 If the HEAD request thing and the redirect status code weren't the issues,
