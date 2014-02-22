@@ -50,9 +50,6 @@ CKAN does just fine on HEAD requests.
   print(head.status_code)
   # 200
 
-It could be that there was a CKAN bug and it has been fixed in the past two
-weeks, but I doubt it.
-
 I don't think the issue was that CKAN returns 404 on HEAD requests.
 
 ### Status code
