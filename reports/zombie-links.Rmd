@@ -138,7 +138,7 @@ subset(errors, error_type == 'InvalidURL')[1:5,'url']
 ### Low Timeout
 Aside from the invalid URLs, most of the links gave no longer or gave a timeout.
 
-```{r p_errors_total}
+```{r p_errors_total_2}
 p.errors.total
 ```
 
