@@ -22,7 +22,7 @@ some people commented that the links were less dead than I'd thought.
 Some explanations were proposed. Samuele and Jindřich both suggested that
 the CKAN FileStore doesn't support HEAD requests.
 
-[![@DatiTrentinoit @statshero @thomaslevine Ckan returns 404 on HEAD requests, that's the problem..](samuele.png)])(https://twitter.com/_rshk/status/424208140016418816)
+[![@DatiTrentinoit @statshero @thomaslevine Ckan returns 404 on HEAD requests, that's the problem..](samuele.png)](https://twitter.com/_rshk/status/424208140016418816)
 
 [![](jindrich.png)](https://twitter.com/jindrichmynarz/status/428194318063370241)
 
@@ -149,7 +149,7 @@ I could have known to look for this, but having absolute URLs would still have
 been easier.
 
 ### Low Timeout
-Aside from the invalid URLs, most of the links gave no longer or gave a timeout.
+Aside from the invalid URLs, most of the bad links gave a timeout.
 
 ```{r p_errors_total_2}
 p.errors.total
@@ -286,17 +286,16 @@ p.codes
 ```
 
 Let's look at this for just the specific catalogs that those Tweets were about.
+Here's OpenVA.
 
-```{r status_codes_trentino_va}
+```{r status_codes_va}
+p.data.openva.com
+```
+
+And here's Trentino.
+
+```{r status_codes_trentino}
 p.dati.trentino.it
-```
-
-```{r}
-sort(table(subset(datasets, catalog == 'data.openva.com')$status_code), decreasing = T)[1:5]
-```
-
-```{r}
-sort(table(subset(datasets, catalog == 'dati.trentino.it')$status_code), decreasing = T)[1:5]
 ```
 
 Aside from 200, all of those status codes are errors, so this method of checking
