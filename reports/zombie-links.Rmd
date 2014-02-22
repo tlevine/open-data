@@ -95,7 +95,13 @@ they work just fine with unencrypted HTTP.
 
 Moreover, there aren't very many redirect status codes across all the links.
 
-XXX Add a plot. I've probably already made it.
+```{r p_no_redirects}
+p.no_redirects
+```
+
+Redirects are normally of status code 301 or 303, or at least in the 300-399
+range. I followed redirects when I downloaded them, so this plot contains no
+redirect status codes.
 
 ## Reasons
 If the HEAD request thing and the redirect status code weren't the issues,

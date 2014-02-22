@@ -288,6 +288,11 @@ p.prop_links <- ggplot(catalogs) +
   scale_color_discrete('Software') +
   ggtitle('CKAN catalogs have more externally stored datasets\nand more dead datasets.')
 
+p.no_redirects <- ggplot(datasets) +
+  aes(x = status_code) + geom_bar() +
+  xlab('Status code') +
+  scale_y_continuous('Number of datasets that returned this status code', labels = comma) +
+  ggtitle('Redirect status codes were not the problem.')
 
 # p.elapsed <- function() {
 #   par(mfrow = 2:1)
