@@ -191,33 +191,44 @@ tripled the duplication for the Socrata datasets.
 
 ## New results
 I used a longer timeout on the previously-erring links and deduplicated my duplicates.
-Here are the new results.
+Here are new results that correspond with the plots in the
+[previous article]().
 
-XXX Write a sentence after looking at the plot.
+In these plots, each bar represents all of the datasets for one data catalog. The bar
+is colored differently at different segments to represent different categories of dataset.
+
+The first plot shows that most datasets within a given catalog are alive, either because
+they are internally stored or because they are stored externally and have live links.
 
 ```{r p_link_types}
 p.link.types
 ```
 
-XXX Write a sentence after looking at the plot.
+If we ignore the datasets that are stored internally and thus make the bars represent only the
+datasets that are external links, the plot looks like this.
 
 ```{r p_link_types_onlylinks}
 p.link.types.onlylinks
 ```
 
-XXX Write a sentence after looking at the plot.
-
-```{r p_link_types_specifics}
-p.link.types.specifics
-```
-
-XXX Write a sentence after looking at the plot.
+The missing bars correspond to catalogs with no external links.
 
 ```{r p_prop_links}
 p.prop_links
 ```
 
 XXX Write a sentence after looking at the plot.
+
+## Unexplained
+Let's look closely at the two catalogs for which my prior results didn't seem right.
+
+```{r p_link_types_specifics}
+p.link.types.specifics
+```
+
+OpenVA is looking more alive than it did before, and the links that I marked as dead
+are links with SSL problems. But I don't know why Trentino's links are marked as dead.
+I checked a few of these links, and they download just fine.
 
 ## Conclusion
 
@@ -239,7 +250,6 @@ p.codes
 ```
 
 Let's look at this for just the specific catalogs that those Tweets were about.
-
 
 ```{r status_codes_trentino_va}
 ```
