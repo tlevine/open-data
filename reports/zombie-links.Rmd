@@ -204,20 +204,29 @@ they are internally stored or because they are stored externally and have live l
 p.link.types
 ```
 
-If we ignore the datasets that are stored internally and thus make the bars represent only the
-datasets that are external links, the plot looks like this.
+Let's ignore the datasets that are stored internally. The bars will represent only the
+datasets that are external links, and the missing bars correspond to catalogs with no
+external links.
 
 ```{r p_link_types_onlylinks}
 p.link.types.onlylinks
 ```
 
-The missing bars correspond to catalogs with no external links.
+One of my main conclusions in the prior article was that Socrata and CKAN encourage
+different paradigms for adding data to the catalog. Socrata sites are more likely to
+have internally stored data, and CKAN sites are more likely to have externally stored
+data. On the other hand, externally stored datasets are more likely to be alive in
+CKAN sites than in Socrata sites. I made this plot to explain that.
+
+![Old version of the plot](/!/data-catalog-dead-links/figure/prop_links.png)
+
+The plot looks a bit different with the fixed data (below),
 
 ```{r p_prop_links}
 p.prop_links
 ```
 
-XXX Write a sentence after looking at the plot.
+but conclusion still seems reasonable.
 
 ## Unexplained
 Let's look closely at the two catalogs for which my prior results didn't seem right.
@@ -231,10 +240,19 @@ are links with SSL problems. But I don't know why Trentino's links are marked as
 I checked a few of these links, and they download just fine.
 
 ## Conclusion
+My prior article gave some strange figures regarding the liveliness of datasets.
+In particular, there were high rates of dead links for some catalogs.
+Most of the strange figures in my prior article are explained by me having duplicates
+in my database. Also, some dead links are explained by factors that we might not think
+of as dead links, such as ambigous URLs or bad SSL configurations.
 
-XXX
+My main conclusion in the previous article is that CKAN and Socrata encourage storing
+data in different places (internally and externally). After I accounted for the
+duplication, this conclusion continues to seem valid.
 
 # Appendix: How I figured this all out
+Here are a bunch of things I tried doing in order to figure out what was going on.
+It's not very well organized or explained, but you might find it interesting.
 
 ## Status codes
 I called a URL alive if an ordinary HEAD request to it returned a
