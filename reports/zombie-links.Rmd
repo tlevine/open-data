@@ -123,7 +123,7 @@ Here are the main factors I see as leading to the strange results.
 I looked at the different sorts of errors that I got when I requested links
 to different hostnames.
 
-```{r p_hostname_error}
+```{r p_hostname_error_2}
 p.hostname.error
 ```
 
