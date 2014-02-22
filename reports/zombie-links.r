@@ -150,12 +150,17 @@ p.catalogs <- ggplot(catalogs) +
   scale_y_log10('Number of non-responses when accessing external links', labels = comma, breaks = 10^(0:5)) +
   geom_text(size = 7, alpha = 0.5)
 
+unique.links$is_link.factor <- factor(unique.links$is_link, levels = 0:1)
+levels(unique.links$is_link.factor) <- c('Internally stored','Externally stored')
 p.duplicates.ckan <- ggplot(subset(unique.links, software == 'ckan')) +
-  aes(x = n) + facet_wrap(~ is_link, nrow = 2) + geom_histogram()
+  xlab('Number of duplicates in my database of the same CKAN dataset') +
+  aes(x = n) + facet_wrap(~ is_link, nrow = 2) + geom_histogram() +
+  scale_y_continuous('Number of CKAN datasets with this many duplicate records', labels = comma)
 
 p.duplicates.socrata <- ggplot(subset(unique.links, software == 'socrata')) +
   aes(x = n) + facet_wrap(~ is_link, nrow = 2) + geom_histogram() +
-  scale_y_sqrt()
+  xlab('Number of duplicates in my database of the same Socrata table') +
+  scale_x_continuous('Number of Socrata tables with this many duplicate records', labels = comma)
 
 unique.links.socrata <- subset(unique.links, software == 'socrata' & is_link)
 table.duplicates.socrata <- table(subset(unique.links, software == 'socrata' & is_link)$n)

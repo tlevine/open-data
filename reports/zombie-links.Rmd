@@ -165,15 +165,29 @@ It turned out that I had duplicate records in my table of link information. As I
 with it, I forgot the correct schema and remembered a different one; I thought I had a unique
 index on something for which I didn't.
 
+To illustrate this, see below a plot of the number of CKAN datasets for which my link liveliness
+data has duplicate records. The top bar graph is for datasets that were stored internally, and
+the bottom bar graph is for datasets that were stored externally.
+
 ```{r p_duplicates_ckan}
 p.duplicates.ckan
 ```
+
+We see that there were quite a many duplicates, particularly for datasets that were stored
+externally. This happened because I ran my downloader script multiple times, thinking that
+duplicates were being skipped rather than resolved properly.
+
+Because of how I set up the database, it's hard to see this in the Socrata data.
 
 ```{r p_duplicates_socrata}
 p.duplicates.socrata
 ```
 
-XXX Write a sentence after looking at the plots.
+This plot shows that I have hundreds of duplicates of the same dataset.
+Most of these duplicates probably came from original Socrata site (as explained
+[here]()).
+Like with the CKAN datasets, my database schema issue probably only doubled or
+tripled the duplication for the Socrata datasets.
 
 ## New results
 I used a longer timeout on the previously-erring links and deduplicated my duplicates.
