@@ -83,12 +83,12 @@ yields three URLs with that characteristic.
     https://data.openva.com.s3.amazonaws.com/2013-12-16T03:06:56.875Z/sentencing.csv
     https://data.openva.com.s3.amazonaws.com/2013-05-11T04:57:18.031Z/agency-websites.csv
 
-While they have issues with SSL certificates,
+They have issues with SSL certificates,
 
     requests.head('https://data.openva.com.s3.amazonaws.com/2013-06-30T21:27:16.600Z/2013.json')   
     # SSLError: hostname 'data.openva.com.s3.amazonaws.com' doesn't match either of '*.s3.amazonaws.com', 's3.amazonaws.com'
 
-they work just fine with unencrypted HTTP.
+and they work just fine with unencrypted HTTP.
 
     requests.head('http://data.openva.com.s3.amazonaws.com/2013-06-30T21:27:16.600Z/2013.json').status_code
     # 200
@@ -139,6 +139,15 @@ usually invalid URLs.
 subset(errors, error_type == 'InvalidURL')[1:5,'url']
 ```
 
+Many of the URLs were intranet file paths (like `S:Foo\Bar\Baz.xls`).
+Not all datasets are public yet, so this is better than nothing.
+That said, I wonder whether people realize that these intranet paths are not
+accessible on the normal internet.
+
+Many of the links were specified as relative URLs, and I didn't try to parse them.
+I could have known to look for this, but having absolute URLs would still have
+been easier.
+
 ### Low Timeout
 Aside from the invalid URLs, most of the links gave no longer or gave a timeout.
 
@@ -153,12 +162,18 @@ The following plot should make it more clear.
 p.hostname.facet
 ```
 
-The `/storage` endpoint is typically used for the CKAN filestore. It looks like
-that can take a while to respond.
+Recall that people thought that CKAN doesn't respond to HEAD requests. It might
+just be that CKAN is slow to respond to requests. Here is a plot with datasets
+color-coded based on whether they appear to be served from a CKAN filestore.
 
 ```{r storage}
 p.storage
 ```
+
+(The `/storage` endpoint is typically used for the CKAN filestore.)
+
+It looks like the CKAN FileStore can take a while to respond, and that might be
+why people thought that HEAD requests fail.
 
 ## Duplicate data
 It turned out that I had duplicate records in my table of link information. As I was working
@@ -249,6 +264,9 @@ of as dead links, such as ambigous URLs or bad SSL configurations.
 My main conclusion in the previous article is that CKAN and Socrata encourage storing
 data in different places (internally and externally). After I accounted for the
 duplication, this conclusion continues to seem valid.
+
+Finally, we saw some interesting issues with the construction of URLs for datasets.
+There was a bit more variation in URLs than I had anticipated.
 
 # Appendix: How I figured this all out
 Here are a bunch of things I tried doing in order to figure out what was going on.
