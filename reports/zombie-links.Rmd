@@ -185,14 +185,14 @@ p.duplicates.socrata
 
 This plot shows that I have hundreds of duplicates of the same dataset.
 Most of these duplicates probably came from original Socrata site (as explained
-[here]()).
+[here](/!/socrata-deduplicate)).
 Like with the CKAN datasets, my database schema issue probably only doubled or
 tripled the duplication for the Socrata datasets.
 
 ## New results
 I used a longer timeout on the previously-erring links and deduplicated my duplicates.
 Here are new results that correspond with the plots in the
-[previous article]().
+[previous article](/!/data-catalog-dead-links).
 
 In these plots, each bar represents all of the datasets for one data catalog. The bar
 is colored differently at different segments to represent different categories of dataset.
