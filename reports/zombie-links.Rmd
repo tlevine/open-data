@@ -131,7 +131,7 @@ That the left-most bar, for the hostname `http:`, is quite large and has
 a lot of invalid URLs. Things that my hostname-parser detected as `http:` are
 usually invalid URLs.
 
-```{r invalid_urls}
+```{r invalid_urls_2}
 subset(errors, error_type == 'InvalidURL')[1:5,'url']
 ```
 
@@ -145,7 +145,7 @@ p.errors.total
 As we saw above, different websites (hostnames) tend to give different errors.
 The following plot should make it more clear.
 
-```{r p_hostname_facet_again}
+```{r p_hostname_facet_again_2}
 p.hostname.facet
 ```
 
@@ -469,11 +469,4 @@ p.elapsed
 
 ```{r errors_elapsed}
 errors.elapsed
-```
-
-The `/storage` endpoint is typically used for the CKAN filestore. It looks like
-that can take a while to respond.
-
-```{r storage}
-p.storage
 ```
