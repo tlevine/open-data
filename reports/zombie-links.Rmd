@@ -252,13 +252,14 @@ p.codes
 Let's look at this for just the specific catalogs that those Tweets were about.
 
 ```{r status_codes_trentino_va}
+p.dati.trentino.it
 ```
 
-```r
+```{r}
 sort(table(subset(datasets, catalog == 'data.openva.com')$status_code), decreasing = T)[1:5]
 ```
 
-```r
+```{r}
 sort(table(subset(datasets, catalog == 'dati.trentino.it')$status_code), decreasing = T)[1:5]
 ```
 
@@ -493,8 +494,4 @@ t.hostnames[['www-genesis.destatis.de']]
 
 ```{r p_elapsed}
 p.elapsed
-```
-
-```{r errors_elapsed}
-errors.elapsed
 ```
