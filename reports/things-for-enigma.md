@@ -26,3 +26,6 @@ I would like to be able to run arbitrary code to reformat datasets without
 having to download them all. It would be really cool if I could have something
 equivalent to read-only access in whatever way the Enigma web application
 accesses these data.
+
+## NIH Grant
+Apply to [this](http://grants.nih.gov/grants/guide/rfa-files/RFA-HG-14-020.html).
