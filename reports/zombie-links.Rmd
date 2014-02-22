@@ -26,7 +26,8 @@ the CKAN FileStore doesn't support HEAD requests.
 
 [![](jindrich.png)](https://twitter.com/jindrichmynarz/status/428194318063370241)
 
-And Waldo suggested that I might be checking for status code 200 but
+And [Waldo](http://waldo.jaquith.org/)
+suggested that I might be checking for status code 200 but
 receiving status code 303 (redirect) from OpenVA.
 
 So what was going on?
