@@ -40,3 +40,6 @@ to-disk:
 
 from-disk:
 	cp cache/open-data.sqlite /tmp
+
+countries:
+	./countries.sh
